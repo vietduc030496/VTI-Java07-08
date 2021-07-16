@@ -34,7 +34,7 @@ public class CheckData {
     }
 
     public static boolean checkInputPhoneData(String phone) {
-        if (phone.matches("^\\d{7}$")) {
+        if (phone.matches("^\\d{7,}+")) {
             return true;
         } else {
             System.out.println("Wrong phone");
@@ -43,7 +43,7 @@ public class CheckData {
     }
 
     public static boolean checkInputEmailData(String email) {
-        if (email.matches("\"^(.+)@(.+)$\"")) {
+        if (email.matches("^(.+)@(.+)$")) {
             return true;
         } else {
             System.out.println("Wrong email");

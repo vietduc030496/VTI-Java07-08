@@ -5,17 +5,19 @@
  */
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import entity.Department;
-
+import entity.*;
 public class DepartmentInput {
 	public static Department Department_Input() {
 		
 		System.out.println("Nhap ten phong ban: ");
 		Scanner in = new Scanner(System.in);
 		String name = in.nextLine();
-		Department d = new Department(name);
+		List<Employee> l = new ArrayList<>();
+		Department d = new Department(name,l);
 		return d;
 	}
 }

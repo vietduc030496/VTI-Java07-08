@@ -26,22 +26,21 @@ public class EmployeeInput {
 			System.out.println("1. SalariedEmployee ");
 			System.out.println("2. HourlyEmployee ");
 			System.out.println("0. Exit");
-			choice = in.nextInt();
+			choice = Integer.parseInt(in.nextLine());
 			switch (choice) {
 			case 1:
-				ssn += 1;
 				String ssn1 = String.valueOf(ssn);
 				SalariedEmployee Se = salariedEmployee(ssn1);
-				d.addEmployee(Se);
+				d.addSalariedEmployee(Se);
+				ssn+=1;
 				break;
 			case 2:
-				ssn += 1;
 				String ssn2 = String.valueOf(ssn);
 				HourlyEmployee He = hourlyEmployee(ssn2);
-				d.addEmployee(He);
+				d.addHourlyEmployee(He);
+				ssn+=1;
 				break;
 			case 0:
-				System.exit(0);
 				break;
 
 			}
@@ -79,7 +78,7 @@ public class EmployeeInput {
 		String email;
 		while (true) {
 			email = in.nextLine();
-			if (CheckData.checkInputDateData(email)) {
+			if (CheckData.checkInputEmailData(email)) {
 				break;
 			} else {
 				System.out.print("Invalid email. Please reenter: ");
@@ -123,7 +122,7 @@ public class EmployeeInput {
 		String email;
 		while (true) {
 			email = in.nextLine();
-			if (CheckData.checkInputDateData(email)) {
+			if (CheckData.checkInputEmailData(email)) {
 				break;
 			} else {
 				System.out.print("Invalid email. Please reenter: ");
