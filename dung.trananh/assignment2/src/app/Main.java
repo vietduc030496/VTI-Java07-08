@@ -72,6 +72,7 @@ public class Main {
 				EmployeeDisplay.EmpDisplay(d);
 				break;
 			case 5:
+				//Phan loai nhan vien theo 2 loai
 				EmployeeClassify.EmpClassify(d);
 				break;
 			case 6:
@@ -81,6 +82,7 @@ public class Main {
 
 				break;
 			case 8:
+				//Bao cao tong ket phong ban va nhan vien
 				Report.report(d);
 				break;
 			case 0:
