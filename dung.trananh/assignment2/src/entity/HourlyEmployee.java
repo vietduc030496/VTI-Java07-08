@@ -38,7 +38,7 @@ public class HourlyEmployee extends Employee{
 
     @Override
     public String toString() {
-        return "HourlyEmployee{" + "ssn=" + this.getSsn() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", birthDate=" + this.getBirthDate() + ", phone=" + this.getPhone() + ", email=" + this.getEmail() + "wage=" + wage + ", workingHours=" + workingHours + '}';
+        return "HourlyEmhployee{" + "ssn=" + this.getSsn() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", birthDate=" + this.getBirthDate() + ", phone=" + this.getPhone() + ", email=" + this.getEmail() + "wage=" + wage + ", workingHours=" + workingHours + '}' + "\n";
     }
     
 }
