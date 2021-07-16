@@ -1,3 +1,5 @@
+package entity;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +10,7 @@
  *
  * @author dung.trananh
  */
-abstract class Employee {
+public abstract class Employee {
     private String ssn;
     private String firstName;
     private String lastName;

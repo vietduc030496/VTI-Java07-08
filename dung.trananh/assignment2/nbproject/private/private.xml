@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/SalariedEmployee.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/Invoice.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/Employee.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/Department.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/Main.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/HourlyEmployee.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/Controller.java</file>
-            <file>file:/C:/Users/dung.trananh/Documents/NetBeansProjects/baiso2/src/Payable.java</file>
+            <file>file:/D:/Study/JAVA/VTI-Java07-08/dung.trananh/assignment2/src/service/DepartmentInput.java</file>
+            <file>file:/D:/Study/JAVA/VTI-Java07-08/dung.trananh/assignment2/src/app/Main.java</file>
+            <file>file:/D:/Study/JAVA/VTI-Java07-08/dung.trananh/assignment2/src/service/EmployeeInput.java</file>
+            <file>file:/D:/Study/JAVA/VTI-Java07-08/dung.trananh/assignment2/src/entity/Department.java</file>
         </group>
     </open-files>
 </project-private>

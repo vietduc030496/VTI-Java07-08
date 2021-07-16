@@ -1,6 +1,7 @@
+package entity;
+
 
 import java.util.List;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,6 +15,12 @@ import java.util.List;
 public class Department {
     private String departmentName;
     private List listOfEmployee;
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+    
+    
 
     public Department(String departmentName, List listOfEmployee) {
         this.departmentName = departmentName;
@@ -39,5 +46,7 @@ public class Department {
     public void display() {
         System.out.println("Department{" + "departmentName=" + departmentName + ", listOfEmployee=" + listOfEmployee + '}');
     }
-    
+    public void addEmployee(Employee e) {
+    	this.listOfEmployee.add(e);
+    }
 }

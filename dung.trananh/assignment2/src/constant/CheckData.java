@@ -1,3 +1,5 @@
+package constant;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +14,7 @@ import java.util.Date;
  *
  * @author dung.trananh
  */
-public class Controller {
+public class CheckData {
 
     public boolean checkInputDateData(String birthdate) {
         if (birthdate.trim().equals("")) {
@@ -41,7 +43,7 @@ public class Controller {
     }
 
     public boolean checkInputEmailData(String email) {
-        if (email.matches("\"^[\\\\w-_\\\\.+]*[\\\\w-_\\\\.]\\\\@([\\\\w]+\\\\.)+[\\\\w]+[\\\\w]$\"")) {
+        if (email.matches("\"^(.+)@(.+)$\"")) {
             return true;
         } else {
             System.out.println("Wrong email");
