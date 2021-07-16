@@ -8,6 +8,8 @@ public interface Config {
 	int  CLASSIFYEMPLOYEE = 3;
 	int  SEARCH = 4;
 	int  REPORT = 5;
+	int  CREATEDEPARTMENT = 6;
+	int  DELETEEMPLOYEE = 7;
 	int  EXIT = 0;
 	int  IT =1;
 	int HR =2;
