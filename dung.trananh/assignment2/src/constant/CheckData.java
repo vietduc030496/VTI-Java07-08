@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class CheckData {
 
-    public boolean checkInputDateData(String birthdate) {
+    public static boolean checkInputDateData(String birthdate) {
         if (birthdate.trim().equals("")) {
             return true;
         } else {
@@ -33,7 +33,7 @@ public class CheckData {
         }
     }
 
-    public boolean checkInputPhoneData(String phone) {
+    public static boolean checkInputPhoneData(String phone) {
         if (phone.matches("^\\d{7}$")) {
             return true;
         } else {
@@ -42,7 +42,7 @@ public class CheckData {
         }
     }
 
-    public boolean checkInputEmailData(String email) {
+    public static boolean checkInputEmailData(String email) {
         if (email.matches("\"^(.+)@(.+)$\"")) {
             return true;
         } else {
@@ -51,7 +51,4 @@ public class CheckData {
         }
     }
         
-    public void InputData(){
-        
-    }
 }
