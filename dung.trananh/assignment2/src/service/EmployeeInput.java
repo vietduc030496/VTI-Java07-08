@@ -18,9 +18,8 @@ import constant.CheckData;
 public class EmployeeInput {
 	static Scanner in = new Scanner(System.in);
 
-	public static void Employee() {
+	public static void Employee(Department d, int ssn) {
 		int choice = 10;
-		int id =0;
 		while (choice != 0) {
 			System.out.println("Chon type of Employee: ");
 			System.out.println("-----------------------");
@@ -30,13 +29,13 @@ public class EmployeeInput {
 			choice = in.nextInt();
 			switch (choice) {
 			case 1:
-				id+=1;
-				String ssn1 = String.valueOf(id); 
+				ssn+=1;
+				String ssn1 = String.valueOf(ssn); 
 				SalariedEmployee Se = salariedEmployee(ssn1);
 				break;
 			case 2:
-				id+=1;
-				String ssn2 = String.valueOf(id);
+				ssn+=1;
+				String ssn2 = String.valueOf(ssn);
 				HourlyEmployee He = hourlyEmployee(ssn2);
 				break;
 			case 0:
@@ -48,7 +47,7 @@ public class EmployeeInput {
 
 	}
 
-	public HourlyEmployee hourlyEmployee(String id) {
+	public static HourlyEmployee hourlyEmployee(String id) {
 		System.out.println("Nhap first name: ");
 		String fn = in.nextLine();
 		System.out.println("Nhap last name: ");
@@ -64,10 +63,10 @@ public class EmployeeInput {
 		System.out.println("Nhap workingHours: ");
 		double wH = Double.parseDouble(in.nextLine());
 		HourlyEmployee he = new HourlyEmployee(wage,wH,id,fn,ln,bd,p,email);
-		
+		return he;
 	}
 
-	public SalariedEmployee salariedEmployee(int id) {
+	public static SalariedEmployee salariedEmployee(String id) {
 		System.out.println("Nhap first name: ");
 		String fn = in.nextLine();
 		System.out.println("Nhap last name: ");
@@ -78,5 +77,13 @@ public class EmployeeInput {
 		String p = in.nextLine();
 		System.out.println("Nhap email: ");
 		String email = in.nextLine();
+		System.out.println("Nhap commissionRate: ");
+		double cR = Double.parseDouble(in.nextLine());
+		System.out.println("Nhap grossSales: ");
+		double gS = Double.parseDouble(in.nextLine());
+		System.out.println("Nhap basicSalary: ");
+		double bS = Double.parseDouble(in.nextLine());
+		SalariedEmployee se = new SalariedEmployee(cR,gS,bS,id,fn,ln,bd,p,email);
+		return se;
 	}
 }

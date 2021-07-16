@@ -22,7 +22,9 @@ public class Main {
 		int choiceNumber = 10;
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Department> d = new ArrayList<>();
-		int i=-1;
+		int i = -1;
+		int ssn = 0;
+
 		while (choiceNumber != 0) {
 			System.out.println("1. Input department data from the keyboard");
 			System.out.println("2. Input employee data from the keyboard");
@@ -34,16 +36,25 @@ public class Main {
 			System.err.println("0. Exit");
 			System.out.println("Please choose: ");
 			choiceNumber = scanner.nextInt();
+
 			switch (choiceNumber) {
 			case 1:
 				Department de = DepartmentInput.Department_Input();
 				d.add(de);
-				i+=1;
 				break;
 			case 2:
 				if (d.size() > 0) {
-//					Employee e = EmployeeInput.Employee();
-//					d.get(i).li;
+					System.out.println("Choose department: ");
+					String name = scanner.nextLine();
+					for (int j = 0; j < d.size(); j++) {
+						if (d.get(j).getDepartmentName().equals(name)) {
+							ssn += 1;
+							EmployeeInput.Employee(d.get(j), ssn);
+						}else {
+							System.out.println("Don't exist this department");
+						}
+						
+					}
 				} else {
 					System.out.println("Need to input department first");
 				}
