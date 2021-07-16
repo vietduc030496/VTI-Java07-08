@@ -5,7 +5,6 @@ import java.util.Scanner;
 import service.*;
 import entity.*;
 
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,7 +21,6 @@ public class Main {
 		int choiceNumber = 10;
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Department> d = new ArrayList<>();
-		int i = -1;
 		int ssn = 0;
 
 		while (choiceNumber != 0) {
@@ -34,16 +32,18 @@ public class Main {
 			System.out.println("6. Employee Search");
 			System.out.println("7. Report");
 			System.out.println("8. Delete Employee");
-			System.err.println("0. Exit");
+			System.out.println("0. Exit");
 			System.out.println("Please choose: ");
-			choiceNumber = scanner.nextInt();
+			choiceNumber = Integer.parseInt(scanner.nextLine());
 
 			switch (choiceNumber) {
 			case 1:
+				//Them dep moi
 				Department de = DepartmentInput.Department_Input();
 				d.add(de);
 				break;
 			case 2:
+				//Chon dep muon them nhan vien
 				if (d.size() > 0) {
 					System.out.println("Choose department: ");
 					String name = scanner.nextLine();
@@ -52,25 +52,38 @@ public class Main {
 						if (d.get(j).getDepartmentName().equals(name)) {
 							ssn += 1;
 							EmployeeInput.Employee(d.get(j), ssn);
-						}else {
+
+						} else {
 							System.out.println("Don't exist this department");
 							break;
 						}
-						
+
 					}
 				} else {
 					System.out.println("Need to input department first");
 				}
 				break;
 			case 3:
-				
-
+				// Hien thi cac phong ban va so luong nhan vien moi phong
+				DepartmentDisplay.DeDisplay(d);
 				break;
 			case 4:
-
+				//Hien thi thong tin chi tiet tung nhan vien o trong phong ban
+				EmployeeDisplay.EmpDisplay(d);
 				break;
 			case 5:
+				//Phan loai nhan vien theo 2 loai
+				EmployeeClassify.EmpClassify(d);
+				break;
+			case 6:
 
+				break;
+			case 7:
+
+				break;
+			case 8:
+				//Bao cao tong ket phong ban va nhan vien
+				Report.report(d);
 				break;
 			case 0:
 				System.exit(0);

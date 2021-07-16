@@ -1,4 +1,4 @@
-package vti;
+package entity;
 
 public class SalariedEmployee extends Employee{
 	private double commissionRate;

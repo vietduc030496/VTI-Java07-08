@@ -46,7 +46,10 @@ public class Department {
     public void display() {
         System.out.println("Department{" + "departmentName=" + departmentName + ", listOfEmployee=" + listOfEmployee + '}');
     }
-    public void addEmployee(Employee e) {
-    	this.listOfEmployee.add(e);
+    public void addSalariedEmployee(SalariedEmployee Se) {
+    	this.listOfEmployee.add(Se);
+    }
+    public void addHourlyEmployee(HourlyEmployee He) {
+    	this.listOfEmployee.add(He);
     }
 }

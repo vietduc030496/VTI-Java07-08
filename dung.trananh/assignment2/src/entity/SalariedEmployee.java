@@ -51,7 +51,7 @@ public class SalariedEmployee extends Employee{
 
     @Override
     public String toString() {
-        return "SalariedEmployee{" + "ssn=" + this.getSsn() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", birthDate=" + this.getBirthDate() + ", phone=" + this.getPhone() + ", email=" + this.getEmail() + "commissionRate=" + commissionRate + ", grossSales=" + grossSales + ", basicSalary=" + basicSalary + ", email="+  '}';
+        return "SalariedEmployee{" + "ssn=" + this.getSsn() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", birthDate=" + this.getBirthDate() + ", phone=" + this.getPhone() + ", email=" + this.getEmail() + "commissionRate=" + commissionRate + ", grossSales=" + grossSales + ", basicSalary=" + basicSalary + ", email="+  '}' +"\n";
     }
     
 
