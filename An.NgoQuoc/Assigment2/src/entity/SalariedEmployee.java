@@ -1,3 +1,4 @@
+package entity;
 
 public class SalariedEmployee extends Employee {
 	private double commissionRate;
@@ -9,9 +10,9 @@ public class SalariedEmployee extends Employee {
 		return 0;
 	}
 
-	public SalariedEmployee(String ssn, String firstName, String lastName, String birthDate, String phone, String email,
+	public SalariedEmployee(String firstName, String lastName, String birthDate, String phone, String email,
 			double commissionRate, double grossSales, double basicSalary) {
-		super(ssn, firstName, lastName, birthDate, phone, email);
+		super(firstName, lastName, birthDate, phone, email);
 		this.commissionRate = commissionRate;
 		this.grossSales = grossSales;
 		this.basicSalary = basicSalary;
@@ -37,7 +38,7 @@ public class SalariedEmployee extends Employee {
 	@Override
 	public void display() {
 		System.out.println(getSsn() + " " + getFirstName() + " " + getLastName() + " " + getBirthDate() 
-		+ " " + getPhone() + " " + getEmail() + " " + commissionRate + " " + grossSales + "'" + basicSalary);
+		+ " " + getPhone() + " " + getEmail() + " " + commissionRate + " " + grossSales + " " + basicSalary);
 		}
 
 }

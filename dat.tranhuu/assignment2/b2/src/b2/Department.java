@@ -1,19 +1,10 @@
-import java.util.ArrayList;
+package b2;
+
 import java.util.List;
 
 public class Department {
 	private String departmentName;
-	private List<Employee> listOfEmployee;
-	public Department() {
-		super();
-	}
-	
-	public Department(String departmentName, List<Employee> listOfEmployee) {
-		super();
-		this.departmentName = departmentName;
-		this.listOfEmployee = listOfEmployee;
-	}
-
+	List<Employee> listOfEmployee;
 	public String getDepartmentName() {
 		return departmentName;
 	}
@@ -26,8 +17,11 @@ public class Department {
 	public void setListOfEmployee(List<Employee> listOfEmployee) {
 		this.listOfEmployee = listOfEmployee;
 	}
-	public void display() {
-		System.out.println(departmentName + " " + listOfEmployee.size());
+	public Department() {
+		super();
 	}
 	
+	public void display() {
+		System.out.println("departmentName: "+this.departmentName);
+	}
 }

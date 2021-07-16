@@ -1,6 +1,8 @@
+package entity;
 
-public abstract class Employee implements Payable{
-	private String ssn;
+public abstract class Employee implements Payable, Comparable<Employee>{
+	private static long id = 100;
+	private long ssn;
 	private String firstName;
 	private String lastName;
 	private String birthDate;
@@ -8,9 +10,9 @@ public abstract class Employee implements Payable{
 	private String email;
 	
 	
-	public Employee(String ssn, String firstName, String lastName, String birthDate, String phone, String email) {
+	public Employee(String firstName, String lastName, String birthDate, String phone, String email) {
 		super();
-		this.ssn = ssn;
+		this.ssn = id++;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
@@ -20,19 +22,24 @@ public abstract class Employee implements Payable{
 	public void display() {
 		System.out.println(ssn + " " + firstName + " " + lastName + " " + birthDate + " " + phone + " " + email);
 	}
-	public Employee(String ssn, String firstName, String lastName) {
+	public Employee(String firstName, String lastName) {
 		super();
-		this.ssn = ssn;
+		this.ssn = id++;
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}	
+	
+	@Override
+	public int compareTo(Employee e) {
+		return this.getFirstName().compareTo(e.getFirstName());
 	}
-
+	
 	public Employee() {
 	}
-	public String getSsn() {
+	public long getSsn() {
 		return ssn;
 	}
-	public void setSsn(String ssn) {
+	public void setSsn(long ssn) {
 		this.ssn = ssn;
 	}
 	public String getFirstName() {
