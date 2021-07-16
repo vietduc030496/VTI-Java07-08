@@ -1,4 +1,4 @@
-package vti;
+package entity;
 
 public abstract class Employee implements Payable{
 	private String ssn;
