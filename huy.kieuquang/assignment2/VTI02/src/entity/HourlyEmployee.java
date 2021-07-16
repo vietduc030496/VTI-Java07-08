@@ -1,4 +1,4 @@
-package vti;
+package entity;
 
 public class HourlyEmployee extends Employee{
 	private double wage;
