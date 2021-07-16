@@ -29,14 +29,16 @@ public class EmployeeInput {
 			choice = in.nextInt();
 			switch (choice) {
 			case 1:
-				ssn+=1;
-				String ssn1 = String.valueOf(ssn); 
+				ssn += 1;
+				String ssn1 = String.valueOf(ssn);
 				SalariedEmployee Se = salariedEmployee(ssn1);
+				d.addEmployee(Se);
 				break;
 			case 2:
-				ssn+=1;
+				ssn += 1;
 				String ssn2 = String.valueOf(ssn);
 				HourlyEmployee He = hourlyEmployee(ssn2);
+				d.addEmployee(He);
 				break;
 			case 0:
 				System.exit(0);
@@ -53,16 +55,41 @@ public class EmployeeInput {
 		System.out.println("Nhap last name: ");
 		String ln = in.nextLine();
 		System.out.println("Nhap birth date: ");
-		String bd = in.nextLine();
+		String bid;
+		while (true) {
+			bid = in.nextLine();
+			if (CheckData.checkInputDateData(bid)) {
+				break;
+			} else {
+				System.out.print("Invalid birthdate. Please reenter: ");
+			}
+		}
+
 		System.out.println("Nhap phone: ");
-		String p = in.nextLine();
+		String p;
+		while (true) {
+			p = in.nextLine();
+			if (CheckData.checkInputPhoneData(p)) {
+				break;
+			} else {
+				System.out.print("Invalid phone. Please reenter: ");
+			}
+		}
 		System.out.println("Nhap email: ");
-		String email = in.nextLine();
+		String email;
+		while (true) {
+			email = in.nextLine();
+			if (CheckData.checkInputDateData(email)) {
+				break;
+			} else {
+				System.out.print("Invalid email. Please reenter: ");
+			}
+		}
 		System.out.println("Nhap wage: ");
 		double wage = Double.parseDouble(in.nextLine());
 		System.out.println("Nhap workingHours: ");
 		double wH = Double.parseDouble(in.nextLine());
-		HourlyEmployee he = new HourlyEmployee(wage,wH,id,fn,ln,bd,p,email);
+		HourlyEmployee he = new HourlyEmployee(wage, wH, id, fn, ln, bid, p, email);
 		return he;
 	}
 
@@ -72,18 +99,43 @@ public class EmployeeInput {
 		System.out.println("Nhap last name: ");
 		String ln = in.nextLine();
 		System.out.println("Nhap birth date: ");
-		String bd = in.nextLine();
+		String bid;
+		while (true) {
+			bid = in.nextLine();
+			if (CheckData.checkInputDateData(bid)) {
+				break;
+			} else {
+				System.out.print("Invalid birthdate. Please reenter: ");
+			}
+		}
+
 		System.out.println("Nhap phone: ");
-		String p = in.nextLine();
+		String p;
+		while (true) {
+			p = in.nextLine();
+			if (CheckData.checkInputPhoneData(p)) {
+				break;
+			} else {
+				System.out.print("Invalid phone. Please reenter: ");
+			}
+		}
 		System.out.println("Nhap email: ");
-		String email = in.nextLine();
+		String email;
+		while (true) {
+			email = in.nextLine();
+			if (CheckData.checkInputDateData(email)) {
+				break;
+			} else {
+				System.out.print("Invalid email. Please reenter: ");
+			}
+		}
 		System.out.println("Nhap commissionRate: ");
 		double cR = Double.parseDouble(in.nextLine());
 		System.out.println("Nhap grossSales: ");
 		double gS = Double.parseDouble(in.nextLine());
 		System.out.println("Nhap basicSalary: ");
 		double bS = Double.parseDouble(in.nextLine());
-		SalariedEmployee se = new SalariedEmployee(cR,gS,bS,id,fn,ln,bd,p,email);
+		SalariedEmployee se = new SalariedEmployee(cR, gS, bS, id, fn, ln, bid, p, email);
 		return se;
 	}
 }

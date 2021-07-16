@@ -2,9 +2,9 @@ package app;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import service.DepartmentInput;
-import service.EmployeeInput;
+import service.*;
 import entity.*;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,6 +33,7 @@ public class Main {
 			System.out.println("5. Classify employees");
 			System.out.println("6. Employee Search");
 			System.out.println("7. Report");
+			System.out.println("8. Delete Employee");
 			System.err.println("0. Exit");
 			System.out.println("Please choose: ");
 			choiceNumber = scanner.nextInt();
@@ -47,11 +48,13 @@ public class Main {
 					System.out.println("Choose department: ");
 					String name = scanner.nextLine();
 					for (int j = 0; j < d.size(); j++) {
+						// Kiem tra ten department vs danh sach co san
 						if (d.get(j).getDepartmentName().equals(name)) {
 							ssn += 1;
 							EmployeeInput.Employee(d.get(j), ssn);
 						}else {
 							System.out.println("Don't exist this department");
+							break;
 						}
 						
 					}
@@ -60,6 +63,7 @@ public class Main {
 				}
 				break;
 			case 3:
+				
 
 				break;
 			case 4:
