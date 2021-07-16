@@ -1,7 +1,14 @@
+package app;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import entity.Department;
+import entity.Employee;
+import entity.HourlyEmployee;
+import entity.SalariedEmployee;
 
 public class DepartmentManage {
 	List<Employee> listEmployees = new ArrayList<Employee>();
@@ -11,8 +18,8 @@ public class DepartmentManage {
 		boolean ck;
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Nhap ssn:");
-		String ssn = sc.nextLine();
+		//System.out.print("Nhap ssn:");
+		//String ssn = sc.nextLine();
 		System.out.print("Nhap firstName:");
 		String firstName = sc.nextLine();
 		System.out.print("Nhap lastName:");
@@ -85,7 +92,7 @@ public class DepartmentManage {
 			double grossSales = sc.nextDouble();
 			System.out.print("Nhap basicSalary:");
 			double basicSalary = sc.nextDouble();
-			ee = new SalariedEmployee(ssn, firstName, lastName, birthDate, phone, email, commissionRate, grossSales, basicSalary);
+			ee = new SalariedEmployee(firstName, lastName, birthDate, phone, email, commissionRate, grossSales, basicSalary);
 			listEmployees.add(ee);
 		}
 		else if(typeE == 2) {
@@ -93,7 +100,7 @@ public class DepartmentManage {
 			double wage = sc.nextDouble();
 			System.out.print("Nhap workingHours:");
 			double workingHours = sc.nextDouble();
-			ee = new HourlyEmployee(ssn, firstName, lastName, birthDate, phone, email, wage, workingHours);
+			ee = new HourlyEmployee(firstName, lastName, birthDate, phone, email, wage, workingHours);
 			listEmployees.add(ee);
 		}
 		
@@ -108,6 +115,7 @@ public class DepartmentManage {
 	}
 	public void displayEmployees() {
 		if(listEmployees.size() != 0) {
+			Collections.sort(listEmployees);
 			for (Employee employee : listEmployees) {
 				employee.display();
 			}
@@ -142,6 +150,7 @@ public class DepartmentManage {
 		System.out.print("Nhập tên nhân viên:");
 		String name = sc.nextLine();
 		int ck = 1;
+		Collections.sort(listEmployees);
 		for ( Employee ee : listEmployees) {
 			if(ee.getFirstName().equals(name)) {
 				ee.display();
@@ -160,6 +169,7 @@ public class DepartmentManage {
 	}
 	public void classifyEmployee() {
 		System.out.println("Danh sách SalariedEmployee:");
+		Collections.sort(listEmployees);
 		for (Object ee : listEmployees) {
 			if(ee instanceof SalariedEmployee ) {
 				((SalariedEmployee) ee).display();
@@ -172,11 +182,11 @@ public class DepartmentManage {
 			}
 		}
 	}
-	public void main(String [] arg) {
+	public void run(String [] arg) {
 		//khởi tạo phòng ban
 		Department dp1 = new Department("HR", new ArrayList<Employee>());
 		Department dp2 = new Department("IT", new ArrayList<Employee>());
-		Department dp3 = new Department("XX", new ArrayList<Employee>());
+		Department dp3 = new Department("ORTHER", new ArrayList<Employee>());
 		lisDepartments.add(dp1);
 		lisDepartments.add(dp2);
 		lisDepartments.add(dp3);		
@@ -225,6 +235,10 @@ public class DepartmentManage {
 				break;
 			}
 		}
+	}
+	public static void main(String [] arg) {
+		DepartmentManage dm =new DepartmentManage();
+		dm.run(arg);
 	}
 }
 

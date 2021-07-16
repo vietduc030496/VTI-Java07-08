@@ -1,12 +1,13 @@
+package entity;
 import java.io.ObjectInputStream.GetField;
 
 public class HourlyEmployee extends Employee{
 	private double wage;
 	private double workingHours;
 	
-	public HourlyEmployee(String ssn, String firstName, String lastName, String birthDate, String phone, String email,
+	public HourlyEmployee(String firstName, String lastName, String birthDate, String phone, String email,
 			double wage, double workingHours) {
-		super(ssn, firstName, lastName, birthDate, phone, email);
+		super(firstName, lastName, birthDate, phone, email);
 		this.wage = wage;
 		this.workingHours = workingHours;
 	}
@@ -41,5 +42,6 @@ public class HourlyEmployee extends Employee{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }

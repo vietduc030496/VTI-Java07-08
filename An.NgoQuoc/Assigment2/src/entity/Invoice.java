@@ -1,3 +1,4 @@
+package entity;
 
 public class Invoice implements Payable{
 	private String partNumber;
