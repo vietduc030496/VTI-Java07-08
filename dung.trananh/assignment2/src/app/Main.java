@@ -81,7 +81,7 @@ public class Main {
 
 				break;
 			case 8:
-
+				Report.report(d);
 				break;
 			case 0:
 				System.exit(0);
