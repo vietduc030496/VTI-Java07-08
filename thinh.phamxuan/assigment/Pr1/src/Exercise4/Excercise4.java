@@ -21,6 +21,13 @@ public class Excercise4 {
 		insertSort.print();
 		insertSort.sort();
 		insertSort.print();
+		System.out.println("Nhap l: \n");
+		int l=scanner.nextInt();
+		QuickSort quickSort= new QuickSort(l);
+		quickSort.input();
+		quickSort.print();
+		quickSort.sort();
+		quickSort.print();
 	}
 
 }
