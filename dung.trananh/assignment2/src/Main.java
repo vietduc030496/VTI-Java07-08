@@ -30,21 +30,19 @@ public class Main {
             switch (choiceNumber) {
                 case 1:
 //                    
-//                    break;
+                    break;
                 case 2:
-//                    double dientich = h.dienTichXungQuanh();
-//                    System.out.println("Dien tich xung quang:" + dientich);
-//                    break;
+//                    
+                    break;
                 case 3:
-//                    double thetich = h.theTich();
-//                    System.out.println("The tich:" + thetich);
-//                    break;
+//                    
+                    break;
                 case 4:
-//                    a.nhapMaTran();
-//                    break;
+//                    
+                    break;
                 case 5:
 //
-//                    break;
+                    break;
                 case 0:
                     System.exit(0);
                     break;
