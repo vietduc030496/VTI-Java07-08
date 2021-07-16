@@ -75,9 +75,9 @@ public class DepartmentManage {
 		ck = true;
 		String departmentName ="";
 		while(ck) {
-			System.out.print("Nhap departmentName(HR,IT,XX):");
+			System.out.print("Nhap departmentName(HR,IT,ORTHER):");
 			departmentName = sc.nextLine();
-			if(departmentName.equals("HR") == true || departmentName.equals("IT") | departmentName.equals("XX")) {
+			if(departmentName.equals("HR") == true || departmentName.equals("IT") | departmentName.equals("ORTHER")) {
 				ck = false;
 			}
 		}
