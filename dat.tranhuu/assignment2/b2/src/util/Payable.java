@@ -1,4 +1,4 @@
-package b2;
+package util;
 
 public interface Payable {
 	double getPaymentAmount();

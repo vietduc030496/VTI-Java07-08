@@ -1,4 +1,6 @@
-package b2;
+package entity;
+
+import util.Payable;
 
 public class Invoice implements Payable {
 
