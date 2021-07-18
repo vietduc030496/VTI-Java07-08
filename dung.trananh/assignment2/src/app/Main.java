@@ -38,12 +38,12 @@ public class Main {
 
 			switch (choiceNumber) {
 			case 1:
-				//Them dep moi
+				// Them department moi
 				Department de = DepartmentInput.Department_Input();
 				d.add(de);
 				break;
 			case 2:
-				//Chon dep muon them nhan vien
+				// Chon department muon them nhan vien
 				if (d.size() > 0) {
 					System.out.println("Choose department: ");
 					String name = scanner.nextLine();
@@ -52,12 +52,7 @@ public class Main {
 						if (d.get(j).getDepartmentName().equals(name)) {
 							ssn += 1;
 							EmployeeInput.Employee(d.get(j), ssn);
-
-						} else {
-							System.out.println("Don't exist this department");
-							break;
 						}
-
 					}
 				} else {
 					System.out.println("Need to input department first");
@@ -68,22 +63,24 @@ public class Main {
 				DepartmentDisplay.DeDisplay(d);
 				break;
 			case 4:
-				//Hien thi thong tin chi tiet tung nhan vien o trong phong ban
+				// Hien thi thong tin chi tiet tung nhan vien o trong phong ban
 				EmployeeDisplay.EmpDisplay(d);
 				break;
 			case 5:
-				//Phan loai nhan vien theo 2 loai
+				// Phan loai nhan vien theo 2 loai
 				EmployeeClassify.EmpClassify(d);
 				break;
 			case 6:
-
+				// Tim kiem
+				EmployeeSearch.EmpSearch(d);
 				break;
 			case 7:
-
+				// Bao cao tong ket phong ban va nhan vien
+				Report.report(d);
 				break;
 			case 8:
-				//Bao cao tong ket phong ban va nhan vien
-				Report.report(d);
+				// Xoa nhan vien theo ssn
+				DeleteEmployee.delEmployee(d);
 				break;
 			case 0:
 				System.exit(0);
