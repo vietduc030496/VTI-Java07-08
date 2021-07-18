@@ -101,9 +101,9 @@ public class FileManager {
 		if(!source.exists()) {
 			throw new Exception("Error! Source File Not Exist." );
 		}
-		if(destination.exists()) {
-			throw new  Exception("Error! newPath has File same name.");
-		}
+//		if(destination.exists()) {
+//			throw new  Exception("Error! newPath has File same name.");
+//		}
 		Files.copy(source.toPath(), destination.toPath());
 
 	}
@@ -131,7 +131,7 @@ public class FileManager {
 			throw new Exception("Error! File Not Exist.");
 		}
 		
-		String destinationPath  = file.getParent()+File.pathSeparator + newName;
+		String destinationPath  = file.getParent()+"/" + newName;
 		File newFile=new File(destinationPath);
 		if(newFile.exists()) {
 			throw new Exception("Error! Name is Exist.");
@@ -142,7 +142,8 @@ public class FileManager {
 	// question 10
 	public void createNewFolder(String newPathFolder) throws Exception {
 		File file =new File(newPathFolder);
-		if(file.isDirectory()) {
+		
+		if(file.exists()) {
 			throw new Exception("Error! Folder Exist.");
 		}
 		file.mkdir();

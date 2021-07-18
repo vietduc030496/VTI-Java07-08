@@ -15,7 +15,7 @@ public class IOManager {
 	public String readFile(String pathFile) throws Exception {
 		FileManager fileManager = new FileManager();
 		String result = "";
-		if (fileManager.isFileExists(pathFile)) {
+		if (!fileManager.isFileExists(pathFile)) {
 			throw new Exception("\"Error! File Not Exist.\"");
 		}
 
@@ -24,12 +24,13 @@ public class IOManager {
 			while (scanner.hasNextLine()) {
 				result += scanner.nextLine();
 			}
+		scanner.close();
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		return result;
 	}
 
@@ -67,7 +68,7 @@ public class IOManager {
 		if (object == null) {
 			throw new Exception("Error! Object is Null.");
 		}
-		file = new File(path + File.pathSeparator + fileName);
+		file = new File(path + "/" + fileName);
 		try {
 			file.createNewFile();
 			fos = new FileOutputStream(file);
@@ -96,6 +97,8 @@ public class IOManager {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			result = ois.readObject();
+			ois.close();
+			fis.close();
 		} catch (FileNotFoundException e) {
 			System.err.println("Error! File Not Exist.");
 			// TODO Auto-generated catch block
@@ -105,7 +108,7 @@ public class IOManager {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace();  
 		}
 
 		return result;

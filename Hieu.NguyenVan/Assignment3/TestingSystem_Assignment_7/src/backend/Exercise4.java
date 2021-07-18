@@ -16,8 +16,8 @@ public class Exercise4 {
 		ioManager=new IOManager();
 	}
 
-	public void question1(String pathFile) throws Exception {
-		ioManager.readFile(pathFile);
+	public String question1(String pathFile) throws Exception {
+		return ioManager.readFile(pathFile);
 	}
 	public void question2(String pathFile, boolean isContinuing, String content) throws Exception {
 		ioManager.writeFile(pathFile, isContinuing, content);
@@ -25,8 +25,8 @@ public class Exercise4 {
 	public void question3(Object object, String path, String fileName) throws Exception {
 		ioManager.writeObject(object, path, fileName);
 	}
-	public void question4(String filePath) {
-		ioManager.readObject(filePath);
+	public Object question4(String filePath) {
+		return ioManager.readObject(filePath);
 		
 		
 	}

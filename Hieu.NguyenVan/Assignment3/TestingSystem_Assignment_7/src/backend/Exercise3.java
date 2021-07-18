@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.List;
+
 import backend.utils.FileManager;
 
 public class Exercise3 {
@@ -9,8 +11,8 @@ public class Exercise3 {
 		fileManager = new FileManager();
 	}
 
-	public void question1(String pathFile) {
-		fileManager.isFileExists(pathFile);
+	public boolean question1(String pathFile) {
+		return fileManager.isFileExists(pathFile);
 	}
 
 	public void question2(String pathFile) {
@@ -29,12 +31,12 @@ public class Exercise3 {
 		fileManager.deleteFile(pathFile);
 	}
 
-	public void question5(String path) {
-		fileManager.isFolder(path);
+	public boolean question5(String path) {
+		return fileManager.isFolder(path);
 	}
 
-	public void question6(String path) throws Exception {
-		fileManager.getAllFileName(path);
+	public List<String> question6(String path) throws Exception {
+		return  fileManager.getAllFileName(path);
 	}
 
 	public void question7(String sourceFile, String destinationPath, String newName) throws Exception {
