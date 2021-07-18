@@ -49,7 +49,7 @@ public class EmployeeSearch {
 			for (int i=0;i<l.size();i++) {
 				if(l.get(i).getFirstName().equalsIgnoreCase(emp)) {
 					System.out.println("Thong tin nhan vien do la: ");
-					l.get(i).toString();
+					System.out.println(l.get(i).toString());
 				}
 			}
 		}

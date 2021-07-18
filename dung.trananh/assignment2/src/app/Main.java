@@ -1,10 +1,11 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import service.*;
 import entity.*;
-
+import java.util.Set;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,7 +41,18 @@ public class Main {
 			case 1:
 				// Them department moi
 				Department de = DepartmentInput.Department_Input();
-				d.add(de);
+				if (d.size() == 0) {
+					d.add(de);
+					break;
+				}
+				for (Department dep: d) {
+					if (dep.getDepartmentName().equals(de.getDepartmentName())) {
+						System.out.println("Duplicate Department Name");
+						break;
+					} else {
+						d.add(de);
+					}
+				}
 				break;
 			case 2:
 				// Chon department muon them nhan vien
