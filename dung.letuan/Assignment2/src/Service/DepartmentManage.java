@@ -14,7 +14,7 @@ public class DepartmentManage {
     public Scanner sc = new Scanner(System.in);
 
     public DepartmentManage() {
-        this.listOfDepartment = new ArrayList<Department>();
+        this.listOfDepartment = new ArrayList<>();
     }
 
     public List<Department> getListOfDepartment() {
@@ -25,13 +25,9 @@ public class DepartmentManage {
         this.listOfDepartment = listOfDepartment;
     }
 
-
-    public void addDepartment(Department d) {
-        this.getListOfDepartment().add(d);
-    }
-
     public boolean isExist(String name) {
         int l = this.getListOfDepartment().size();
+        if (l ==0) return false;
         for (int i = 0; i < l; i++) {
             if (this.getListOfDepartment().get(i).getDepartmentName().equals(name)) return true;
         }
@@ -87,6 +83,7 @@ public class DepartmentManage {
     }
 
     public void inputData() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Department: ");
         String s = sc.nextLine();
         if (!this.isExist(s)) {
@@ -192,7 +189,7 @@ public class DepartmentManage {
                 }
             }
         }
-        if (result == false) {
+        if (!result) {
             System.out.println("Fail! Try again!");
         }
     }
