@@ -12,7 +12,7 @@ public class Department {
 
     public Department(String deparmentName) {
         this.deparmentName = deparmentName;
-        this.listEmployee = new ArrayList<>() ;
+        this.listEmployee = new ArrayList<>();
     }
 
     public String getDeparmentName() {
@@ -30,7 +30,8 @@ public class Department {
     public void setListEmployee(ArrayList<Employee> listEmployee) {
         this.listEmployee = listEmployee;
     }
-    public void displayAllEmployee(){
+
+    public void displayAllEmployee() {
     }
 
     @Override

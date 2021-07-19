@@ -4,6 +4,7 @@ import Ex3andEx4.backend.constant.Contants;
 import Ex3andEx4.backend.utils.FileManager;
 
 import java.util.Scanner;
+
 public class FileTest {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -47,18 +48,17 @@ public class FileTest {
                     FileManager.deleteFile(pathToDelete);
                     break;
                 }
-                case 4:{
-                    String pathFiOrFo= contants.pathFolderTrue;
-                    if(FileManager.isFolder(pathFiOrFo)){
+                case 4: {
+                    String pathFiOrFo = contants.pathFolderTrue;
+                    if (FileManager.isFolder(pathFiOrFo)) {
                         System.out.println("Day la duong dan cua Folder");
-                    }
-                    else {
+                    } else {
                         System.out.println("Day la duong dan cua File");
                     }
                     break;
                 }
 
-                case 5:{
+                case 5: {
                     String pathFolderTrue = contants.pathFolderTrue;
                     FileManager.getAllFileName(pathFolderTrue);
                     break;
@@ -83,8 +83,8 @@ public class FileTest {
                     FileManager.renameFile(pathTrue, newFile);
                     break;
                 }
-                case 9:{
-                    String pathFolder= contants.newFolderFalse;
+                case 9: {
+                    String pathFolder = contants.newFolderFalse;
                     FileManager.createNewFolder(pathFolder);
                     break;
                 }

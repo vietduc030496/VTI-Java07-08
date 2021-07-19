@@ -45,12 +45,12 @@ public class SalariedEmployee extends Employee {
     public void display() {
         System.out.println("Thong tin cua nhan vien:");
         System.out.println("SNN:" + this.getSsn());
-        System.out.println("Ho va ten:" +this.getFirstName() +this.getLastName());
-        System.out.println("DOB:" +this.getBirthDate());
-        System.out.println("Phone:"+ this.getBirthDate());
-        System.out.println("Mail:"+ this.getMail());
-        System.out.println("CommissionRate:" + this.commissionRate)  ;
-        System.out.println("grossSale:"+ this.grossSales);
-        System.out.println("Basic Salary:"+ this.basicSalary);
+        System.out.println("Ho va ten:" + this.getFirstName() + this.getLastName());
+        System.out.println("DOB:" + this.getBirthDate());
+        System.out.println("Phone:" + this.getBirthDate());
+        System.out.println("Mail:" + this.getMail());
+        System.out.println("CommissionRate:" + this.commissionRate);
+        System.out.println("grossSale:" + this.grossSales);
+        System.out.println("Basic Salary:" + this.basicSalary);
     }
 }
