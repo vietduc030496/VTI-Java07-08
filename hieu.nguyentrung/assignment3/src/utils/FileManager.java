@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.EmptyStackException;
@@ -33,6 +36,7 @@ public class FileManager {
 				throw new Exception();
 			} else {
 				x.createNewFile();
+				System.out.println("Created successfull!");
 			}
 		} catch (Exception e) {
 			System.out.println("Error! File Exist");
@@ -67,41 +71,30 @@ public class FileManager {
 		}
 	}
 
-	public void getAllFileName(File x) throws Exception {
-//		x = new File(path);
-		try {
-			if (x.isDirectory()) {
-				System.out.println(x.getAbsolutePath());
-				File[] children = x.listFiles();
-				Arrays.sort(children, new Comparator<File>() {
-					public int compare(final File o1, final File o2) {
-						return o1.getName().compareTo(o2.getName());
-					}
-				});
-				for (File child : children) {
-//					child = new File(path);
-					this.getAllFileName(child);
-				}
-//			}else {
-//				System.out.println(x.getAbsolutePath());
-			} else {
-				System.out.println(x.getAbsolutePath());
-				throw new Exception();
+	public static List<String> getAllFileName(String path) throws IOException {
+		List<String> l = new ArrayList<>();
+		File directoryPath = new File(path);
+		Path file = new File(path).toPath();
+		if (Files.isDirectory(file)) {
+			String contents[] = directoryPath.list();
+			for (int i = 0; i < contents.length; i++) {
+				l.add(contents[i]);
 			}
-		} catch (Exception e) {
+		} else {
 			System.out.println("Error! Path is not folder.");
 		}
+		return l;
 	}
 
-	public void copyFileUsingStream() throws Exception {
+	public void copyFileUsingStream(String sourceFile, String newPath) throws Exception {
 		InputStream inStream = null;
 		OutputStream outStream = null;
-		String str1 = "C:\\Users\\LENOVO\\Desktop\\Test12.txt";
-		String str2 = "C:\\Users\\LENOVO\\Desktop\\Test4.txt";
+		sourceFile = "C:\\Users\\LENOVO\\Desktop\\Test12.txt";
+		newPath = "C:\\Users\\LENOVO\\Desktop\\Test4.txt";
 		try {
 			try {
-				inStream = new FileInputStream(new File(str1));
-				outStream = new FileOutputStream(new File(str2));
+				inStream = new FileInputStream(new File(sourceFile));
+				outStream = new FileOutputStream(new File(newPath));
 				int length;
 				byte[] buffer = new byte[1024];
 
@@ -125,8 +118,6 @@ public class FileManager {
 	public void moveFile(String sourceFile, String destinationPath) throws Exception {
 		InputStream inStream = null;
 		OutputStream outStream = null;
-//		sourceFile = "C:\\Users\\LENOVO\\Desktop\\Test.txt";
-//		destinationPath = "C:\\Users\\LENOVO\\Desktop\\Test4.txt";
 		try {
 			try {
 				File f1 = new File(sourceFile);

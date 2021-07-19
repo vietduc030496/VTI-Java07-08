@@ -47,26 +47,6 @@ public class Application {
 				System.exit(0);
 			case 1:
 				Department dep1 = dep.DepartmentInput();
-//				int j=0;
-//				do{d.add(dep1);
-//				j++;}
-//				while(j<d.size() && d.contains(dep1)
-//					for (int j = 0; j < d.size(); j++) {
-//						if (dep.Exist(d, d.get(j).getDepartmentName()) == -1) {
-//							System.out.println("Successful");
-//						} else {
-//							System.out.println("Existed !!");
-//						}
-//					}
-//			);
-
-//				if (d.contains(dep1)) {
-//					d.add(dep1);
-//					System.out.println("Successful");
-//				} else {
-//					System.out.println("Existed !!");
-//					break;
-//				}
 				d.add(dep1);
 				break;
 			case 2:
@@ -115,6 +95,7 @@ public class Application {
 				
 				break;
 			case 10:
+				dep.
 				break;
 			case 11:
 				break;

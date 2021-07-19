@@ -9,10 +9,10 @@ import utils.*;
 public class DemoFileManager {
 
 	public static void main(String[] args) throws Exception {
-		String path = "C:\\Users\\LENOVO\\Desktop\\Test";
-		String sourcePath = "C:\\Users\\LENOVO\\Desktop\\Test456.txt";
-		String destinationPath = "C:\\Users\\LENOVO\\Desktop\\Test121356.txt";
-		String newPathFolder= "C:\\Users\\LENOVO\\Desktop\\Hieunguyen2903";
+		String path = "Path";
+		String sourcePath = "Path/Test456.txt";
+		String destinationPath = "Path/Test1.txt";
+		String path1 ="Path/NewTest.txt";
 		File x = new File(path);
 		FileManager fM = new FileManager();
 		int choice;
@@ -40,9 +40,9 @@ public class DemoFileManager {
 				}
 				break;
 			case 2:
-				if (fM.isFileExists(path) == false) {
-					fM.createNewFile(path);
-					System.out.println("Successfully!");
+				if (fM.isFileExists(path1) == false) {
+					fM.createNewFile(path1);
+//					System.out.println("Successfully!");
 				}
 				break;
 			case 3:
@@ -59,11 +59,11 @@ public class DemoFileManager {
 				}
 				break;
 			case 5:
-				fM.getAllFileName(x);
+				fM.getAllFileName(path);
 				break;
 			case 6:
 //				try {
-					fM.copyFileUsingStream();
+					fM.copyFileUsingStream(sourcePath, path);
 //				} catch (FileNotFoundException e) {
 //					System.out.println("\"Error! Source File Not Exist.\"");
 //				}
@@ -75,7 +75,7 @@ public class DemoFileManager {
 				fM.renameFile(sourcePath, destinationPath);
 				break;
 			case 9:
-				fM.createNewFolder(newPathFolder);
+				fM.createNewFolder(path);
 				break;
 			case 0:
 				System.exit(0);

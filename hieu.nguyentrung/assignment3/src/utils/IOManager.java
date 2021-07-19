@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import entity.Employee;
 import utils.FileManager;
 
 public class IOManager {
@@ -70,12 +71,12 @@ public class IOManager {
         }
     }
 
-    public Object readObject(String filePath) {
+    public Employee readObject(String filePath) {
         try {
             FileInputStream fileIn = new FileInputStream(filePath);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            Object obj = objectIn.readObject();
+            Employee obj = (Employee) objectIn.readObject();
 
             System.out.println("The Object has been read from the file");
             objectIn.close();
