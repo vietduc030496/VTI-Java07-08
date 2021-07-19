@@ -70,7 +70,7 @@ public abstract class Employee {
     }
 
     public void display() {
-        if(this instanceof HourlyEmployee) {
+        if (this instanceof HourlyEmployee) {
             ((HourlyEmployee) this).display();
         } else {
             ((SalariedEmployee) this).display();

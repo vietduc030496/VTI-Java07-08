@@ -2,7 +2,7 @@ package Ex3andEx4.backend.constant;
 
 public class Contants {
     //link test
-     public final String pathTrue = "FolderTest/Test.txt";
+    public final String pathTrue = "FolderTest/Test.txt";
     public final String pathFiletoRead = "FolderTest/hoangdz.txt";
     public final String pathToCreateFileFromOb = "FolderTest5";
     public final String pathToReadFileFromOb = "FolderTest5/Nhanvien1.txt";
@@ -13,7 +13,7 @@ public class Contants {
             "TestingSystem_Assignment_7\\TestingSystem_Assignment_7\\src\\" +
             "com\\company\\backend\\FolderTest";
 
-    public final String pathFolderFalse= "C:\\Users\\Admin\\Downloads\\" +
+    public final String pathFolderFalse = "C:\\Users\\Admin\\Downloads\\" +
             "TestingSystem_Assignment_7\\TestingSystem_Assignment_7\\src\\" +
             "com\\company\\backend\\Folder";
 
