@@ -13,14 +13,13 @@ import java.util.Scanner;
 
 public class DepartmentManage {
     static Scanner sc = new Scanner(System.in);
-
     private static void displayDepartment() {
         for (int i = 0; i < Department.listDepartment.size(); i++) {
             System.out.println((i + 1) + "." + Department.listDepartment.get(i));
         }
     }
 
-    private static void displayDetailToDelete() {
+    private static void displayDetailToDelete() {// xoa phan tu su dung iterator, dung for de bi loi!
         int k = 1;
         displayDepartment();
         System.out.println("Chon 1 phong ban de xem chi tiet:");
