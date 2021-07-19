@@ -33,7 +33,7 @@ public class Exercise4 {
 			if (object == null) {
 				System.out.println("Error! Object is Null.");
 			} else {
-				FileOutputStream out = new FileOutputStream(path + "\"" + fileName);
+				FileOutputStream out = new FileOutputStream(path + "" + fileName);
 				ObjectOutputStream oos = new ObjectOutputStream(out);
 				oos.writeObject(object);
 				oos.flush();
