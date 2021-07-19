@@ -136,69 +136,43 @@ public class EmployeeService {
 		}
 	}
 
-	private int ExistHE(List<Department> dep, String ssn, List<HourlyEmployee> hE) {
-		int i;
+	public void DeleteEmployee(List<Department> dep) {
+		System.out.println("Enter ssn : ");
+		String ssn = scanner.nextLine();
+//		List<Employee> list = new ArrayList<>();
 		for (Department d : dep) {
-			for (i = 0; i < d.getListOfEmployee().size(); i++) {
-				if ((d.getListOfEmployee().get(i) instanceof HourlyEmployee)) {
-					for (int j = 0; j < hE.size(); j++) {
-						hE.get(j).getSsn().equalsIgnoreCase(ssn);
-					}
+			List<Employee> list = new ArrayList<>(d.getListOfEmployee());
+			for (int i =0; i<list.size(); i++) {
+				if (list.get(i).getSsn().equalsIgnoreCase(ssn)) {
+					list.remove(i);
+					d.setListOfEmployee(list);
 				}
-				return i;
 			}
 		}
-		return -1;
-
 	}
 
-	private int ExistSE(List<SalariedEmployee> sE, String ssn) {
-		for (int i = 0; i < sE.size(); i++) {
-			if (sE.get(i).getSsn().equalsIgnoreCase(ssn))
-				return i;
-		}
-		return -1;
+	public void SortHE(List<Department> dep, List<HourlyEmployee> hE) {
+
+		Collections.sort(hE, new Comparator<HourlyEmployee>() {
+
+			@Override
+			public int compare(HourlyEmployee e1, HourlyEmployee e2) {
+				// TODO Auto-generated method stub
+				return e1.getFirstName().compareToIgnoreCase(e2.getFirstName());
+			}
+		});
 	}
 
-	public void DeleteEmployeeHE(List<Department> dep, String ssn, List<HourlyEmployee> hE) {
-		int position = ExistHE(dep, ssn, hE);
-		if (position == -1) {
-			System.out.println("Delete operation failed. Please try again!");
-		} else {
-			hE.remove(position);
-//			for (Department d : dep) {
-//				for (int i = 0; i < d.getListOfEmployee().size(); i++) {
-//					d.getListOfEmployee().remove(position);
-//				}
-//			}
+	public void SortSE(List<Department> dep, List<SalariedEmployee> sE) {
 
-			System.out.println("Successful delete!");
-		}
-	}
+		Collections.sort(sE, new Comparator<SalariedEmployee>() {
 
-	public void DeleteEmployeeSE(List<SalariedEmployee> sE, String ssn) {
-		int position = ExistSE(sE, ssn);
-		if (position == -1) {
-			System.out.println("Delete operation failed. Please try again!");
-		} else {
-			sE.remove(position);
-			System.out.println("Successful delete!");
-		}
-	}
-
-	public void SortEmployee(List<Department> dep, List<HourlyEmployee> hE) {
-//		for (int i = 0; i < dep.size(); i++) {
-//			if (dep.get(i).getDepartmentName().equalsIgnoreCase(DepartmentName)) {
-				Collections.sort(hE, new Comparator<HourlyEmployee>() {
-
-					@Override
-					public int compare(HourlyEmployee e1, HourlyEmployee e2) {
-						// TODO Auto-generated method stub
-						return e1.getLastName().compareToIgnoreCase(e2.getLastName());
-					}
-				});
-//			}
-//		}
+			@Override
+			public int compare(SalariedEmployee e1, SalariedEmployee e2) {
+				// TODO Auto-generated method stub
+				return e1.getFirstName().compareToIgnoreCase(e2.getFirstName());
+			}
+		});
 	}
 
 	public void ClassifyEmployee(List<Department> dep) {
@@ -213,15 +187,128 @@ public class EmployeeService {
 				}
 			}
 		}
+		SortHE(dep, hE);
 		System.out.println("List of HourlyEmployee: ");
 		for (HourlyEmployee h : hE) {
-			h.toString();
-			SortEmployee(dep, hE);
+			System.out.println(h.toString());
 		}
-		System.out.println("-----------------------");
+		System.out.println("*************");
+		SortSE(dep, sE);
 		System.out.println("List of SalariedEmployee: ");
 		for (SalariedEmployee s : sE) {
-			s.toString();
+			System.out.println(s.toString());
+
 		}
 	}
+
+	public void searchEmp(List<Department> d) {
+		int choice = 9999;
+		while (choice != 0) {
+			System.out.println("Select type of search: ");
+			System.out.println("**********************");
+			System.out.println("1. Search by dept name:  ");
+			System.out.println("2. Search by emp name:  ");
+			System.out.println("0. Exit");
+			choice = Integer.parseInt(scanner.nextLine());
+			switch (choice) {
+			case 1:
+				searchByDepartment(d);
+				break;
+			case 2:
+				searchByEmp(d);
+				break;
+			case 0:
+				break;
+
+			}
+		}
+	}
+
+	public void searchByDepartment(List<Department> d) {
+		System.out.println("Enter department: ");
+		String dName = scanner.nextLine();
+		for (Department de : d) {
+			if (de.getDepartmentName().equalsIgnoreCase(dName)) {
+				System.out.println(de.getListOfEmployee());
+			}
+		}
+
+	}
+
+	public void searchByEmp(List<Department> d) {
+		System.out.println("Enter first name of employee : ");
+		String emp = scanner.nextLine();
+		for (Department de : d) {
+			List<Employee> list = new ArrayList<>(de.getListOfEmployee());
+			for (Employee e : list) {
+				if (e.getFirstName().equalsIgnoreCase(emp)) {
+					System.out.println("Result : ");
+					System.out.println(e.toString());
+				}
+			}
+		}
+	}
+
+//	public void updateEmp(List<Department> d) {
+//		int choice = 9999;
+//		while (choice != 0) {
+//			System.out.println("Select type of employee to update: ");
+//			System.out.println("**********************");
+//			System.out.println("1. Update HourlyEmployee:  ");
+//			System.out.println("2. Update SalariedEmployee:  ");
+//			System.out.println("0. Exit");
+//			choice = Integer.parseInt(scanner.nextLine());
+//			switch (choice) {
+//			case 1:
+//				searchByDepartment(d);
+//				break;
+//			case 2:
+//				searchByEmp(d);
+//				break;
+//			case 0:
+//				break;
+//
+//			}
+//		}
+//	}
+
+
+//	public void updateEmp(List<Department> d) {
+//		System.out.println("Enter snn: ");
+//		String emp = scanner.nextLine();
+//		for (Department de : d) {
+//			List<Employee> list = new ArrayList<>(de.getListOfEmployee());
+//			for (Employee e : list) {
+//				if (e instanceof SalariedEmployee) {
+//					if (e.getSsn().equalsIgnoreCase(emp)) {
+//						System.out.println("Update first name:");
+//						String firstName = scanner.nextLine();
+//						e.setFirstName(firstName);
+//						System.out.println("Update last name:");
+//						String lastName = scanner.nextLine();
+//						e.setLastName(lastName);
+//						System.out.println("Update birth date:");
+//						String bDate = scanner.nextLine();
+//						e.setBirthDate(bDate);
+//						System.out.println("Update phone:");
+//						String phone = scanner.nextLine();
+//						e.setPhone(phone);
+//						System.out.println("Update email:");
+//						String email = scanner.nextLine();
+//						e.setEmail(email);
+//						System.out.println("Update commissionRate:");
+//						Double cR =Double.parseDouble(scanner.nextLine());
+//						((SalariedEmployee) e).setCommissionRate(cR);
+//						System.out.println("Update grossSales:");
+//						Double gS =Double.parseDouble(scanner.nextLine());
+//						((SalariedEmployee) e).setGrossSales(gS);
+//						System.out.println("Update basicSalary:");
+//						Double bS =Double.parseDouble(scanner.nextLine());
+//						((SalariedEmployee) e).setBasicSalary(bS);
+//						System.out.println("Update SalariedEmployee successfull");
+//					}
+//				}
+//			}
+//		}
+//	}
 }
