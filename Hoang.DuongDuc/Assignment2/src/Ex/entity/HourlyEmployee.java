@@ -28,16 +28,17 @@ public class HourlyEmployee extends Employee {
     public void setWorkingHours(double workingHours) {
         this.workingHours = workingHours;
     }
+
     @Override
-    public void display(){
+    public void display() {
         System.out.println("Thong tin nhan vien :");
         System.out.println("SNN:" + this.getSsn());
-        System.out.println("Ho va ten:" +this.getFirstName() +this.getLastName());
-        System.out.println("DOB:" +this.getBirthDate());
-        System.out.println("Phone:"+ this.getBirthDate());
-        System.out.println("Mail:"+ this.getMail());
+        System.out.println("Ho va ten:" + this.getFirstName() + this.getLastName());
+        System.out.println("DOB:" + this.getBirthDate());
+        System.out.println("Phone:" + this.getBirthDate());
+        System.out.println("Mail:" + this.getMail());
         System.out.println("Wage:" + this.wage);
-        System.out.println("workingHours:"+ this.workingHours);
+        System.out.println("workingHours:" + this.workingHours);
     }
 }
 

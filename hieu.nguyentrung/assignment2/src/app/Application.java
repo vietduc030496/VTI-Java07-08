@@ -50,6 +50,7 @@ public class Application {
 				System.exit(0);
 			case 1:
 				Department dep1 = dep.DepartmentInput();
+<<<<<<< HEAD
 				try {
 					if (d.size() == 0) {
 						d.add(dep1);
@@ -69,6 +70,9 @@ public class Application {
 				} catch (ConcurrentModificationException e) {
 					d.add(dep1);
 				}
+=======
+				d.add(dep1);
+>>>>>>> 753945ae11b213a944391815f143416bbbffe633
 				break;
 			case 2:
 				dep.DisplayDepartment(d);
@@ -110,8 +114,12 @@ public class Application {
 				emp.DeleteEmployee(d);
 				break;
 			case 10:
+<<<<<<< HEAD
 				dName = scanner.nextLine();
 				dep.UpdateDepartment(d, dName);
+=======
+				dep.
+>>>>>>> 753945ae11b213a944391815f143416bbbffe633
 				break;
 //			case 11:
 //				break;
