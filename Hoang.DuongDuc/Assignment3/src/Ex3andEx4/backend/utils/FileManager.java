@@ -50,7 +50,7 @@ public class FileManager {
         if (!isFileExists(pathFile)) {
             File file = new File(pathFile);
             if (file.delete()) {
-                System.out.println(" Delete succesfully!");
+                System.out.println(" Deleted!");
             } else {
                 System.out.println("Delete is failed!");
             }

@@ -45,7 +45,7 @@ public class IOTest {
                     System.out.println("Moi nhap tuoi nhan vien:");
                     int ageEmployee = sc.nextInt();
                     Employee employee = new Employee(nameEmployee, ageEmployee);
-                    IOManager.writerObject(employee, contants.pathToCreateFileFromOb, "Nhanvien1.txt");
+                    IOManager.writerObject(employee, contants.pathToCreateFileFromOb, "Nhanvien2.txt");
                     break;
                 case 4:
                     Employee e = IOManager.reafObject(contants.pathToReadFileFromOb);
