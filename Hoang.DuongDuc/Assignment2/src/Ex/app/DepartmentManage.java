@@ -13,14 +13,13 @@ import java.util.Scanner;
 
 public class DepartmentManage {
     static Scanner sc = new Scanner(System.in);
-
     private static void displayDepartment() {
         for (int i = 0; i < Department.listDepartment.size(); i++) {
             System.out.println((i + 1) + "." + Department.listDepartment.get(i));
         }
     }
 
-    private static void displayDetailToDelete() {
+    private static void displayDetailToDelete() {// xoa phan tu su dung iterator, dung for de bi loi!
         int k = 1;
         displayDepartment();
         System.out.println("Chon 1 phong ban de xem chi tiet:");
@@ -140,38 +139,40 @@ public class DepartmentManage {
             choice = sc.nextInt();
             sc.nextLine();
             if (choice == 0) return;
-            if(choice == 1) {
+            if (choice == 1) {
                 searchByEmployeeName();
-            } if(choice == 2){
+            }
+            if (choice == 2) {
                 searchByDepartmentName();
             }
         }
     }
 
-    public static void searchByEmployeeName(){
+    public static void searchByEmployeeName() {
         System.out.println("Nhap ten nhan vien: ");
         String name = sc.nextLine();
         System.out.println("Cac nhan vien thoa man:\n");
-        for(Department department: Department.listDepartment){
-            for(Employee employee: department.getListEmployee()){
-                if((employee.getFirstName() + employee.getLastName()).contains(name))
+        for (Department department : Department.listDepartment) {
+            for (Employee employee : department.getListEmployee()) {
+                if ((employee.getFirstName() + employee.getLastName()).contains(name))
                     employee.display();
             }
         }
     }
 
-    public static void searchByDepartmentName(){
+    public static void searchByDepartmentName() {
         System.out.println("Nhap ten phong ban: ");
         String name = sc.nextLine();
         System.out.println("Cac nhan vien thoa man:\n");
-        for(Department department: Department.listDepartment){
-            if(!department.getDeparmentName().contains(name))
+        for (Department department : Department.listDepartment) {
+            if (!department.getDeparmentName().contains(name))
                 continue;
-            for(Employee employee: department.getListEmployee()){
+            for (Employee employee : department.getListEmployee()) {
                 employee.display();
             }
         }
     }
+
     public static void main(String[] args) {
         DepartmentService departmentService = new DepartmentService();
         initData();
