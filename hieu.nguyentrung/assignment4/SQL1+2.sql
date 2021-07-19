@@ -1,58 +1,75 @@
-create table department(
+create schema `internshipVTI`;
+
+create table department (
 	departmentID int primary key auto_increment,
-	departmentName varchar(25));
-    
-create table  `position`(
+    departmentName varchar(50));
+
+create table `position` (
 	positionID int primary key auto_increment,
-	positionName varchar(25));
-    
-create table  `account` (
+    positionName varchar(50));
+
+create table `account` (
 	accountID int primary key auto_increment,
-	email varchar(25),
-    username varchar(25),
-    fullname varchar(25),
+    email varchar(50),
+    username varchar(50),
+    fullname varchar(50),
+    departmentID int,
     positionID int,
-    createDate date);
-    
-create table  `group` (
+	createDate date);
+
+create table `group` (
 	groupID int primary key auto_increment,
-    groupname varchar(25),
+    groupName varchar(50),
     creatorID int,
     createDate date);
-    
-create table  groupaccount (
-	groupID int primary key auto_increment,
-    AccountID int,
-    johnDate date);
 
+create table groupaccount (
+	groupID int,
+    accountID int,
+    joinDate date);
+    
 create table typequestion(
 	typeID int primary key auto_increment,
-	typeName varchar(25));
-    
-create table categoryquestion (
+    typeName varchar(50));
+
+create table categoryquestion(
 	categoryID int primary key auto_increment,
-	categoryName varchar(25));
-    
-create table  question (
+    categoryName varchar(50));
+
+create table question(
 	questionID int primary key auto_increment,
-	content varchar(25),
+    content varchar(100),
     categoryID int,
     typeID int,
     creatorID int,
     createDate date);
-    
-create table  answer (
+
+create table answer(
 	answerID int primary key auto_increment,
-    content varchar(25),
+    content varchar(100),
     questionID int,
     isCorrect boolean);
-    
-create table  exam (
+
+create table exam(
 	examID int primary key auto_increment,
     `code` int,
-    title varchar(25),
-     categoryID int,
-     duration float,
-     creatorID int,
-     createDate date
-     );
+    title varchar(50),
+    categoryID int,
+    duration float,
+    creatorID int,
+    createDate date);
+
+create table examquestion(
+	examID int,
+    questionID int);
+    
+alter table `account` add foreign key (departmentID) references department(departmentID) on delete cascade;
+alter table `account` add foreign key (positionID) references `position`(positionID)on delete cascade;
+alter table groupaccount add foreign key (groupID) references `group`(groupID) on delete cascade ;
+alter table groupaccount add foreign key (accountID) references `account`(accountID) on delete cascade;
+alter table question add foreign key (categoryID) references categoryquestion(categoryID) on delete cascade;
+alter table question add foreign key (typeID) references typequestion(typeID) on delete cascade;
+alter table answer add foreign key (questionID) references question(questionID) on delete cascade;
+alter table  exam add foreign key (categoryID) references categoryquestion(categoryID) on delete cascade;
+alter table examquestion add foreign key (examID) references exam(examID) on delete cascade;
+alter table examquestion add foreign key (questionID) references question(questionID) on delete cascade;
