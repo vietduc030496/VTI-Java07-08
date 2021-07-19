@@ -10,10 +10,10 @@ public class Exercise3 {
 	public static boolean isFileExists(String pathFile) throws IOException {
 		File f = new File(pathFile);
 		if (f.exists()) {
-//			System.out.println("File Exists");
+			System.out.println("File Exists");
 			return true;
 		} else {
-//			System.out.println("File doesn't exists");
+			System.out.println("File doesn't exists");
 			return false;
 		}
 	}
@@ -32,7 +32,7 @@ public class Exercise3 {
 	}
 
 	public static void createNewFile(String pathFile, String fileName) throws IOException {
-		Path path = Paths.get(pathFile + "/" + fileName);
+		Path path = Paths.get(pathFile + "" + fileName);
 		try {
 			Files.createFile(path);
 			System.out.println("File has been created");
@@ -90,8 +90,8 @@ public class Exercise3 {
 		Path target = Paths.get(destinationPath);
 
 		try {
-			Files.move(source, target.resolveSibling(newName));
-		} catch (IOException e) {
+			Files.copy(source, target.resolveSibling(newName));
+		} catch (Exception e) {
 			System.out.println("Error!");
 		}
 	}
@@ -101,8 +101,9 @@ public class Exercise3 {
 		Path target = Paths.get(newPath);
 
 		try {
-			Files.move(source, target);
-		} catch (IOException e) {
+			Files.copy(source, target);
+			System.out.println("Copy file successfully");
+		} catch (Exception e) {
 			System.out.println("Error!");
 		}
 	}
