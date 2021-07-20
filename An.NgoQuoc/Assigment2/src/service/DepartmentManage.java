@@ -13,6 +13,7 @@ import entity.SalariedEmployee;
 public class DepartmentManage {
 	List<Employee> listEmployees = new ArrayList<Employee>();
 	List<Department> lisDepartments = new ArrayList<Department>();
+	//tách thành class riêng
 	public int validate(String s, String type) {
 		if(type == "date") {
 			String str = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$";
@@ -42,6 +43,8 @@ public class DepartmentManage {
 		dpm.setListOfEmployee(new ArrayList<Employee>());
 		lisDepartments.add(dpm);
 	}
+	
+	//không nên để kiểu trả về int.
 	public int creatEmployee() {
 		if(lisDepartments.size()==0) {
 			System.err.println("Không có phòng ban nào hãy nhập tạo phòng ban trước");
@@ -261,6 +264,7 @@ public class DepartmentManage {
 				System.out.println("Chọn 1 chức năng: ");
 				int key = sc.nextInt();
 				sc.nextLine();
+				//tách thành methor riêng
 				switch (key) {
 				case 1:
 					System.out.println("Nhập lại firstname");
