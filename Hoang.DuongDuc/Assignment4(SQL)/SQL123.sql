@@ -1,222 +1,224 @@
-create table `department`(
-	`DepartmentID` int not null auto_increment,
-	`DepartmentName` varchar(50) not null,
-    primary key (`DepartmentID`)
+CREATE TABLE `DEPARTMENT`(
+	`DEPARTMENTID` INT NOT NULL AUTO_INCREMENT,
+	`DEPARTMENTNAME` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`DEPARTMENTID`)
     );
-create table `position`(
-	`PositionID` int not null auto_increment,
-	`PositionName` varchar(25) not null,
-    primary key (`PositionID`)
+CREATE TABLE `POSITION`(
+	`POSITIONID` INT NOT NULL AUTO_INCREMENT,
+	`POSITIONNAME` VARCHAR(25) NOT NULL,
+    PRIMARY KEY (`POSITIONID`)
     );
-create table `account`(
-	`AccountID` int not null auto_increment,
-	`Email` varchar(50) not null,
-    `Username` varchar(50) not null,
-    `FullName` varchar(50) not null,
-    `DepartmentID` int not null,
-    `PositionID` int not null,
-    `CreateDate` date not null,
-    primary key (`AccountID`)
+CREATE TABLE `ACCOUNT`(
+	`ACCOUNTID` INT NOT NULL AUTO_INCREMENT,
+	`EMAIL` VARCHAR(50) NOT NULL,
+    `USERNAME` VARCHAR(50) NOT NULL,
+    `FULLNAME` VARCHAR(50) NOT NULL,
+    `DEPARTMENTID` INT NOT NULL,
+    `POSITIONID` INT NOT NULL,
+    `CREATEDATE` DATE NOT NULL,
+    PRIMARY KEY (`ACCOUNTID`)
     );
-create table `group`(
-	`GroupID` int not null auto_increment,
-	`GroupName` varchar(50) not null,
-    `CreatorID` int not null,
-    `CreateDate` date not null, 
-    primary key (`GroupID`)
+CREATE TABLE `GROUP`(
+	`GROUPID` INT NOT NULL AUTO_INCREMENT,
+	`GROUPNAME` VARCHAR(50) NOT NULL,
+    `CREATORID` INT NOT NULL,
+    `CREATEDATE` DATE NOT NULL, 
+    PRIMARY KEY (`GROUPID`)
     );
-create table `groupaccount`(
-	`GroupID` int not null,
-	`JoinDate` date not null,
-    `AccountID` int not null,
-    constraint `GAunique` unique (`GroupID` ,`AccountID`)
+CREATE TABLE `GROUPACCOUNT`(
+	`GROUPID` INT NOT NULL,
+	`JOINDATE` DATE NOT NULL,
+    `ACCOUNTID` INT NOT NULL,
+    CONSTRAINT `GAUNIQUE` UNIQUE (`GROUPID` ,`ACCOUNTID`)
 );
-create table `typequestion`(
-	`TypeID` int not null auto_increment,
-	`TypeName` varchar(25) not null,
-    primary key (`TypeID`)
+CREATE TABLE `TYPEQUESTION`(
+	`TYPEID` INT NOT NULL AUTO_INCREMENT,
+	`TYPENAME` VARCHAR(25) NOT NULL,
+    PRIMARY KEY (`TYPEID`)
     );
-create table `categoryquestion`(
-	`CategoryID` int not null auto_increment,
-	`CategoryName` varchar(25) not null,
-    primary key (`CategoryID`)
+CREATE TABLE `CATEGORYQUESTION`(
+	`CATEGORYID` INT NOT NULL AUTO_INCREMENT,
+	`CATEGORYNAME` VARCHAR(25) NOT NULL,
+    PRIMARY KEY (`CATEGORYID`)
     );
-create table `question`(
-	`QuestionID` int not null auto_increment,
-	`Content` varchar(25) not null,
-    `CategoryID` int not null,
-	`TypeID` int not null,
-    `CreatorID` int not null,
-    `CreateDate` date not null,
-    primary key (`QuestionID`)
+CREATE TABLE `QUESTION`(
+	`QUESTIONID` INT NOT NULL AUTO_INCREMENT,
+	`CONTENT` VARCHAR(25) NOT NULL,
+    `CATEGORYID` INT NOT NULL,
+	`TYPEID` INT NOT NULL,
+    `CREATORID` INT NOT NULL,
+    `CREATEDATE` DATE NOT NULL,
+    PRIMARY KEY (`QUESTIONID`)
     );
-create table `anwser`(
-	`AnswerID` int not null auto_increment,
-	`Content` varchar(50) not null,
-    `QuestionID` int not null,
-    `isCorrect` boolean not null,
-    primary key (`AnswerID`)
+CREATE TABLE `ANSWER`(
+	`ANSWERID` INT NOT NULL AUTO_INCREMENT,
+	`CONTENT` VARCHAR(50) NOT NULL,
+    `QUESTIONID` INT NOT NULL,
+    `ISCORRECT` BOOLEAN NOT NULL,
+    PRIMARY KEY (`ANSWERID`)
 );
-create table `exam`(
-	`ExamID` int not null auto_increment,
-	`Code` varchar(15) not null,
-    `Title` varchar(50) not null,
-    `Duration` double not null,
-    `CategoryID` int not null,
-    `CreatorID` int not null,
-    `CreateDate` date not null,
-    primary key (`ExamID`)
+CREATE TABLE `EXAM`(
+	`EXAMID` INT NOT NULL AUTO_INCREMENT,
+	`CODE` VARCHAR(15) NOT NULL,
+    `TITLE` VARCHAR(50) NOT NULL,
+    `DURATION` DOUBLE NOT NULL,
+    `CATEGORYID` INT NOT NULL,
+    `CREATORID` INT NOT NULL,
+    `CREATEDATE` DATE NOT NULL,
+    PRIMARY KEY (`EXAMID`)
     );
-create table `examquestion`(
-	`ExamID` int not null,
-    `QuestionID` int not null,
-    constraint `EQunique` unique (`ExamID` ,`QuestionID`)
+CREATE TABLE `EXAMQUESTION`(
+	`EXAMID` INT NOT NULL,
+    `QUESTIONID` INT NOT NULL,
+    CONSTRAINT `EQUNIQUE` UNIQUE (`EXAMID` ,`QUESTIONID`)
 );
-alter table `account` add constraint `fk_account1` foreign key (DepartmentID) REFERENCES `department`(DepartmentID) on delete cascade on update cascade;
-alter table `account` add constraint `fk_account2` foreign key (PositionID) REFERENCES `position`(PositionID) on delete cascade on update cascade;
-alter table `group` add constraint `fk_group` foreign key (CreatorID) REFERENCES `account`(AccountID) on delete cascade on update cascade;
-alter table `groupaccount` add constraint `fk_groupaccount1` foreign key (GroupID) REFERENCES `group`(GroupID) on delete cascade on update cascade;
-alter table `groupaccount` add constraint `fk_groupaccount2` foreign key (AccountID) REFERENCES `account`(AccountID) on delete cascade on update cascade;
-alter table `question` add constraint `fk_question1` foreign key (CategoryID) REFERENCES `categoryquestion`(CategoryID) on delete cascade on update cascade;
-alter table `question` add constraint `fk_question2` foreign key (TypeID) REFERENCES `typequestion`(TypeID) on delete cascade on update cascade;
-alter table `question` add constraint `fk_question3` foreign key (CreatorID) REFERENCES `account`(AccountID) on delete cascade on update cascade;
-alter table `anwser` add constraint `fk_anwser` foreign key (QuestionID) REFERENCES `question`(QuestionID) on delete cascade on update cascade;
-alter table `exam` add constraint `fk_exam1` foreign key (CategoryID) REFERENCES `categoryquestion`(CategoryID) on delete cascade on update cascade;
-alter table `exam` add constraint `fk_exam2` foreign key (CreatorID) REFERENCES `account`(AccountID) on delete cascade on update cascade;
-alter table `examquestion` add constraint `fk_examquestion1` foreign key (ExamID) REFERENCES `exam`(ExamID) on delete cascade on update cascade;
-alter table `examquestion` add constraint `fk_examquestion2` foreign key (QuestionID) REFERENCES `question`(QuestionID) on delete cascade on update cascade;
+ALTER TABLE `ACCOUNT` ADD CONSTRAINT `FK_ACCOUNT1` FOREIGN KEY (DEPARTMENTID) REFERENCES `DEPARTMENT`(DEPARTMENTID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `ACCOUNT` ADD CONSTRAINT `FK_ACCOUNT2` FOREIGN KEY (POSITIONID) REFERENCES `POSITION`(POSITIONID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `GROUP` ADD CONSTRAINT `FK_GROUP` FOREIGN KEY (CREATORID) REFERENCES `ACCOUNT`(ACCOUNTID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `GROUPACCOUNT` ADD CONSTRAINT `FK_GROUPACCOUNT1` FOREIGN KEY (GROUPID) REFERENCES `GROUP`(GROUPID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `GROUPACCOUNT` ADD CONSTRAINT `FK_GROUPACCOUNT2` FOREIGN KEY (ACCOUNTID) REFERENCES `ACCOUNT`(ACCOUNTID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `QUESTION` ADD CONSTRAINT `FK_QUESTION1` FOREIGN KEY (CATEGORYID) REFERENCES `CATEGORYQUESTION`(CATEGORYID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `QUESTION` ADD CONSTRAINT `FK_QUESTION2` FOREIGN KEY (TYPEID) REFERENCES `TYPEQUESTION`(TYPEID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `QUESTION` ADD CONSTRAINT `FK_QUESTION3` FOREIGN KEY (CREATORID) REFERENCES `ACCOUNT`(ACCOUNTID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `ANSWER` ADD CONSTRAINT `FK_ANSWER` FOREIGN KEY (QUESTIONID) REFERENCES `QUESTION`(QUESTIONID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `EXAM` ADD CONSTRAINT `FK_EXAM1` FOREIGN KEY (CATEGORYID) REFERENCES `CATEGORYQUESTION`(CATEGORYID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `EXAM` ADD CONSTRAINT `FK_EXAM2` FOREIGN KEY (CREATORID) REFERENCES `ACCOUNT`(ACCOUNTID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `EXAMQUESTION` ADD CONSTRAINT `FK_EXAMQUESTION1` FOREIGN KEY (EXAMID) REFERENCES `EXAM`(EXAMID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `EXAMQUESTION` ADD CONSTRAINT `FK_EXAMQUESTION2` FOREIGN KEY (QUESTIONID) REFERENCES `QUESTION`(QUESTIONID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-/*Question 1*/
-insert into department(DepartmentName) values("Sale");
-insert into department(DepartmentName) values("Marketing");
-insert into department(DepartmentName) values("Accounting");
-insert into department(DepartmentName) values("Human Resources");
-insert into department(DepartmentName) values("Administration");
-insert into `position`(PositionName) values("Dev");
-insert into `position`(PositionName) values("Test");
-insert into `position`(PositionName) values("PM");
-insert into `position`(PositionName) values("BA");
-insert into `position`(PositionName) values("HR");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac1@gmail.com", "ac1","a c van 1",5,3,"2021-07-13");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac2@gmail.com", "ac2","a c van 12",4,2,"2021-07-14");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac3@gmail.com", "ac3","a c van 123",3,1,"2021-07-15");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac4@gmail.com", "ac4","a c van 1234",2,5,"2021-07-16");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac5@gmail.com", "ac5","a c van 12345",1,4,"2021-07-17");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac6@gmail.com", "ac6","D c van 123456 o",2,3,"2021-07-18");
-insert into `account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) values("ac7@gmail.com", "ac7","a c van 123daihon",3,5,"2021-07-19");
-insert into `group`(GroupName,CreatorID,CreateDate) values("gr1", 4,"2021-08-24");
-insert into `group`(GroupName,CreatorID,CreateDate) values("gr2", 1,"2018-08-25");
-insert into `group`(GroupName,CreatorID,CreateDate) values("gr3", 2,"2021-08-23");
-insert into `group`(GroupName,CreatorID,CreateDate) values("gr4", 5,"2021-08-26");
-insert into `group`(GroupName,CreatorID,CreateDate) values("gr5", 3,"2021-07-27");
-insert into `group`(GroupName,CreatorID,CreateDate) values("gr6", 4,"2021-08-24");
-insert into groupaccount(GroupID,AccountID,JoinDate) values(5, 3,"2021-09-04");
-insert into groupaccount(GroupID,AccountID,JoinDate) values(3, 2,"2021-09-05");
-insert into groupaccount(GroupID,AccountID,JoinDate) values(1, 1,"2021-09-06");
-insert into groupaccount(GroupID,AccountID,JoinDate) values(4, 4,"2021-09-07");
-insert into groupaccount(GroupID,AccountID,JoinDate) values(2, 5,"2021-09-08");
-insert into typequestion(TypeName) values("Trắc nghiệm tô");
-insert into typequestion(TypeName) values("Trắc nghiệm khoanh");
-insert into typequestion(TypeName) values("Trắc nghiệm điền");
-insert into typequestion(TypeName) values("Tự luận");
-insert into typequestion(TypeName) values("Trắc nghiệm giải thích");
-insert into categoryquestion(CategoryName) values("Java");
-insert into categoryquestion(CategoryName) values("DotNet");
-insert into categoryquestion(CategoryName) values("SQL");
-insert into categoryquestion(CategoryName) values("PHP");
-insert into categoryquestion(CategoryName) values("HTML/CSS");
-insert into question(Content,CategoryID,TypeID,CreatorID,CreateDate) values("content 1", 3, 5, 3,"2021-06-20");
-insert into question(Content,CategoryID,TypeID,CreatorID,CreateDate) values("câu hỏi content 2", 2, 4, 1,"2021-06-22");
-insert into question(Content,CategoryID,TypeID,CreatorID,CreateDate) values("content 3", 1, 3, 3,"2021-06-24");
-insert into question(Content,CategoryID,TypeID,CreatorID,CreateDate) values("content 4", 5, 2, 4,"2021-06-26");
-insert into question(Content,CategoryID,TypeID,CreatorID,CreateDate) values("content 5", 4, 1, 2,"2021-06-28");
-insert into anwser(Content,QuestionID,isCorrect) values("Content A1", 3, true);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A11", 3, false);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A12", 3, false);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A13", 3, true);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A2", 4, false);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A3", 5, false);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A4", 1, true);
-insert into anwser(Content,QuestionID,isCorrect) values("Content A5", 2, true);
-insert into exam(`Code`,Title,CategoryID,Duration,CreatorID,CreateDate) values("MD01", "Kiểm tra 1", 2, 90, 3,"2019-09-01");
-insert into exam(`Code`,Title,CategoryID,Duration,CreatorID,CreateDate) values("MD02", "Kiểm tra 2", 3, 60, 4,"2019-09-03");
-insert into exam(`Code`,Title,CategoryID,Duration,CreatorID,CreateDate) values("MD03", "Kiểm tra 3", 4, 50, 5,"2021-09-04");
-insert into exam(`Code`,Title,CategoryID,Duration,CreatorID,CreateDate) values("MD04", "Kiểm tra 4", 5, 30, 1,"2019-09-20");
-insert into exam(`Code`,Title,CategoryID,Duration,CreatorID,CreateDate) values("MD05", "Kiểm tra 5", 1, 90, 2,"2021-09-06");
-insert into examquestion(ExamID,QuestionID) values(1, 3);
-insert into examquestion(ExamID,QuestionID) values(3, 5);
-insert into examquestion(ExamID,QuestionID) values(2, 4);
-insert into examquestion(ExamID,QuestionID) values(5, 1);
-insert into examquestion(ExamID,QuestionID) values(4, 2);
+/*QUESTION 1*/
+INSERT INTO DEPARTMENT(DEPARTMENTNAME) VALUES("SALE");
+INSERT INTO DEPARTMENT(DEPARTMENTNAME) VALUES("MARKETING");
+INSERT INTO DEPARTMENT(DEPARTMENTNAME) VALUES("ACCOUNTING");
+INSERT INTO DEPARTMENT(DEPARTMENTNAME) VALUES("HUMAN RESOURCES");
+INSERT INTO DEPARTMENT(DEPARTMENTNAME) VALUES("ADMINISTRATION");
+INSERT INTO `POSITION`(POSITIONNAME) VALUES("DEV");
+INSERT INTO `POSITION`(POSITIONNAME) VALUES("TEST");
+INSERT INTO `POSITION`(POSITIONNAME) VALUES("PM");
+INSERT INTO `POSITION`(POSITIONNAME) VALUES("BA");
+INSERT INTO `POSITION`(POSITIONNAME) VALUES("HR");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC1@GMAIL.COM", "AC1","A C VAN 1",5,3,"2021-07-13");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC2@GMAIL.COM", "AC2","A C VAN 12",4,2,"2021-07-14");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC3@GMAIL.COM", "AC3","A C VAN 123",3,1,"2021-07-15");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC4@GMAIL.COM", "AC4","A C VAN 1234",2,5,"2021-07-16");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC5@GMAIL.COM", "AC5","A C VAN 12345",1,4,"2021-07-17");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC6@GMAIL.COM", "AC6","D C VAN 123456 O",2,3,"2021-07-18");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC7@GMAIL.COM", "AC7","A C VAN 123DAIHON",3,5,"2021-07-19");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC8@GMAIL.COM", "AC8","A C VAN 8",3,3,"2021-07-13");
+INSERT INTO `ACCOUNT`(EMAIL,USERNAME,FULLNAME,DEPARTMENTID,POSITIONID,CREATEDATE) VALUES("AC9@GMAIL.COM", "AC9","A C VAN 9",4,3,"2021-07-13");
+INSERT INTO `GROUP`(GROUPNAME,CREATORID,CREATEDATE) VALUES("GR1", 4,"2021-08-24");
+INSERT INTO `GROUP`(GROUPNAME,CREATORID,CREATEDATE) VALUES("GR2", 1,"2018-08-25");
+INSERT INTO `GROUP`(GROUPNAME,CREATORID,CREATEDATE) VALUES("GR3", 2,"2021-08-23");
+INSERT INTO `GROUP`(GROUPNAME,CREATORID,CREATEDATE) VALUES("GR4", 5,"2021-08-26");
+INSERT INTO `GROUP`(GROUPNAME,CREATORID,CREATEDATE) VALUES("GR5", 3,"2021-07-27");
+INSERT INTO `GROUP`(GROUPNAME,CREATORID,CREATEDATE) VALUES("GR6", 4,"2021-08-24");
+INSERT INTO GROUPACCOUNT(GROUPID,ACCOUNTID,JOINDATE) VALUES(5, 3,"2021-09-04");
+INSERT INTO GROUPACCOUNT(GROUPID,ACCOUNTID,JOINDATE) VALUES(3, 2,"2021-09-05");
+INSERT INTO GROUPACCOUNT(GROUPID,ACCOUNTID,JOINDATE) VALUES(1, 1,"2021-09-06");
+INSERT INTO GROUPACCOUNT(GROUPID,ACCOUNTID,JOINDATE) VALUES(4, 4,"2021-09-07");
+INSERT INTO GROUPACCOUNT(GROUPID,ACCOUNTID,JOINDATE) VALUES(2, 5,"2021-09-08");
+INSERT INTO TYPEQUESTION(TYPENAME) VALUES("TRẮC NGHIỆM TÔ");
+INSERT INTO TYPEQUESTION(TYPENAME) VALUES("TRẮC NGHIỆM KHOANH");
+INSERT INTO TYPEQUESTION(TYPENAME) VALUES("TRẮC NGHIỆM ĐIỀN");
+INSERT INTO TYPEQUESTION(TYPENAME) VALUES("TỰ LUẬN");
+INSERT INTO TYPEQUESTION(TYPENAME) VALUES("TRẮC NGHIỆM GIẢI THÍCH");
+INSERT INTO CATEGORYQUESTION(CATEGORYNAME) VALUES("JAVA");
+INSERT INTO CATEGORYQUESTION(CATEGORYNAME) VALUES("DOTNET");
+INSERT INTO CATEGORYQUESTION(CATEGORYNAME) VALUES("SQL");
+INSERT INTO CATEGORYQUESTION(CATEGORYNAME) VALUES("PHP");
+INSERT INTO CATEGORYQUESTION(CATEGORYNAME) VALUES("HTML/CSS");
+INSERT INTO QUESTION(CONTENT,CATEGORYID,TYPEID,CREATORID,CREATEDATE) VALUES("CONTENT 1", 3, 5, 3,"2021-06-20");
+INSERT INTO QUESTION(CONTENT,CATEGORYID,TYPEID,CREATORID,CREATEDATE) VALUES("CÂU HỎI CONTENT 2", 2, 4, 1,"2021-06-22");
+INSERT INTO QUESTION(CONTENT,CATEGORYID,TYPEID,CREATORID,CREATEDATE) VALUES("CONTENT 3", 1, 3, 3,"2021-06-24");
+INSERT INTO QUESTION(CONTENT,CATEGORYID,TYPEID,CREATORID,CREATEDATE) VALUES("CONTENT 4", 5, 2, 4,"2021-06-26");
+INSERT INTO QUESTION(CONTENT,CATEGORYID,TYPEID,CREATORID,CREATEDATE) VALUES("CONTENT 5", 4, 1, 2,"2021-06-28");
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A1", 3, TRUE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A11", 3, FALSE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A12", 3, FALSE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A13", 3, TRUE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A2", 4, FALSE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A3", 5, FALSE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A4", 1, TRUE);
+INSERT INTO ANSWER(CONTENT,QUESTIONID,ISCORRECT) VALUES("CONTENT A5", 2, TRUE);
+INSERT INTO EXAM(`CODE`,TITLE,CATEGORYID,DURATION,CREATORID,CREATEDATE) VALUES("MD01", "KIỂM TRA 1", 2, 90, 3,"2019-09-01");
+INSERT INTO EXAM(`CODE`,TITLE,CATEGORYID,DURATION,CREATORID,CREATEDATE) VALUES("MD02", "KIỂM TRA 2", 3, 60, 4,"2019-09-03");
+INSERT INTO EXAM(`CODE`,TITLE,CATEGORYID,DURATION,CREATORID,CREATEDATE) VALUES("MD03", "KIỂM TRA 3", 4, 50, 5,"2021-09-04");
+INSERT INTO EXAM(`CODE`,TITLE,CATEGORYID,DURATION,CREATORID,CREATEDATE) VALUES("MD04", "KIỂM TRA 4", 5, 30, 1,"2019-09-20");
+INSERT INTO EXAM(`CODE`,TITLE,CATEGORYID,DURATION,CREATORID,CREATEDATE) VALUES("MD05", "KIỂM TRA 5", 1, 90, 2,"2021-09-06");
+INSERT INTO EXAMQUESTION(EXAMID,QUESTIONID) VALUES(1, 3);
+INSERT INTO EXAMQUESTION(EXAMID,QUESTIONID) VALUES(3, 5);
+INSERT INTO EXAMQUESTION(EXAMID,QUESTIONID) VALUES(2, 4);
+INSERT INTO EXAMQUESTION(EXAMID,QUESTIONID) VALUES(5, 1);
+INSERT INTO EXAMQUESTION(EXAMID,QUESTIONID) VALUES(4, 2);
 
-/*Question 2*/
-select *
-from department;
+/*QUESTION 2*/
+SELECT *
+FROM DEPARTMENT;
 
-/*Question 3*/
-select DepartmentID
-from department 
-where DepartmentName = "Sale";
+/*QUESTION 3*/
+SELECT DEPARTMENTID
+FROM DEPARTMENT 
+WHERE DEPARTMENTNAME = "SALE";
 
-/*Question 4*/
-select * 
-from  `account` 
-order by length(FullName) desc ;
+/*QUESTION 4*/
+SELECT * 
+FROM  `ACCOUNT` 
+ORDER BY LENGTH(FULLNAME) DESC ;
 
-/*Question 5*/
-select * 
-from  `account`
-where `account`.DepartmentID = 3
-order by length(FullName) desc limit 1;
+/*QUESTION 5*/
+SELECT * 
+FROM  `ACCOUNT`
+WHERE `ACCOUNT`.DEPARTMENTID = 3
+ORDER BY LENGTH(FULLNAME) DESC LIMIT 1;
 
-/*Question 6*/
-select GroupName
-from `group`
-where CreateDate < "2019-12-20";
+/*QUESTION 6*/
+SELECT GROUPNAME
+FROM `GROUP`
+WHERE CREATEDATE < "2019-12-20";
 
-/*Question 7*/
-select QuestionID 
-from `anwser`
-group by QuestionID
-having COUNT(QuestionID) >= 4;
+/*QUESTION 7*/
+SELECT QUESTIONID 
+FROM `ANSWER`
+GROUP BY QUESTIONID
+HAVING COUNT(QUESTIONID) >= 4;
 
-/*Question 8*/
-select `Code`
-from `exam`
-where CreateDate < "2019-12-20" and Duration >= 60;
+/*QUESTION 8*/
+SELECT `CODE`
+FROM `EXAM`
+WHERE CREATEDATE < "2019-12-20" AND DURATION >= 60;
 
-/*Question 9*/
-select * 
-from  `group` 
-order by CreateDate desc limit 5;
+/*QUESTION 9*/
+SELECT * 
+FROM  `GROUP` 
+ORDER BY CREATEDATE DESC LIMIT 5;
 
-/*Question 10*/
-select count(AccountID) as "Tong so nhan vien cua phong ban co id =2"
-from `account`
-where `account`.DepartmentID = 2;
+/*QUESTION 10*/
+SELECT COUNT(ACCOUNTID) AS "TONG SO NHAN VIEN CUA PHONG BAN CO ID =2"
+FROM `ACCOUNT`
+WHERE `ACCOUNT`.DEPARTMENTID = 2;
 
-/*Question 11*/
-select *
-from `account`
-where FullName like 'D%o';
+/*QUESTION 11*/
+SELECT *
+FROM `ACCOUNT`
+WHERE FULLNAME LIKE 'D%O';
 
-/*Question 12*/
-delete 
-from exam 
-where CreateDate < "2019-12-20";
+/*QUESTION 12*/
+DELETE 
+FROM EXAM 
+WHERE CREATEDATE < "2019-12-20";
 
 
-/*Question 13*/
-delete 
-from question 
-where Content like 'câu hỏi%';
+/*QUESTION 13*/
+DELETE 
+FROM QUESTION 
+WHERE CONTENT LIKE 'CÂU HỎI%';
 
-/*Question 14*/
-update `account`
-set FullName = 'Nguyễn Bá Lộc' , Email ='loc.nguyenba@vti.com.vn'
-where AccountID = 5;
+/*QUESTION 14*/
+UPDATE `ACCOUNT`
+SET FULLNAME = 'NGUYỄN BÁ LỘC' , EMAIL ='LOC.NGUYENBA@VTI.COM.VN'
+WHERE ACCOUNTID = 5;
 
-/*Question 15*/
-update `groupaccount`
-set GroupID = 4 
-where AccountID = 5;
+/*QUESTION 15*/
+UPDATE `GROUPACCOUNT`
+SET GROUPID = 4 
+WHERE ACCOUNTID = 5;
