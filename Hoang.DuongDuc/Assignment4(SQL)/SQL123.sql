@@ -191,7 +191,7 @@ from  `group`
 order by CreateDate desc limit 5;
 
 /*Question 10*/
-select count(AccountID) as "Tong so nhan vien"
+select count(AccountID) as "Tong so nhan vien cua phong ban co id =2"
 from `account`
 where `account`.DepartmentID = 2;
 
@@ -203,7 +203,8 @@ where FullName like 'D%o';
 /*Question 12*/
 delete 
 from exam 
-where CreateDate < "20/12/2019";
+where CreateDate < "2019-12-20";
+
 
 /*Question 13*/
 delete 
@@ -212,7 +213,7 @@ where Content like 'câu hỏi%';
 
 /*Question 14*/
 update `account`
-set FullName = 'Nguyễn Bá Lộc' and Email ='loc.nguyenba@vti.com.vn'
+set FullName = 'Nguyễn Bá Lộc' , Email ='loc.nguyenba@vti.com.vn'
 where AccountID = 5;
 
 /*Question 15*/
