@@ -149,3 +149,12 @@ delete from exam where CreateDate <'2019-12-20';
 delete from question where Content like 'câu hỏi %';
 
 -- question 14 
+
+update account 
+set Fullname ='Nguyen Ba Loc ',Email ='loc.nguyenba@vti.com.vn'
+where AccountID=5;
+
+-- question 15
+update groupaccount
+set groupID =4
+where AccountID=5 ;
