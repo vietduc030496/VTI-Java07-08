@@ -9,7 +9,8 @@ insert into tblposition values (null,"position1"),
 (null,"position2"),
 (null,"position3"),
 (null,"position4"),
-(null,"position5");
+(null,"position5"),
+(null,"developer");
 
 insert into tblgroup values (null,"group1",1,"2021-07-19"),
 (null,"group2",2,"2021-07-05"),
@@ -25,7 +26,9 @@ insert into tblaccount values (null,"ngoquocan@gmail.com","ngoquocan","Ngo Quoc 
 (null,"abcd@gmail.com","abcd","abcd",3,4,"2021-11-11"),
 (null,"a@gmail.com","a","aaaaaaa",1,2,"2021-11-11"),
 (null,"b@gmail.com","b","nguyenvanb",4,1,"2021-11-11"),
-(null,"asasdad@gmail.com","asdadaas","Dao Dao Dao",2,4,"2021-11-11");
+(null,"asasdad@gmail.com","asdadaas","Dao Dao Dao",2,4,"2021-11-11"),
+(null,"ngoquocan1@gmail.com","ngoquocan1","Ngo Quoc An",2,6,"2021-11-11"),
+(null,"dddddee@gmail.com","ddedd","dddddded",5,6,"2021-11-11");
 
 insert into tblgroupaccount values (1,1,"2021-11-11"),
 (2,2,"2021-11-11"),
