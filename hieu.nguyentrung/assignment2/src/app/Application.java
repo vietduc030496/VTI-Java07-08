@@ -2,6 +2,7 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ import entity.HourlyEmployee;
 import entity.SalariedEmployee;
 import service.DepartmentService;
 import service.EmployeeService;
+import service.ReportService;
 
 public class Application {
 
@@ -22,6 +24,7 @@ public class Application {
 		int ssn = 0;
 		DepartmentService dep = new DepartmentService();
 		EmployeeService emp = new EmployeeService();
+		String dName;
 		while (true) {
 			System.out.println("********************");
 			System.out.println("1. Enter/Add department : ");
@@ -34,9 +37,9 @@ public class Application {
 			System.out.println("8. Delete department: ");
 			System.out.println("9. Delete employee: ");
 			System.out.println("10. Update department: ");
-			System.out.println("11. Update employee: ");
+//			System.out.println("11. Update employee: ");
 			System.out.println("0. Exit!");
-			System.out.println("Please pick a number between 0 and 7. Thanks !!");
+			System.out.println("Please pick a number between 0 and 10. Thanks !!");
 			System.out.println("******************");
 			Scanner in = new Scanner(System.in);
 			int chon;
@@ -47,26 +50,25 @@ public class Application {
 				System.exit(0);
 			case 1:
 				Department dep1 = dep.DepartmentInput();
-//				int j=0;
-//				do{d.add(dep1);
-//				j++;}
-//				while(j<d.size() && d.contains(dep1)
-//					for (int j = 0; j < d.size(); j++) {
-//						if (dep.Exist(d, d.get(j).getDepartmentName()) == -1) {
-//							System.out.println("Successful");
-//						} else {
-//							System.out.println("Existed !!");
-//						}
-//					}
-//			);
-
-//				if (d.contains(dep1)) {
-//					d.add(dep1);
-//					System.out.println("Successful");
-//				} else {
-//					System.out.println("Existed !!");
-//					break;
-//				}
+				try {
+					if (d.size() == 0) {
+						d.add(dep1);
+						System.out.println("Add department successful!!");
+						break;
+					}
+					for (Department de : d) {
+						if (de.getDepartmentName().equalsIgnoreCase(dep1.getDepartmentName())) {
+							System.out.println("Departmen name exited !!Please try again");
+							break;
+						} else {
+							d.add(dep1);
+							System.out.println("Add department successful!!");
+							break;
+						}
+					}
+				} catch (ConcurrentModificationException e) {
+					d.add(dep1);
+				}
 				d.add(dep1);
 				break;
 			case 2:
@@ -96,28 +98,24 @@ public class Application {
 				emp.ClassifyEmployee(d);
 				break;
 			case 6:
+				emp.searchEmp(d);
 				break;
 			case 7:
+				ReportService.report(d);
 				break;
 			case 8:
-				String dName = scanner.nextLine();
+				dName = scanner.nextLine();
 				dep.DeleteDepartment(d, dName);
 				break;
 			case 9:
-				
-				ssn = Integer.parseInt(scanner.nextLine());
-				try {
-				emp.DeleteEmployeeHE(d, String.valueOf(ssn), hE);}
-				catch(IndexOutOfBoundsException e) {
-					System.out.println(e);
-				}
-//				emp.DeleteEmployeeSE(sE, String.valueOf(ssn));
-				
+				emp.DeleteEmployee(d);
 				break;
 			case 10:
+				dName = scanner.nextLine();
+				dep.UpdateDepartment(d, dName);
 				break;
-			case 11:
-				break;
+//			case 11:
+//				break;
 			default:
 				System.out.println("chi chon 0->6");
 				break;

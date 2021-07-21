@@ -18,7 +18,7 @@ public class DepartmentService {
 		while (true) {
 			depName = scanner.nextLine();
 			if (Check.isValidDepartment(depName)) {
-				System.out.println("Succeccfull !!");
+//				System.out.println("Succeccfull !!");
 				break;
 			} else {
 				System.out.println("Invalid format, please re-fill !!");
@@ -72,7 +72,4 @@ public class DepartmentService {
 		}
 	}
 
-	public void CheckSimilarDepartment(List<Department> dep, String depName) {
-		
-	}
 }

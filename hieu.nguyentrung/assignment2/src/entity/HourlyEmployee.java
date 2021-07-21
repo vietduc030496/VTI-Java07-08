@@ -33,9 +33,9 @@ public class HourlyEmployee extends Employee {
 
 	@Override
 	public String toString() {
-		return "HourlyEmployee [wage=" + wage + ", workingHours=" + workingHours + ", ssn=" + ssn + ", firstName="
+		return "HourlyEmployee [ssn=" + ssn + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", phone=" + phone + ", email="
-				+ email + "]";
+				+ email +",wage=" + wage + ", workingHours=" + workingHours + "]";
 	}
 
 

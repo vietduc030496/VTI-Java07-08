@@ -37,15 +37,18 @@ public class SalariedEmployee extends Employee {
 	public void setBasicSalary(double basicSalary) {
 		this.basicSalary = basicSalary;
 	}
-	
-	
+
 
 	@Override
 	public String toString() {
-		return "SalariedEmployee [commissionRate=" + commissionRate + ", grossSales=" + grossSales + ", basicSalary="
-				+ basicSalary + ", ssn=" + ssn + "firstName=" + firstName + ", lastName=" + lastName + ", birthDate="
-				+ birthDate + ", phone=" + phone + ", email=" + email + "]";
+		return "SalariedEmployee [ssn=" + ssn + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate="
+				+ birthDate + ", phone=" + phone + ", email=" + email +", commissionRate=" + commissionRate + ", grossSales=" + grossSales + ", basicSalary="
+						+ basicSalary+"]";
 	}
+	
+	
+
+	
 
 
 

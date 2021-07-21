@@ -8,5 +8,5 @@ public class Constant {
 	public static final String SOURCE_FILE_NOT_EXISTS = "Error! Source File Not Exist";
 	public static final String NAME_IS_EXIST = "Error! Name is exist";
 	public static final String FOLDER_EXISTS = "Error! Folder Exist";
-
+	public static final String OBJECT_IS_NULL = "Error! Object Is Null";
 }
