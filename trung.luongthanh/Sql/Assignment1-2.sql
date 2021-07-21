@@ -62,7 +62,7 @@ create table if not exists Answer(
 );
 create table if not exists Exam(
 	ExamID int auto_increment primary key,
-    Code char(10) not null,
+    `Code` char(10) not null,
     Title varchar(50) not null,
     CategoryID int not null,
     Duration int not null,
