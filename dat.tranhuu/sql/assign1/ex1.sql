@@ -47,7 +47,7 @@ name varchar(255)
 
 create table tbl_question(
 id bigint auto_increment primary key unique,
-content varchar(255),
+content text,
 created_date datetime,
 type_id bigint,
 category_id bigint,
@@ -59,7 +59,7 @@ FOREIGN KEY (category_id) REFERENCES tbl_category_question(id)
 
 create table tbl_answer(
 id bigint auto_increment primary key unique,
-content varchar(255),
+content text,
 is_correct bit(1),
 question_id bigint,
 FOREIGN KEY (question_id) REFERENCES tbl_question(id)
