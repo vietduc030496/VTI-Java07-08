@@ -58,6 +58,10 @@ insert into tbl_account(email,username,fullname,created_date,department_id,posit
 values ("email16@gmail.com","username16","Dao","2021-07-16 06:41:46","3","4");
 insert into tbl_account(email,username,fullname,created_date,department_id,position_id) 
 values ("email17@gmail.com","username17","Django","2021-07-16 06:41:46","3","4");
+insert into tbl_account(email,username,fullname,created_date,department_id,position_id) 
+values ("email18@gmail.com","username18","saler","2021-07-16 06:41:46","11","4");
+insert into tbl_account(email,username,fullname,created_date,department_id,position_id) 
+values ("email19@gmail.com","username19","abc Nguyễn ádasd","2021-07-16 06:41:46","11","4");
 
 insert into tbl_group(name,created_date,account_id) values ("name1","2021-07-8 06:41:46","1");
 insert into tbl_group(name,created_date,account_id) values ("name2","2021-07-9 06:41:46","2");
@@ -149,7 +153,10 @@ insert into tbl_question(content,created_date,type_id,category_id,account_id)
 values ("câu hỏi 4","2021-07-18 06:41:46",11,3,4);
 insert into tbl_question(content,created_date,type_id,category_id,account_id) 
 values ("câu hỏi 5","2021-07-18 06:41:46",12,3,4);
-
+insert into tbl_question(content,created_date,type_id,category_id,account_id) 
+values ("câu hỏi dài hơn 300 ký jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj","2021-07-18 06:41:46",12,3,4);
+insert into tbl_question(content,created_date,type_id,category_id,account_id) 
+values ("câu hỏi của nguyễn","2021-07-18 06:41:46",12,3,19);
 
 insert into tbl_answer(content,is_correct,question_id) values ("anwser1",1,1);
 insert into tbl_answer(content,is_correct,question_id) values ("anwser2",0,2);
