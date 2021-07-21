@@ -10,6 +10,7 @@ insert into position values (null,"position1"),
 (null,"position3"),
 (null,"position4"),
 (null,"position5");
+insert into position values (null, "developer");
 
 insert into `group` values (null,"group1",1,"2021-07-19"),
 (null,"group2",2,"2021-07-05"),
@@ -25,7 +26,9 @@ insert into `account` values (null,"vantruong@gmail.com","vantruong","truongvant
 (null,"hieunguyen@gmail.com","hieunguyen","nguyentrunghieu",3,4,"2021-11-11"),
 (null,"a@gmail.com","a","aaaaaaa",1,2,"2021-11-11"),
 (null,"b@gmail.com","b","nguyenvanb",4,1,"2021-11-11"),
-(null,"DavidRobertFilo@gmail.com","DavidRobertFilooooooo","DavidRobertFilo",2,4,"2021-11-11");
+(null,"DavidRobertFilo@gmail.com","DavidRobertFilooooooo","DavidRobertFilo",2,4,"2021-11-11"),
+(null,"cccccccccc","cccccccccccc","DavidRobertFilocccc",2,6,"2021-11-11"),
+(null,"hhhhhh@gmail","hhhhhhh","Davidhhhhhh",2,6,"2021-11-11");
 
 insert into groupaccount values (1,1,"2021-11-11"),
 (2,2,"2021-11-11"),
@@ -80,17 +83,16 @@ where departmentName ="Sale";
 
 # Question 4: Lay account co full name dai nhat
 select * from `account` as acc
-where length(acc.fullname) = (select max(length(acc2.fullname))
-from `account` as acc2 );
+where (select length(acc.fullname))= (select max(length(acc1.fullname)) from `account` as acc1 );
 
 # Question 4 : sap xep giam dan
-select * from `account` as acc 
-order by length(acc.fullname) desc;
+select * from `account`
+order by length(fullname) desc;
 
 # Question 5: acc co fullname dai nhat && departmentID = 3
 select * from `account` as acc
-where length(acc.fullname) = ( select max(length(acc2.fullname))
-from `account` as acc2 ) and acc.departmentID = 3;
+where length(acc.fullname) = ( select max(length(acc1.fullname)) from `account` as acc1 ) 
+and acc.departmentID = 3;
 
 # Question 6: lay group truoc 20/12/2019
 select groupName from `group`
@@ -105,13 +107,13 @@ having count(questionID) >=4;
 select `code` from exam 
 where duration >= 1.0 and createDate < "2019-12-20";
 
-# Question 9: Ly ra 5 group duoc tao gan nhat
+# Question 9: Lay ra 5 group duoc tao gan nhat
 select * from `group`
 order by createDate desc
 limit 5;
 
 # Question 10: dem so nhan vien department2 co id =2
-select count(*) as num_of_emp from `account`
+select count(*) as amount_of_emp from `account`
 where departmentID = 2;
 
 # Question 11: Lay nhan vien bat dau bang D va ket thuc bang o
@@ -129,7 +131,7 @@ where content like "câu hỏi%";
 
 # Question 14: Update thong tin
 select * from `account`;
-update `account`
+update `account` 
 set fullname ="Nguyễn Bá Lộc",email = "loc.nguyenba@vti.com.vn"
 where accountID =5;
 
