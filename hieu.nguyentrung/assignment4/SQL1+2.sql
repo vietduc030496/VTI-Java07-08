@@ -2,24 +2,24 @@ create schema `internshipVTI`;
 
 create table department (
 	departmentID int primary key auto_increment,
-    departmentName varchar(50));
+    departmentName varchar(100));
 
 create table `position` (
 	positionID int primary key auto_increment,
-    positionName varchar(50));
+    positionName varchar(100));
 
 create table `account` (
 	accountID int primary key auto_increment,
-    email varchar(50),
-    username varchar(50),
-    fullname varchar(50),
+    email varchar(100),
+    username varchar(100),
+    fullname varchar(100),
     departmentID int,
     positionID int,
 	createDate date);
 
 create table `group` (
 	groupID int primary key auto_increment,
-    groupName varchar(50),
+    groupName varchar(100),
     creatorID int,
     createDate date);
 
@@ -30,11 +30,11 @@ create table groupaccount (
     
 create table typequestion(
 	typeID int primary key auto_increment,
-    typeName varchar(50));
+    typeName varchar(100));
 
 create table categoryquestion(
 	categoryID int primary key auto_increment,
-    categoryName varchar(50));
+    categoryName varchar(100));
 
 create table question(
 	questionID int primary key auto_increment,
@@ -53,7 +53,7 @@ create table answer(
 create table exam(
 	examID int primary key auto_increment,
     `code` int,
-    title varchar(50),
+    title varchar(100),
     categoryID int,
     duration float,
     creatorID int,
@@ -62,7 +62,7 @@ create table exam(
 create table examquestion(
 	examID int,
     questionID int);
-    
+
 alter table `account` add foreign key (departmentID) references department(departmentID) on delete cascade;
 alter table `account` add foreign key (positionID) references `position`(positionID)on delete cascade;
 alter table groupaccount add foreign key (groupID) references `group`(groupID) on delete cascade ;

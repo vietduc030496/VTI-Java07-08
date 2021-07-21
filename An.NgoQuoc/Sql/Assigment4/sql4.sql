@@ -18,13 +18,7 @@ having count(*)>3;
 select q.QuestionID,q.Content,q.CategoryID,q.TypeID,count(*) as 'so luong'
 from tblquestion q join tblexamquestion eq on q.QuestionID = eq.QuestionID
 group by eq.QuestionID 
-having count(*) = (
-	select count(*) 
-	from tblexamquestion eq 
-	group by eq.QuestionID 
-	order by count(*) desc
-	limit 1
-    );
+having count(*) =(select max(c) from (select count(*) as c from tblexamquestion eq group by eq.QuestionID) as cs);
     
 -- Q6
 select cq.CategoryID,cq.CategoryName,count(q.CategoryID) as 'so luong'
@@ -40,7 +34,7 @@ group by q.QuestionID;
 select q.QuestionID,q.Content,q.CategoryID,q.TypeID, count(*) as 'so luong'
 from tblanswer a join tblquestion q on a.QuestionID = q.QuestionID
 group by a.QuestionID
-having count(*) = (select count(*) from tblanswer a group by a.QuestionID order by count(*) desc limit 1);
+having count(*) = (select max(c) from (select count(*) as c from tblanswer a group by a.QuestionID) as cs);
 
 -- Q9
 select g.GroupID,g.GroupName,count(ga.GroupID) as 'so luong'
@@ -51,7 +45,7 @@ group by g.GroupID;
 select p.PositionID,p.PositionName,count(*) as 'soluong'
 from tblaccount a join tblposition p on a.PositionID = p.PositionID
 group by a.PositionID
-having soluong = (select count(*) from tblaccount a group by a.PositionID order by count(*) asc limit 1);
+having soluong = (select max(c) from (select count(*) as c from tblaccount a group by a.PositionID) as cs);
 
 -- Q11
 select d.DepartmentID,d.DepartmentName,p.PositionName,count(a.PositionID) as 'soluong'
