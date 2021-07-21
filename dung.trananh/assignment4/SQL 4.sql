@@ -71,6 +71,7 @@ on question.questionID = answer.questionID;
 #Question 13
 select typeID,typeName,count(*) as num_of_question_each_type from question as q 
 natural join typequestion as tq
+where typeName="Essay" or typeName="Multi-Choice"
 group by typeID;
 
 #Question 14

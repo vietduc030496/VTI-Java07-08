@@ -26,12 +26,19 @@ insert into `account` values (null,"dungtran240799@gmail.com","dungtran","tranan
 (null,"nguyenducnam@gmail.com","ducnam","nguyenducnam",3,4,"2021-07-19"),
 (null,"nguyenchiduc@gmail.com","chiduc","nguyenchiduc",4,1,"2021-07-19");
 insert into `account` values (null,"hieunguyen123@gmail.com","hieunguyen123","Duongducho",2,4,"2021-07-19");
+insert into `account` values (null,"nguyenhuyhoang123@gmail.com","hoangnguyen123","nguyenhuyhoang",2,3,"2021-07-19");
 
 insert into groupaccount values (1,1,"2021-07-19"),
 (2,2,"2021-07-10"),
 (3,3,"2021-07-06"),
 (1,4,"2021-07-22"),
-(2,5,"2021-07-11");
+(2,5,"2021-07-11"),
+(1,6,"2021-07-01"),
+(1,7,"2021-07-11"),
+(1,8,"2021-07-19"),
+(1,2,"2021-07-18"),
+(3,2,"2021-07-18")
+;
 
 insert into typequestion values (null,"Essay"),
 (null,"Multi-Choice"),
@@ -46,6 +53,8 @@ insert into question values (null,"A",1,1,1,"2021-07-01"),
 (null,"B",2,2,1,"2021-06-15"),
 (null,"C",3,3,1,"2021-06-25");
 insert into question values (null,"câu hỏi thứ 1",4,3,1,"2021-06-25");
+insert into question values (null,"câu hỏi thứ 2",1,3,1,"2021-06-25");
+insert into question values (null,"câu hỏi thứ 3",3,1,2,"2021-06-24");
 
 insert into answer values (null,"A",1,true),
 (null,"B",2,true),

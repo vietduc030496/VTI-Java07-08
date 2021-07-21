@@ -73,3 +73,4 @@ alter table answer add foreign key (questionID) references question(questionID);
 alter table  exam add foreign key (categoryID) references categoryquestion(categoryID);
 alter table examquestion add foreign key (examID) references exam(examID);
 alter table examquestion add foreign key (questionID) references question(questionID);
+alter table question add foreign key (creatorID) references `account`(accountID);
