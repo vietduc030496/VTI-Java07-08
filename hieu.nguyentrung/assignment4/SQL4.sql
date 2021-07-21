@@ -84,8 +84,10 @@ select distinct groupID, groupName
 from `group` as g 
 where not exists (select *from groupaccount as ga where ga.groupID = g.groupID );
 
-#Question 15: Lấy ra group không có account nào 
-#trung question 14
+#Question 15: Lấy ra group có account 
+select distinct groupID, groupName 
+from `group` as g 
+where exists (select *from groupaccount as ga where ga.groupID = g.groupID );
 
 #Question 16: Lấy ra question không có answer nào 
 select distinct questionID, content
