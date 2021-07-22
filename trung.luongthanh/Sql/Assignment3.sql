@@ -1,15 +1,15 @@
 use assignment12;
 
-insert into `Department`(DepartmentName) value("D1");
-insert into `Department`(DepartmentName) value("D2");
-insert into `Department`(DepartmentName) value("D3");
-insert into `Department`(DepartmentName) value("D4");
-insert into `Department`(DepartmentName) value("D5");
-insert into `Department`(DepartmentName) value("P1");
-insert into `Department`(DepartmentName) value("P2");
-insert into `Department`(DepartmentName) value("P3");
-insert into `Department`(DepartmentName) value("P4");
-insert into `Department`(DepartmentName) value("P5");
+insert into `Department`(DepartmentName) value("sale");
+insert into `Department`(DepartmentName) value("Marketing");
+insert into `Department`(DepartmentName) value("ki thuat");
+insert into `Department`(DepartmentName) value("nhan su");
+insert into `Department`(DepartmentName) value("tai chinh");
+insert into `Department`(DepartmentName) value("ke toan");
+insert into `Department`(DepartmentName) value("giam doc");
+insert into `Department`(DepartmentName) value("thu ki");
+insert into `Department`(DepartmentName) value("ban hang");
+insert into `Department`(DepartmentName) value("pho giam doc");
 
 insert into `Position`(PositionName) value("dev");
 insert into `Position`(PositionName) value("intern");
@@ -22,8 +22,8 @@ insert into `Position`(PositionName) value("gd");
 insert into `Position`(PositionName) value("mk");
 insert into `Position`(PositionName) value("sd");
 
-insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251@gmail.com", "thanhtrung", "Luong thanh trung", 10, 10);
-insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251gmp1@gmail.com", "thanhtrung1", "Luong thanh trung 1", 1, 1);
+insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251@gmail.com", "thanhtrung", "Luong thanh trung dai nhat", 10, 10);
+insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251gmp1@gmail.com", "thanhtrung1", "Tuong thanh trung dai nhat", 3, 1);
 insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251gmp2@gmail.com", "thanhtrung2", "Luong thanh trung 2", 2, 2);
 insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251gmp3@gmail.com", "thanhtrung3", "Luong thanh trung 3", 3, 3);
 insert into `Account`(Email, UserName, FullName, DepartmentID, PositionID) value("thanhtrung251gmp4@gmail.com", "thanhtrung4", "Luong thanh trung 4", 4, 4);
@@ -121,3 +121,26 @@ insert into `ExamQuestion`(ExamID, QuestionID) value(6,3);
 insert into `ExamQuestion`(ExamID, QuestionID) value(3,6);
 insert into `ExamQuestion`(ExamID, QuestionID) value(1,4);
 insert into `ExamQuestion`(ExamID, QuestionID) value(1,6);
+
+-- Question 2: Lấy tất cả các phòng ban
+SELECT * FROM Department;
+
+-- Question 3: Lấy ra id của phòng ban "Sale"
+SELECT 		DepartmentID 
+FROM 		Department 
+WHERE 		DepartmentName = N'Sale';
+
+-- Question 4: lấy ra thông tin account có full name dài nhất và sắp xếp chúng theo thứ tự giảm dần
+SELECT 		* 
+FROM 		`Account` 
+WHERE 		LENGTH(Fullname) = (SELECT MAX(LENGTH(Fullname)) FROM `Account`)
+ORDER BY 	Fullname DESC;
+
+-- Question 5: Lấy ra thông tin account có full name dài nhất và thuộc phòng ban có id = 3
+SELECT *
+FROM `Account`
+where LENGTH(Fullname) = (SELECT MAX(LENGTH(Fullname)) FROM `Account`) AND DepartmentID=3;
+-- Question 6: lấy ra tên group đã tham gia trước ngày 20/12/2019
+SELECT GroupName
+FROM `Group`
+WHERE CreateDate < '2019-12-20';
