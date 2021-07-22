@@ -169,7 +169,7 @@ CREATE PROCEDURE getQuestionCounterEachMonth()
 	END$$
 DELIMITER ;
 
-CALL getQuestionCounterSixMonth();
+CALL getQuestionCounterEachMonth();
 
 #Question 13
 DROP PROCEDURE IF EXISTS getQuestionCounterSixMonth;
