@@ -61,6 +61,10 @@ insert into answer values (null,"answer1",1,true),
 (null,"answer4",1,false),
 (null,"answer5",1,true),
 (null,"answer6",1,false);
+insert into answer values (null,"A",1,true),
+(null,"B",2,true),
+(null,"C",3,false);
+insert into answer values (null,"D",1,true),(null,"E",1,true),(null,"F",1,true);
 
 insert into exam values (null,1,"exam1",1,2.5,1,"2021-11-11"),
 (null,2,"exam2",2,1.5,2,"2021-11-11"),
