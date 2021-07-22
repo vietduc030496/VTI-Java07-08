@@ -153,10 +153,10 @@ CREATE PROCEDURE delete_exam_3yearsAgo()
 		from exam e
 		where year(e.createDate) = year(current_date()) - 3);
         
-		-- delete list examID in 3 years ago
+		-- delete list examID in 3 years ago of examquestion
 		SET sql_safe_updates = 0;
 		delete from examquestion eq
-		where eq.examID in (select x.examID
+		where eq.examID in (select listID.examID
 							from (
 								select distinct eq.examID
 								from exam e
@@ -164,7 +164,7 @@ CREATE PROCEDURE delete_exam_3yearsAgo()
 								on e.examID = eq.examID
 								where e.examID in (select e.examID
 													from exam e
-													where year(e.createDate) = year(current_date()) - 3) )as x);
+													where year(e.createDate) = year(current_date()) - 3) )as listID);
 		SET sql_safe_updates = 1;
 		
         -- delete exam 3 years ago
@@ -219,6 +219,63 @@ CREATE PROCEDURE statistic_question_per_month()
 DELIMITER ;
 
 call statistic_question_per_month();
+
+-- q13
+drop procedure if exists question_last6Months;
+
+DELIMITER $$	
+CREATE PROCEDURE question_last6Months()
+	BEGIN 
+        declare n int;
+        declare current_month int;
+        
+        set n = 6;
+        set current_month = month(current_date());
+        
+        while(n>0) do
+            insert into temp values (current_month, null);
+            SET current_month = current_month - 1;
+			SET  n = n - 1; 
+        end while;
+        
+        set n = 6;
+        set current_month = month(current_date());
+        while(n>0) do
+			SET SQL_SAFE_UPDATES = 0;
+            update temp
+            set quantity_created = (select Counted.Question_Quantity
+									from(
+									select q.questionID, month(q.createDate) as `Month`, count(q.questionID) as Question_Quantity
+									from question q
+									where month(q.createDate) = current_month
+									group by month(q.createDate) ) as Counted)
+			where temp.month = current_month;
+            SET SQL_SAFE_UPDATES = 1;
+                                    
+			SET current_month = current_month -1;
+			SET  n = n - 1; 
+        end while;
+        
+		set n = 6;
+        set current_month = month(current_date());
+        while(n>0) do
+			SET SQL_SAFE_UPDATES = 0;
+            update temp
+            set quantity_created = 'Khong co cau hoi nao trong thang'
+			where temp.quantity_created is null;
+            SET SQL_SAFE_UPDATES = 1;
+                                    
+			SET  n = n - 1; 
+        end while;
+    END$$
+DELIMITER ;
+
+drop temporary table if exists temp;
+create temporary table temp(`month` int, quantity_created varchar(255));
+call question_last6Months();
+select * from temp;
+
+
 
 
 
