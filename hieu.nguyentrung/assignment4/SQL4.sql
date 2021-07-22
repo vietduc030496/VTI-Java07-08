@@ -1,123 +1,123 @@
-#Question 1: Viết lệnh để lấy ra danh sách nhân viên và thông tin phòng ban của họ
-select accountID, username, fullname, department.departmentID
-from `account` as acc
-inner join department
-on acc.departmentID = department.departmentID;
+#QUESTION 1: VIẾT LỆNH ĐỂ LẤY RA DANH SÁCH NHÂN VIÊN VÀ THÔNG TIN PHÒNG BAN CỦA HỌ
+SELECT ACCOUNTID, USERNAME, FULLNAME, DEPARTMENT.DEPARTMENTID
+FROM `ACCOUNT` AS ACC
+INNER JOIN DEPARTMENT
+ON ACC.DEPARTMENTID = DEPARTMENT.DEPARTMENTID;
 
-#Question 2: Viết lệnh để lấy ra thông tin các account được tạo sau ngày 20/12/2010 
-select *
-from `account` as acc
-where createDate > 2010-12-20;
+#QUESTION 2: VIẾT LỆNH ĐỂ LẤY RA THÔNG TIN CÁC ACCOUNT ĐƯỢC TẠO SAU NGÀY 20/12/2010 
+SELECT *
+FROM `ACCOUNT` AS ACC
+WHERE CREATEDATE > 2010-12-20;
 
-#Question 3: Viết lệnh để lấy ra tất cả các developer
-select * from position;
-select accountID, username, fullname, departmentID, position.positionID, positionName
-from `account` as acc
-inner join position
-on acc.positionID = position.positionID
-where  positionName = "developer";
+#QUESTION 3: VIẾT LỆNH ĐỂ LẤY RA TẤT CẢ CÁC DEVELOPER
+SELECT * FROM POSITION;
+SELECT ACCOUNTID, USERNAME, FULLNAME, DEPARTMENTID, POSITION.POSITIONID, POSITIONNAME
+FROM `ACCOUNT` AS ACC
+INNER JOIN POSITION
+ON ACC.POSITIONID = POSITION.POSITIONID
+WHERE  POSITIONNAME = "DEVELOPER";
 
-#Question 4: Viết lệnh để lấy ra danh sách các phòng ban có >3 nhân viên 
-select  department.departmentID, departmentName
-from `account` as acc
-inner join department
-on acc.departmentID = department.departmentID
-group by acc.departmentID
-having count(acc.departmentID) >3;
+#QUESTION 4: VIẾT LỆNH ĐỂ LẤY RA DANH SÁCH CÁC PHÒNG BAN CÓ >3 NHÂN VIÊN 
+SELECT  DEPARTMENT.DEPARTMENTID, DEPARTMENTNAME
+FROM `ACCOUNT` AS ACC
+INNER JOIN DEPARTMENT
+ON ACC.DEPARTMENTID = DEPARTMENT.DEPARTMENTID
+GROUP BY ACC.DEPARTMENTID
+HAVING COUNT(ACC.DEPARTMENTID) >3;
 
-#Question 5: Viết lệnh để lấy ra danh sách câu hỏi được sử dụng trong đề thi nhiều nhất 
-select questionID, count(*) as max_num 
-from examquestion 
-group by questionID
-having count(*) = (select max(counts.count) from (select count(*) as count from examquestion group by questionID) as counts );
+#QUESTION 5: VIẾT LỆNH ĐỂ LẤY RA DANH SÁCH CÂU HỎI ĐƯỢC SỬ DỤNG TRONG ĐỀ THI NHIỀU NHẤT 
+SELECT QUESTIONID, COUNT(*) AS MAX_NUM 
+FROM EXAMQUESTION 
+GROUP BY QUESTIONID
+HAVING COUNT(*) = (SELECT MAX(COUNTS.COUNT) FROM (SELECT COUNT(*) AS COUNT FROM EXAMQUESTION GROUP BY QUESTIONID) AS COUNTS );
 
-#Question 6: Thông kê mỗi category Question được sử dụng trong bao nhiêu Question
-select categoryID , count(*) as number_of_question
-from question
-group by categoryID;
+#QUESTION 6: THÔNG KÊ MỖI CATEGORY QUESTION ĐƯỢC SỬ DỤNG TRONG BAO NHIÊU QUESTION
+SELECT CATEGORYID , COUNT(*) AS NUMBER_OF_QUESTION
+FROM QUESTION
+GROUP BY CATEGORYID;
 
-#Question 7: Thông kê mỗi Question được sử dụng trong bao nhiêu Exam
-select questionID, count(*) as num_of_exam 
-from examquestion
-group by questionID;
-#Question 8: Lấy ra Question có nhiều câu trả lời nhất 
-select questionID, count(*) as max_num_of_answer from answer
-group by questionID
-having count(*) = (select max(counts.count) from (select count(*) as count from answer group by questionID) as counts );
+#QUESTION 7: THÔNG KÊ MỖI QUESTION ĐƯỢC SỬ DỤNG TRONG BAO NHIÊU EXAM
+SELECT QUESTIONID, COUNT(*) AS NUM_OF_EXAM 
+FROM EXAMQUESTION
+GROUP BY QUESTIONID;
+#QUESTION 8: LẤY RA QUESTION CÓ NHIỀU CÂU TRẢ LỜI NHẤT 
+SELECT QUESTIONID, COUNT(*) AS MAX_NUM_OF_ANSWER FROM ANSWER
+GROUP BY QUESTIONID
+HAVING COUNT(*) = (SELECT MAX(COUNTS.COUNT) FROM (SELECT COUNT(*) AS COUNT FROM ANSWER GROUP BY QUESTIONID) AS COUNTS );
 
-#Question 9: Thống kê số lượng account trong mỗi group 
-select g.groupID, g.groupName ,count(*) as num_of_acccount from groupaccount
-inner join `group` as g
-on groupaccount.groupID = g.groupID
-group by groupID;
+#QUESTION 9: THỐNG KÊ SỐ LƯỢNG ACCOUNT TRONG MỖI GROUP 
+SELECT G.GROUPID, G.GROUPNAME ,COUNT(*) AS NUM_OF_ACCCOUNT FROM GROUPACCOUNT
+INNER JOIN `GROUP` AS G
+ON GROUPACCOUNT.GROUPID = G.GROUPID
+GROUP BY GROUPID;
 
-#Question 10: Tìm chức vụ có ít người nhất 
-select acc.positionID, position.positionName, count(*) as min_of_position from `account` as acc
-inner join position 
-on acc.positionID = position.positionID
-group by positionID
-having count(*) = (select min(counts.count) from (select count(*) as count from `account` group by positionID) as counts );
+#QUESTION 10: TÌM CHỨC VỤ CÓ ÍT NGƯỜI NHẤT 
+SELECT ACC.POSITIONID, POSITION.POSITIONNAME, COUNT(*) AS MIN_OF_POSITION FROM `ACCOUNT` AS ACC
+INNER JOIN POSITION 
+ON ACC.POSITIONID = POSITION.POSITIONID
+GROUP BY POSITIONID
+HAVING COUNT(*) = (SELECT MIN(COUNTS.COUNT) FROM (SELECT COUNT(*) AS COUNT FROM `ACCOUNT` GROUP BY POSITIONID) AS COUNTS );
 
-#Question 11: Thống kê mỗi phòng ban có bao nhiêu dev, test, scrum master, PM 
-select acc.departmentID , acc.positionID , p.positionName , count(p.positionID) as num_of_employee from `account` as acc
-inner join position as p
-on acc.positionID = p.positionID
-group by departmentID , positionID
-order by departmentID;
+#QUESTION 11: THỐNG KÊ MỖI PHÒNG BAN CÓ BAO NHIÊU DEV, TEST, SCRUM MASTER, PM 
+SELECT ACC.DEPARTMENTID , ACC.POSITIONID , P.POSITIONNAME , COUNT(P.POSITIONID) AS NUM_OF_EMPLOYEE FROM `ACCOUNT` AS ACC
+INNER JOIN POSITION AS P
+ON ACC.POSITIONID = P.POSITIONID
+GROUP BY DEPARTMENTID , POSITIONID
+ORDER BY DEPARTMENTID;
 
-#Question 12: Lấy thông tin chi tiết của câu hỏi bao gồm: thông tin cơ bản của question, loại câu hỏi, ai là 
-#người tạo ra câu hỏi, câu trả lời là gì, … 
-select * from question 
-natural join typequestion 
-left join answer
-on question.questionID = answer.questionID;
+#QUESTION 12: LẤY THÔNG TIN CHI TIẾT CỦA CÂU HỎI BAO GỒM: THÔNG TIN CƠ BẢN CỦA QUESTION, LOẠI CÂU HỎI, AI LÀ 
+#NGƯỜI TẠO RA CÂU HỎI, CÂU TRẢ LỜI LÀ GÌ, … 
+SELECT * FROM QUESTION 
+NATURAL JOIN TYPEQUESTION 
+LEFT JOIN ANSWER
+ON QUESTION.QUESTIONID = ANSWER.QUESTIONID;
 
-#Question 13: Lấy ra số lượng câu hỏi của mỗi loại tự luận hay trắc nghiệm 
-select *,count(question.TypeID) as num_of_question
-from typequestion 
-left join question 
-on question.TypeID = typequestion.TypeID
-group by typequestion.TypeID;
+#QUESTION 13: LẤY RA SỐ LƯỢNG CÂU HỎI CỦA MỖI LOẠI TỰ LUẬN HAY TRẮC NGHIỆM 
+SELECT *,COUNT(QUESTION.TYPEID) AS NUM_OF_QUESTION
+FROM TYPEQUESTION 
+LEFT JOIN QUESTION 
+ON QUESTION.TYPEID = TYPEQUESTION.TYPEID
+GROUP BY TYPEQUESTION.TYPEID;
 
-#Question 14: Lấy ra group không có account nào
-select distinct groupID, groupName 
-from `group` as g 
-where not exists (select *from groupaccount as ga where ga.groupID = g.groupID );
+#QUESTION 14: LẤY RA GROUP KHÔNG CÓ ACCOUNT NÀO
+SELECT DISTINCT GROUPID, GROUPNAME 
+FROM `GROUP` AS G 
+WHERE NOT EXISTS (SELECT *FROM GROUPACCOUNT AS GA WHERE GA.GROUPID = G.GROUPID );
 
-#Question 15: Lấy ra group có account 
-select distinct groupID, groupName 
-from `group` as g 
-where exists (select *from groupaccount as ga where ga.groupID = g.groupID );
+#QUESTION 15: LẤY RA GROUP CÓ ACCOUNT 
+SELECT DISTINCT GROUPID, GROUPNAME 
+FROM `GROUP` AS G 
+WHERE EXISTS (SELECT *FROM GROUPACCOUNT AS GA WHERE GA.GROUPID = G.GROUPID );
 
-#Question 16: Lấy ra question không có answer nào 
-select distinct questionID, content
-from question 
-where not exists (select *
-				   from answer
-                   where answer.questionID = question.questionID );
-#Question 17:
-#a
-select accountID from groupaccount
-where groupID=1;
-#b
-select accountID from groupaccount
-where groupID=2;
-#c
-select accountID from groupaccount
-where groupID=1
-union distinct
-select accountID from groupaccount
-where groupID=2;
+#QUESTION 16: LẤY RA QUESTION KHÔNG CÓ ANSWER NÀO 
+SELECT DISTINCT QUESTIONID, CONTENT
+FROM QUESTION 
+WHERE NOT EXISTS (SELECT *
+				   FROM ANSWER
+                   WHERE ANSWER.QUESTIONID = QUESTION.QUESTIONID );
+#QUESTION 17:
+#A
+SELECT ACCOUNTID FROM GROUPACCOUNT
+WHERE GROUPID=1;
+#B
+SELECT ACCOUNTID FROM GROUPACCOUNT
+WHERE GROUPID=2;
+#C
+SELECT ACCOUNTID FROM GROUPACCOUNT
+WHERE GROUPID=1
+UNION DISTINCT
+SELECT ACCOUNTID FROM GROUPACCOUNT
+WHERE GROUPID=2;
 
-#Question 18:
-select g.GroupID,g.GroupName,count(ga.GroupID) as num_of_employee_in_group
-from `group` as g left join groupaccount as ga 
-on g.GroupID = ga.GroupID
-group by g.GroupID 
-having num_of_employee_in_group > 7
-union distinct
-select g.GroupID,g.GroupName,count(ga.GroupID) as num_of_employee_in_group
-from `group`as g left join groupaccount as ga 
-on g.GroupID = ga.GroupID
-group by g.GroupID 
-having num_of_employee_in_group < 5;
+#QUESTION 18:
+SELECT G.GROUPID,G.GROUPNAME,COUNT(GA.GROUPID) AS NUM_OF_EMPLOYEE_IN_GROUP
+FROM `GROUP` AS G LEFT JOIN GROUPACCOUNT AS GA 
+ON G.GROUPID = GA.GROUPID
+GROUP BY G.GROUPID 
+HAVING NUM_OF_EMPLOYEE_IN_GROUP > 7
+UNION DISTINCT
+SELECT G.GROUPID,G.GROUPNAME,COUNT(GA.GROUPID) AS NUM_OF_EMPLOYEE_IN_GROUP
+FROM `GROUP`AS G LEFT JOIN GROUPACCOUNT AS GA 
+ON G.GROUPID = GA.GROUPID
+GROUP BY G.GROUPID 
+HAVING NUM_OF_EMPLOYEE_IN_GROUP < 5;

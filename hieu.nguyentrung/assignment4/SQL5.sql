@@ -1,51 +1,51 @@
-#Question 1:Tạo view có chứa danh sách nhân viên thuộc phòng ban sale
-SELECT * FROM `account`
-WHERE departmentID = ( SELECT departmentID FROM department
-						WHERE departmentName ="Sale");
+#QUESTION 1:TẠO VIEW CÓ CHỨA DANH SÁCH NHÂN VIÊN THUỘC PHÒNG BAN SALE
+SELECT * FROM `ACCOUNT`
+WHERE DEPARTMENTID = ( SELECT DEPARTMENTID FROM DEPARTMENT
+						WHERE DEPARTMENTNAME ="SALE");
                         
-#Question 2: Tạo view có chứa thông tin các account tham gia vào nhiều group nhất 
-SELECT * FROM `account`
-WHERE accountID IN ( SELECT accountID FROM groupaccount
-					 GROUP BY accountID
-                     HAVING count(*) = ( SELECT max(counts.acc_count) FROM 
-											(SELECT count(*) AS acc_count FROM groupaccount
-													GROUP BY accountID) AS counts)
+#QUESTION 2: TẠO VIEW CÓ CHỨA THÔNG TIN CÁC ACCOUNT THAM GIA VÀO NHIỀU GROUP NHẤT 
+SELECT * FROM `ACCOUNT`
+WHERE ACCOUNTID IN ( SELECT ACCOUNTID FROM GROUPACCOUNT
+					 GROUP BY ACCOUNTID
+                     HAVING COUNT(*) = ( SELECT MAX(COUNTS.ACC_COUNT) FROM 
+											(SELECT COUNT(*) AS ACC_COUNT FROM GROUPACCOUNT
+													GROUP BY ACCOUNTID) AS COUNTS)
 					);
 
-#Question 3:Tạo view có chứa câu hỏi có những content quá dài (content quá 300 từ được coi là quá dài) 
-#và xóa nó đi 
-WITH cte3 AS (
-	SELECT questionID,
-			content,
-            categoryID,
-            typeID,
-            creatorID,
-            createDate
-	FROM question
-    WHERE length(content) > 300)
-DELETE FROM cte3;
+#QUESTION 3:TẠO VIEW CÓ CHỨA CÂU HỎI CÓ NHỮNG CONTENT QUÁ DÀI (CONTENT QUÁ 300 TỪ ĐƯỢC COI LÀ QUÁ DÀI) 
+#VÀ XÓA NÓ ĐI 
+WITH CTE3 AS (
+	SELECT QUESTIONID,
+			CONTENT,
+            CATEGORYID,
+            TYPEID,
+            CREATORID,
+            CREATEDATE
+	FROM QUESTION
+    WHERE LENGTH(CONTENT) > 300)
+DELETE FROM CTE3;
 
-#Question 4:Tạo view có chứa danh sách các phòng ban có nhiều nhân viên nhất 
-SELECT dept.DepartmentID, DepartmentName, count(*) AS num_of_employee
-FROM department AS dept 
-join `account` AS acc
-ON dept.DepartmentID = acc.DepartmentID
-GROUP BY acc.DepartmentID
-HAVING num = (SELECT max(c) FROM 
-					(SELECT count(*) AS c 
-                     FROM `account` AS acc1 
-                     GROUP BY acc1.DepartmentID) AS cs);
+#QUESTION 4:TẠO VIEW CÓ CHỨA DANH SÁCH CÁC PHÒNG BAN CÓ NHIỀU NHÂN VIÊN NHẤT 
+SELECT DEPT.DEPARTMENTID, DEPARTMENTNAME, COUNT(*) AS NUM_OF_EMPLOYEE
+FROM DEPARTMENT AS DEPT 
+JOIN `ACCOUNT` AS ACC
+ON DEPT.DEPARTMENTID = ACC.DEPARTMENTID
+GROUP BY ACC.DEPARTMENTID
+HAVING NUM = (SELECT MAX(C) FROM 
+					(SELECT COUNT(*) AS C 
+                     FROM `ACCOUNT` AS ACC1 
+                     GROUP BY ACC1.DEPARTMENTID) AS CS);
 
-#Question 5: Tạo view có chứa tất các các câu hỏi do user họ Nguyễn tạo 
-WITH cte5 AS (
-	SELECT q.questionID,
-			q.content,
-            q.categoryID,
-            q.typeID,
-            q.creatorID,
-            q.createDate,
-            acc.fullname
-	FROM question AS q INNER JOIN `account` AS acc
-    ON q.creatorID = acc.accountID
-    WHERE acc.fullname LIKE "nguyen%")
-SELECT * FROM cte5;
+#QUESTION 5: TẠO VIEW CÓ CHỨA TẤT CÁC CÁC CÂU HỎI DO USER HỌ NGUYỄN TẠO 
+WITH CTE5 AS (
+	SELECT Q.QUESTIONID,
+			Q.CONTENT,
+            Q.CATEGORYID,
+            Q.TYPEID,
+            Q.CREATORID,
+            Q.CREATEDATE,
+            ACC.FULLNAME
+	FROM QUESTION AS Q INNER JOIN `ACCOUNT` AS ACC
+    ON Q.CREATORID = ACC.ACCOUNTID
+    WHERE ACC.FULLNAME LIKE "NGUYEN%")
+SELECT * FROM CTE5;
