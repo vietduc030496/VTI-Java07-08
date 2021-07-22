@@ -1,146 +1,148 @@
-# Question 1: them 5 ban ghi
-insert into department values (null,"Sale"),
-(null,"Dev"),
-(null,"Tester"),
-(null,"HR"),
-(null,"BA");
+# QUESTION 1: THEM 5 BAN GHI
+INSERT INTO DEPARTMENT VALUES (NULL,"SALE"),
+(NULL,"DEV"),
+(NULL,"TESTER"),
+(NULL,"HR"),
+(NULL,"BA"),
+(NULL, "Phong cho");
 
-insert into position values (null,"position1"),
-(null,"position2"),
-(null,"position3"),
-(null,"position4"),
-(null,"position5");
-insert into position values (null, "developer");
+INSERT INTO POSITION VALUES (NULL,"POSITION1"),
+(NULL,"POSITION2"),
+(NULL,"POSITION3"),
+(NULL,"POSITION4"),
+(NULL,"POSITION5");
+INSERT INTO POSITION VALUES (NULL, "DEVELOPER");
 
-insert into `group` values (null,"group1",1,"2021-07-19"),
-(null,"group2",2,"2021-07-05"),
-(null,"group3",3,"2021-07-01"),
-(null,"group4",4,"2019-07-19"),
-(null,"group5",5,"2020-07-19"),
-(null,"group6",6,"2020-06-25"),
-(null,"group7",7,"2018-01-15");
+INSERT INTO `GROUP` VALUES (NULL,"GROUP1",1,"2021-07-19"),
+(NULL,"GROUP2",2,"2021-07-05"),
+(NULL,"GROUP3",3,"2021-07-01"),
+(NULL,"GROUP4",4,"2019-07-19"),
+(NULL,"GROUP5",5,"2020-07-19"),
+(NULL,"GROUP6",6,"2020-06-25"),
+(NULL,"GROUP7",7,"2018-01-15");
 
 
-insert into `account` values (null,"vantruong@gmail.com","vantruong","truongvantruong",2,4,"2021-11-11"),
-(null,"ddddd@gmail.com","dddd","ddddddd",5,3,"2021-11-11"),
-(null,"hieunguyen@gmail.com","hieunguyen","nguyentrunghieu",3,4,"2021-11-11"),
-(null,"a@gmail.com","a","aaaaaaa",1,2,"2021-11-11"),
-(null,"b@gmail.com","b","nguyenvanb",4,1,"2021-11-11"),
-(null,"DavidRobertFilo@gmail.com","DavidRobertFilooooooo","DavidRobertFilo",2,4,"2021-11-11"),
-(null,"cccccccccc","cccccccccccc","DavidRobertFilocccc",2,6,"2021-11-11"),
-(null,"hhhhhh@gmail","hhhhhhh","Davidhhhhhh",2,6,"2021-11-11");
+INSERT INTO `ACCOUNT` VALUES (NULL,"VANTRUONG@GMAIL.COM","VANTRUONG","TRUONGVANTRUONG",2,4,"2021-11-11"),
+(NULL,"DDDDD@GMAIL.COM","DDDD","DDDDDDD",5,3,"2021-11-11"),
+(NULL,"HIEUNGUYEN@GMAIL.COM","HIEUNGUYEN","NGUYENTRUNGHIEU",3,4,"2021-11-11"),
+(NULL,"A@GMAIL.COM","A","AAAAAAA",1,2,"2021-11-11"),
+(NULL,"B@GMAIL.COM","B","NGUYENVANB",4,1,"2021-11-11"),
+(NULL,"DAVIDROBERTFILO@GMAIL.COM","DAVIDROBERTFILOOOOOOO","DAVIDROBERTFILO",2,4,"2021-11-11"),
+(NULL,"CCCCCCCCCC","CCCCCCCCCCCC","DAVIDROBERTFILOCCCC",2,6,"2021-11-11"),
+(NULL,"HHHHHH@GMAIL","HHHHHHH","DAVIDHHHHHH",2,6,"2021-11-11");
 
-insert into groupaccount values (1,1,"2021-11-11"),
+INSERT INTO GROUPACCOUNT VALUES (1,1,"2021-11-11"),
 (2,2,"2021-11-11"),
 (3,3,"2021-11-11"),
 (1,4,"2021-11-11"),
 (2,5,"2021-11-11");
 
-insert into typequestion values (null,"Essay"),
-(null,"Multi-Choice"),
-(null,"typequestion1"),
-(null,"typequestion2"),
-(null,"typequestion3");
+INSERT INTO TYPEQUESTION VALUES (NULL,"ESSAY"),
+(NULL,"MULTI-CHOICE"),
+(NULL,"TYPEQUESTION1"),
+(NULL,"TYPEQUESTION2"),
+(NULL,"TYPEQUESTION3");
 
-insert into categoryquestion values (null,"Java"),
-(null,"HTML"),
-(null,"Css"),
-(null,"Python"),
-(null,"PhP");
+INSERT INTO CATEGORYQUESTION VALUES (NULL,"JAVA"),
+(NULL,"HTML"),
+(NULL,"CSS"),
+(NULL,"PYTHON"),
+(NULL,"PHP");
 
 
-insert into question values (null,"question1",1,1,1,"2021-11-11"),
-(null,"question2",2,2,1,"2021-11-11"),
-(null,"question3",3,3,1,"2021-11-11"),
-(null,"câu hỏi thứ 1",4,3,1,"2021-11-11"),
-(null,"câu hỏi thứ 2",3,2,1,"2021-11-11");
+INSERT INTO QUESTION VALUES (NULL,"QUESTION1",1,1,1,"2021-11-11"),
+(NULL,"QUESTION2",2,2,1,"2021-11-11"),
+(NULL,"QUESTION3",3,3,1,"2021-11-11"),
+(NULL,"CÂU HỎI THỨ 1",4,3,1,"2021-11-11"),
+(NULL,"CÂU HỎI THỨ 2",3,2,1,"2021-11-11"),
+(NULL,"CÂU HỎI THỨ 3",3,2,1,"2021-07-11");
 
-insert into answer values (null,"answer1",1,true),
-(null,"answer2",2,true),
-(null,"answer3",3,false),
-(null,"answer4",1,false),
-(null,"answer5",1,true),
-(null,"answer6",1,false);
-insert into answer values (null,"A",1,true),
-(null,"B",2,true),
-(null,"C",3,false);
-insert into answer values (null,"D",1,true),(null,"E",1,true),(null,"F",1,true);
+INSERT INTO ANSWER VALUES (NULL,"ANSWER1",1,TRUE),
+(NULL,"ANSWER2",2,TRUE),
+(NULL,"ANSWER3",3,FALSE),
+(NULL,"ANSWER4",1,FALSE),
+(NULL,"ANSWER5",1,TRUE),
+(NULL,"ANSWER6",1,FALSE);
+INSERT INTO ANSWER VALUES (NULL,"A",1,TRUE),
+(NULL,"B",2,TRUE),
+(NULL,"C",3,FALSE);
+INSERT INTO ANSWER VALUES (NULL,"D",1,TRUE),(NULL,"E",1,TRUE),(NULL,"F",1,TRUE);
 
-insert into exam values (null,1,"exam1",1,2.5,1,"2021-11-11"),
-(null,2,"exam2",2,1.5,2,"2021-11-11"),
-(null,3,"exam3",3,1.5,3,"2021-11-11"),
-(null,4,"exam4",3,3.0,3,"2018-11-11"),
-(null,5,"exam5",3,1.0,3,"2018-11-11");
+INSERT INTO EXAM VALUES (NULL,1,"EXAM1",1,2.5,1,"2021-11-11"),
+(NULL,2,"EXAM2",2,1.5,2,"2021-11-11"),
+(NULL,3,"EXAM3",3,1.5,3,"2021-11-11"),
+(NULL,4,"EXAM4",3,3.0,3,"2018-11-11"),
+(NULL,5,"EXAM5",3,1.0,3,"2018-11-11");
 
-insert into examquestion values (1,1),
+INSERT INTO EXAMQUESTION VALUES (1,1),
 (2,2),
 (3,3),
 (1,2),
 (3,2);
 
-# Question 2: Lay ra tat ca cac phong ban
-select * from department;
+# QUESTION 2: LAY RA TAT CA CAC PHONG BAN
+SELECT * FROM DEPARTMENT;
 
-# Question 3:lay ra id cua " Sale"
-select departmentID from department
-where departmentName ="Sale";
+# QUESTION 3:LAY RA ID CUA " SALE"
+SELECT DEPARTMENTID FROM DEPARTMENT
+WHERE DEPARTMENTNAME ="SALE";
 
-# Question 4: Lay account co full name dai nhat
-select * from `account` as acc
-where (select length(acc.fullname))= (select max(length(acc1.fullname)) from `account` as acc1 );
+# QUESTION 4: LAY ACCOUNT CO FULL NAME DAI NHAT
+SELECT * FROM `ACCOUNT` AS ACC
+WHERE (SELECT LENGTH(ACC.FULLNAME))= (SELECT MAX(LENGTH(ACC1.FULLNAME)) FROM `ACCOUNT` AS ACC1 );
 
-# Question 4 : sap xep giam dan
-select * from `account`
-order by length(fullname) desc;
+# QUESTION 4 : SAP XEP GIAM DAN
+SELECT * FROM `ACCOUNT`
+ORDER BY LENGTH(FULLNAME) DESC;
 
-# Question 5: acc co fullname dai nhat && departmentID = 3
-select * from `account` as acc
-where length(acc.fullname) = ( select max(length(acc1.fullname)) from `account` as acc1 ) 
-and acc.departmentID = 3;
+# QUESTION 5: ACC CO FULLNAME DAI NHAT && DEPARTMENTID = 3
+SELECT * FROM `ACCOUNT` AS ACC
+WHERE LENGTH(ACC.FULLNAME) = ( SELECT MAX(LENGTH(ACC1.FULLNAME)) FROM `ACCOUNT` AS ACC1 ) 
+AND ACC.DEPARTMENTID = 3;
 
-# Question 6: lay group truoc 20/12/2019
-select groupName from `group`
-where createDate < "2019-12-20";
+# QUESTION 6: LAY GROUP TRUOC 20/12/2019
+SELECT GROUPNAME FROM `GROUP`
+WHERE CREATEDATE < "2019-12-20";
 
-# Question 7: lay id cua question >=4 cau tra loi
-select questionID from answer
-group by questionID
-having count(questionID) >=4;
+# QUESTION 7: LAY ID CUA QUESTION >=4 CAU TRA LOI
+SELECT QUESTIONID FROM ANSWER
+GROUP BY QUESTIONID
+HAVING COUNT(QUESTIONID) >=4;
 
-# Question 8: Lay ma de thi time >=60phut(1.0 gio)  && truoc 20/12/2019
-select `code` from exam 
-where duration >= 1.0 and createDate < "2019-12-20";
+# QUESTION 8: LAY MA DE THI TIME >=60PHUT(1.0 GIO)  && TRUOC 20/12/2019
+SELECT `CODE` FROM EXAM 
+WHERE DURATION >= 1.0 AND CREATEDATE < "2019-12-20";
 
-# Question 9: Lay ra 5 group duoc tao gan nhat
-select * from `group`
-order by createDate desc
-limit 5;
+# QUESTION 9: LAY RA 5 GROUP DUOC TAO GAN NHAT
+SELECT * FROM `GROUP`
+ORDER BY CREATEDATE DESC
+LIMIT 5;
 
-# Question 10: dem so nhan vien department2 co id =2
-select count(*) as amount_of_emp from `account`
-where departmentID = 2;
+# QUESTION 10: DEM SO NHAN VIEN DEPARTMENT2 CO ID =2
+SELECT COUNT(*) AS AMOUNT_OF_EMP FROM `ACCOUNT`
+WHERE DEPARTMENTID = 2;
 
-# Question 11: Lay nhan vien bat dau bang D va ket thuc bang o
-select * from `account`
-where fullname like "D%o";
+# QUESTION 11: LAY NHAN VIEN BAT DAU BANG D VA KET THUC BANG O
+SELECT * FROM `ACCOUNT`
+WHERE FULLNAME LIKE "D%O";
 
-# Question 12: Xoa exam truoc 20/12/2019
-delete from exam 
-where createDate < "2019-12-20";
+# QUESTION 12: XOA EXAM TRUOC 20/12/2019
+DELETE FROM EXAM 
+WHERE CREATEDATE < "2019-12-20";
 
-# Question 13 xoa question co noi dung bat dau " cau hoi"
-select * from question;
-delete from question 
-where content like "câu hỏi%";
+# QUESTION 13 XOA QUESTION CO NOI DUNG BAT DAU " CAU HOI"
+SELECT * FROM QUESTION;
+DELETE FROM QUESTION 
+WHERE CONTENT LIKE "CÂU HỎI%";
 
-# Question 14: Update thong tin
-select * from `account`;
-update `account` 
-set fullname ="Nguyễn Bá Lộc",email = "loc.nguyenba@vti.com.vn"
-where accountID =5;
+# QUESTION 14: UPDATE THONG TIN
+SELECT * FROM `ACCOUNT`;
+UPDATE `ACCOUNT` 
+SET FULLNAME ="NGUYỄN BÁ LỘC",EMAIL = "LOC.NGUYENBA@VTI.COM.VN"
+WHERE ACCOUNTID =5;
 
-# Question 15: update acc co id-5 se thuoc group co id=4
-select * from groupaccount;
-update groupaccount
-set groupID = 4
-where accountID = 5;
+# QUESTION 15: UPDATE ACC CO ID-5 SE THUOC GROUP CO ID=4
+SELECT * FROM GROUPACCOUNT;
+UPDATE GROUPACCOUNT
+SET GROUPID = 4
+WHERE ACCOUNTID = 5;

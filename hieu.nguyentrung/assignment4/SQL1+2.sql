@@ -1,75 +1,75 @@
-create schema `internshipVTI`;
+CREATE SCHEMA `INTERNSHIPVTI`;
 
-create table department (
-	departmentID int primary key auto_increment,
-    departmentName varchar(100));
+CREATE TABLE DEPARTMENT (
+	DEPARTMENTID INT PRIMARY KEY AUTO_INCREMENT,
+    DEPARTMENTNAME VARCHAR(100));
 
-create table `position` (
-	positionID int primary key auto_increment,
-    positionName varchar(100));
+CREATE TABLE `POSITION` (
+	POSITIONID INT PRIMARY KEY AUTO_INCREMENT,
+    POSITIONNAME VARCHAR(100));
 
-create table `account` (
-	accountID int primary key auto_increment,
-    email varchar(100),
-    username varchar(100),
-    fullname varchar(100),
-    departmentID int,
-    positionID int,
-	createDate date);
+CREATE TABLE `ACCOUNT` (
+	ACCOUNTID INT PRIMARY KEY AUTO_INCREMENT,
+    EMAIL VARCHAR(100),
+    USERNAME VARCHAR(100),
+    FULLNAME VARCHAR(100),
+    DEPARTMENTID INT,
+    POSITIONID INT,
+	CREATEDATE DATE);
 
-create table `group` (
-	groupID int primary key auto_increment,
-    groupName varchar(100),
-    creatorID int,
-    createDate date);
+CREATE TABLE `GROUP` (
+	GROUPID INT PRIMARY KEY AUTO_INCREMENT,
+    GROUPNAME VARCHAR(100),
+    CREATORID INT,
+    CREATEDATE DATE);
 
-create table groupaccount (
-	groupID int,
-    accountID int,
-    joinDate date);
+CREATE TABLE GROUPACCOUNT (
+	GROUPID INT,
+    ACCOUNTID INT,
+    JOINDATE DATE);
     
-create table typequestion(
-	typeID int primary key auto_increment,
-    typeName varchar(100));
+CREATE TABLE TYPEQUESTION(
+	TYPEID INT PRIMARY KEY AUTO_INCREMENT,
+    TYPENAME VARCHAR(100));
 
-create table categoryquestion(
-	categoryID int primary key auto_increment,
-    categoryName varchar(100));
+CREATE TABLE CATEGORYQUESTION(
+	CATEGORYID INT PRIMARY KEY AUTO_INCREMENT,
+    CATEGORYNAME VARCHAR(100));
 
-create table question(
-	questionID int primary key auto_increment,
-    content varchar(100),
-    categoryID int,
-    typeID int,
-    creatorID int,
-    createDate date);
+CREATE TABLE QUESTION(
+	QUESTIONID INT PRIMARY KEY AUTO_INCREMENT,
+    CONTENT VARCHAR(100),
+    CATEGORYID INT,
+    TYPEID INT,
+    CREATORID INT,
+    CREATEDATE DATE);
 
-create table answer(
-	answerID int primary key auto_increment,
-    content varchar(100),
-    questionID int,
-    isCorrect boolean);
+CREATE TABLE ANSWER(
+	ANSWERID INT PRIMARY KEY AUTO_INCREMENT,
+    CONTENT VARCHAR(100),
+    QUESTIONID INT,
+    ISCORRECT BOOLEAN);
 
-create table exam(
-	examID int primary key auto_increment,
-    `code` int,
-    title varchar(100),
-    categoryID int,
-    duration float,
-    creatorID int,
-    createDate date);
+CREATE TABLE EXAM(
+	EXAMID INT PRIMARY KEY AUTO_INCREMENT,
+    `CODE` INT,
+    TITLE VARCHAR(100),
+    CATEGORYID INT,
+    DURATION FLOAT,
+    CREATORID INT,
+    CREATEDATE DATE);
 
-create table examquestion(
-	examID int,
-    questionID int);
+CREATE TABLE EXAMQUESTION(
+	EXAMID INT,
+    QUESTIONID INT);
 
-alter table `account` add foreign key (departmentID) references department(departmentID) on delete cascade;
-alter table `account` add foreign key (positionID) references `position`(positionID)on delete cascade;
-alter table groupaccount add foreign key (groupID) references `group`(groupID) on delete cascade ;
-alter table groupaccount add foreign key (accountID) references `account`(accountID) on delete cascade;
-alter table question add foreign key (categoryID) references categoryquestion(categoryID) on delete cascade;
-alter table question add foreign key (typeID) references typequestion(typeID) on delete cascade;
-alter table answer add foreign key (questionID) references question(questionID) on delete cascade;
-alter table  exam add foreign key (categoryID) references categoryquestion(categoryID) on delete cascade;
-alter table examquestion add foreign key (examID) references exam(examID) on delete cascade;
-alter table examquestion add foreign key (questionID) references question(questionID) on delete cascade;
+ALTER TABLE `ACCOUNT` ADD FOREIGN KEY (DEPARTMENTID) REFERENCES DEPARTMENT(DEPARTMENTID) ON DELETE CASCADE;
+ALTER TABLE `ACCOUNT` ADD FOREIGN KEY (POSITIONID) REFERENCES `POSITION`(POSITIONID)ON DELETE CASCADE;
+ALTER TABLE GROUPACCOUNT ADD FOREIGN KEY (GROUPID) REFERENCES `GROUP`(GROUPID) ON DELETE CASCADE ;
+ALTER TABLE GROUPACCOUNT ADD FOREIGN KEY (ACCOUNTID) REFERENCES `ACCOUNT`(ACCOUNTID) ON DELETE CASCADE;
+ALTER TABLE QUESTION ADD FOREIGN KEY (CATEGORYID) REFERENCES CATEGORYQUESTION(CATEGORYID) ON DELETE CASCADE;
+ALTER TABLE QUESTION ADD FOREIGN KEY (TYPEID) REFERENCES TYPEQUESTION(TYPEID) ON DELETE CASCADE;
+ALTER TABLE ANSWER ADD FOREIGN KEY (QUESTIONID) REFERENCES QUESTION(QUESTIONID) ON DELETE CASCADE;
+ALTER TABLE  EXAM ADD FOREIGN KEY (CATEGORYID) REFERENCES CATEGORYQUESTION(CATEGORYID) ON DELETE CASCADE;
+ALTER TABLE EXAMQUESTION ADD FOREIGN KEY (EXAMID) REFERENCES EXAM(EXAMID) ON DELETE CASCADE;
+ALTER TABLE EXAMQUESTION ADD FOREIGN KEY (QUESTIONID) REFERENCES QUESTION(QUESTIONID) ON DELETE CASCADE;
