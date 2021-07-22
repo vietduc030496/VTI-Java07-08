@@ -7,9 +7,17 @@ with tbldepartmentcte as(
 )
 select * from tblaccount a join tbldepartmentcte dc on a.DepartmentID = dc.DepartmentID;
 -- use subquery
-select * 
-from tblaccount a
-where a.DepartmentID = (select d.DepartmentID from tbldepartment d where d.DepartmentName = 'department2');
+SELECT 
+    *
+FROM
+    tblaccount a
+WHERE
+    a.DepartmentID = (SELECT 
+            d.DepartmentID
+        FROM
+            tbldepartment d
+        WHERE
+            d.DepartmentName = 'department2');
 
 -- Q2 tạo view chứa thông tin account tham gia vào nhiều group nhất
 -- use cte
@@ -25,10 +33,24 @@ select a.AccountID,a.Email,a.Username,a.FullName,cg.soluong
 from tblaccount a join tblcountgroup cg on a.AccountID = cg.AccountID
 join maxcountgroup mcg on cg.soluong = mcg.soluong;
 -- use subquery
-select a.AccountID,a.Username,a.FullName,count(ga.AccountID) as 'soluong'
-from tblgroupaccount ga join tblaccount a on a.AccountID = ga.AccountID
-group by ga.AccountID
-having soluong = (select max(c) from( select count(*) as c from tblgroupaccount ga group by ga.AccountID) as cs);
+SELECT 
+    a.AccountID,
+    a.Username,
+    a.FullName,
+    COUNT(ga.AccountID) AS 'soluong'
+FROM
+    tblgroupaccount ga
+        JOIN
+    tblaccount a ON a.AccountID = ga.AccountID
+GROUP BY ga.AccountID
+HAVING soluong = (SELECT 
+        MAX(c)
+    FROM
+        (SELECT 
+            COUNT(*) AS c
+        FROM
+            tblgroupaccount ga
+        GROUP BY ga.AccountID) AS cs);
 
 -- Q3
 -- use cte
@@ -56,10 +78,21 @@ select d.DepartmentID,d.DepartmentName,ca.soluong
 from tbldepartment d join tblcountacc ca on d.DepartmentID = ca.DepartmentID
 join maxcountacc mca on ca.soluong = mca.soluong;
 -- use subquery
-select d.DepartmentID,d.DepartmentName,count(*) as soluong
-from tbldepartment d join tblaccount a on d.DepartmentID = a.DepartmentID
-group by a.DepartmentID
-having soluong = (select max(c) from (select count(*) as c from tblaccount a group by a.DepartmentID) as cs);
+SELECT 
+    d.DepartmentID, d.DepartmentName, COUNT(*) AS soluong
+FROM
+    tbldepartment d
+        JOIN
+    tblaccount a ON d.DepartmentID = a.DepartmentID
+GROUP BY a.DepartmentID
+HAVING soluong = (SELECT 
+        MAX(c)
+    FROM
+        (SELECT 
+            COUNT(*) AS c
+        FROM
+            tblaccount a
+        GROUP BY a.DepartmentID) AS cs);
 
 -- Q5
 -- use cte
@@ -71,5 +104,14 @@ with tblaccbyname as(
 select *
 from tblquestion q join tblaccbyname abn on q.CreatorID = abn.AccountID;
 -- use subquery
-select * from tblquestion q
-where q.CreatorID in (select a.AccountID from tblaccount a where a.FullName like 'Ng%');
+SELECT 
+    *
+FROM
+    tblquestion q
+WHERE
+    q.CreatorID IN (SELECT 
+            a.AccountID
+        FROM
+            tblaccount a
+        WHERE
+            a.FullName LIKE 'Ng%');
