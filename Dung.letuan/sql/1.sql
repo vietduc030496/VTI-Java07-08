@@ -1,0 +1,75 @@
+CREATE SCHEMA `VtiSql`;
+
+CREATE TABLE Department (
+	DepartmentID INT PRIMARY KEY AUTO_INCREMENT,
+    DepartmentName VARCHAR(100));
+
+CREATE TABLE `Position` (
+	PositionID INT PRIMARY KEY AUTO_INCREMENT,
+    PositionName VARCHAR(100));
+
+CREATE TABLE `Account` (
+	AccountID INT PRIMARY KEY AUTO_INCREMENT,
+    Email VARCHAR(100),
+    Username VARCHAR(100),
+    Fullname VARCHAR(100),
+    DepartmentID INT,
+    PositionID INT,
+	CreateDate DATE);
+
+CREATE TABLE `Group` (
+	GroupID INT PRIMARY KEY AUTO_INCREMENT,
+    GroupName VARCHAR(100),
+    CreatorID INT,
+    CreateDate DATE);
+
+CREATE TABLE GroupAccount (
+	GroupID INT,
+    AccountID INT,
+    JoinDate DATE);
+    
+CREATE TABLE TypeQuestion(
+	TypeID INT PRIMARY KEY AUTO_INCREMENT,
+    TypeName VARCHAR(100));
+
+CREATE TABLE CategoryQuestion(
+	CategoryID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryName VARCHAR(100));
+
+CREATE TABLE Question(
+	QuestionID INT PRIMARY KEY AUTO_INCREMENT,
+    Content VARCHAR(100),
+    CategoryID INT,
+    TypeID INT,
+    CreatorID INT,
+    CreateDate DATE);
+
+CREATE TABLE Answer(
+	AnswerID INT PRIMARY KEY AUTO_INCREMENT,
+    Content VARCHAR(100),
+    QuestionID INT,
+    isCorrect BOOLEAN);
+
+CREATE TABLE Exam(
+	ExamID INT PRIMARY KEY AUTO_INCREMENT,
+    `Code` INT,
+    Title VARCHAR(100),
+    CategoryID INT,
+    Duration FLOAT,
+    CreatorID INT,
+    CreateDate DATE);
+
+CREATE TABLE ExamQuestion(
+	ExamID INT,
+    QuestionID INT);
+
+ALTER TABLE `Account` ADD FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID) ON DELETE CASCADE;
+ALTER TABLE `Account` ADD FOREIGN KEY (PositionID) REFERENCES `Position`(PositionID)ON DELETE CASCADE;
+ALTER TABLE GroupAccount ADD FOREIGN KEY (GroupID) REFERENCES `Group`(GroupID) ON DELETE CASCADE ;
+ALTER TABLE GroupAccount ADD FOREIGN KEY (AccountID) REFERENCES `Account`(AccountID) ON DELETE CASCADE;
+ALTER TABLE Question ADD FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID) ON DELETE CASCADE;
+ALTER TABLE Question ADD FOREIGN KEY (TypeID) REFERENCES TypeQuestion(TypeID) ON DELETE CASCADE;
+ALTER TABLE Answer ADD FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE;
+ALTER TABLE Exam ADD FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID) ON DELETE CASCADE;
+ALTER TABLE ExamQuestion ADD FOREIGN KEY (ExamID) REFERENCES Exam(ExamID) ON DELETE CASCADE;
+ALTER TABLE ExamQuestion ADD FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE;

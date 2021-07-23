@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DepartmentManage {
+public class    DepartmentManage {
     private List<Department> listOfDepartment;
     public Scanner sc = new Scanner(System.in);
 
