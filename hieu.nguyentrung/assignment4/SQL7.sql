@@ -2,15 +2,15 @@
 INSERT INTO `group` (createDate)
 VALUES		("2022-11-11");
 
-DROP TRIGGER IF EXISTS creat_group_1_year;
+DROP TRIGGER IF EXISTS trigger_unallow_user_create_date;
 DELIMITER $$
-	CREATE TRIGGER creat_group_1_year
-    BEFORE INSERT ON tblgroup
+	CREATE TRIGGER trigger_unallow_user_create_date
+    BEFORE INSERT ON `group`
     FOR EACH ROW
     BEGIN
 		IF NEW.CreateDate < DATE_SUB(CURDATE(), INTERVAL 1 YEAR) THEN
-			SIGNAL SQLSTATE '12345'
-            SET MESSAGE_TEXT = 'Unallow!! Please try again';
+			SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Unallow!! Please try again";
         END IF;
     END $$
 DELIMITER ;

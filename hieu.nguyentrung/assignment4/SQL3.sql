@@ -31,7 +31,6 @@ INSERT INTO `ACCOUNT` VALUES (NULL,"VANTRUONG@GMAIL.COM","VANTRUONG","TRUONGVANT
 (NULL,"CCCCCCCCCC","CCCCCCCCCCCC","DAVIDROBERTFILOCCCC","M",2,6,"2021-11-11"),
 (NULL,"HHHHHH@GMAIL","HHHHHHH","DAVIDHHHHHH","M",2,6,"2021-11-11"),
 (NULL,"admin@gmail.com","admin","adminsystem","M",2,1,"2021-11-11");
-#SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO `account` VALUES (null, "hieudepzai@gmail.com", "hieudepzai", "hieunguyen","M",1, 3,"2021-07-23");
 
 
