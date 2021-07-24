@@ -104,6 +104,7 @@ INSERT INTO `account`(accountID, email, username, fullname, gender, positionID, 
 VALUES (null, 'hieudepzai@gmail.com', 'hieudepzai', 'hieunguyen',"M",3,'2021-07-23');
 
 #Question 7:Cấu hình 1 bài thi chỉ cho phép user tạo tối đa 4 answers cho mỗi question, trong đó có tối đa 2 đáp án đúng
+#Cau nay chua toi uu
 DROP TRIGGER IF EXISTS trigger_max_answers;
 DELIMITER $$
     CREATE TRIGGER trigger_max_answers
