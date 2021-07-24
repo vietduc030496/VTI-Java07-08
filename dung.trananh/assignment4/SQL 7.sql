@@ -239,7 +239,7 @@ CASE
 		WHEN NOT EXISTS (SELECT 1 FROM `account` AS acc2
 				WHERE acc2.departmentID = dept.departmentID)
 			THEN "Khong co User"
-		ELSE "Deu co User"
+		ELSE COUNT(acc.departmentID)
 	END dept_description
 FROM department AS dept LEFT JOIN `account` AS acc 
 ON dept.departmentID = acc.departmentID
