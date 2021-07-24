@@ -28,7 +28,8 @@ CREATE TABLE `Account`(
     Email					VARCHAR(50) NOT NULL UNIQUE KEY,
     Username				VARCHAR(50) NOT NULL UNIQUE KEY,
     FullName				NVARCHAR(50) NOT NULL,
-    DepartmentID 			TINYINT UNSIGNED NOT NULL,
+    Gender					NVARCHAR(50),
+    DepartmentID 			TINYINT UNSIGNED,
     PositionID				TINYINT UNSIGNED NOT NULL,
     CreateDate				DATETIME DEFAULT NOW(),
     FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID),
@@ -98,7 +99,7 @@ CREATE TABLE Exam(
     `Code`					CHAR(10) NOT NULL,
     Title					NVARCHAR(50) NOT NULL,
     CategoryID				TINYINT UNSIGNED NOT NULL,
-    Duration				TINYINT UNSIGNED NOT NULL,
+    Duration				NVARCHAR(50)  NOT NULL,
     CreatorID				TINYINT UNSIGNED NOT NULL,
     CreateDate				DATETIME DEFAULT NOW(),
     FOREIGN KEY(CategoryID) REFERENCES CategoryQuestion(CategoryID),
@@ -140,17 +141,17 @@ VALUES 					('Dev'			),
 
 
 -- Add data Account
-INSERT INTO `Account`(Email								, Username			, FullName				, DepartmentID	, PositionID, CreateDate)
-VALUES 				('haidang29productions@gmail.com'	, 'dangblack'		,'Nguyen Hai Dang'		,   '5'			,   '1'		,'2020-03-05'),
-					('account1@gmail.com'				, 'quanganh'		,'Tong Quang Anh'		,   '1'			,   '2'		,'2020-03-05'),
-                    ('account2@gmail.com'				, 'vanchien'		,'Nguyen Van Chien'		,   '2'			,   '3'		,'2020-03-07'),
-                    ('account3@gmail.com'				, 'cocoduongqua'	,'Duong Do'				,   '3'			,   '4'		,'2020-03-08'),
-                    ('account4@gmail.com'				, 'doccocaubai'		,'Nguyen Chien Thang'	,   '4'			,   '4'		,'2020-03-10'),
-                    ('dapphatchetngay@gmail.com'		, 'khabanh'			,'Ngo Ba Kha'			,   '6'			,   '3'		,'2020-04-05'),
-                    ('songcodaoly@gmail.com'			, 'huanhoahong'		,'Bui Xuan Huan'		,   '7'			,   '2'		,'2020-04-05'),
-                    ('sontungmtp@gmail.com'				, 'tungnui'			,'Nguyen Thanh Tung'	,   '8'			,   '1'		,'2020-04-07'),
-                    ('duongghuu@gmail.com'				, 'duongghuu'		,'Duong Van Huu'		,   '9'			,   '2'		,'2020-04-07'),
-                    ('vtiaccademy@gmail.com'			, 'vtiaccademy'		,'Vi Ti Ai'				,   '10'		,   '1'		,'2020-04-09');
+INSERT INTO `Account`(Email								, Username			, FullName				, Gender, DepartmentID	, PositionID, CreateDate)
+VALUES 				('haidang29productions@gmail.com'	, 'dangblack'		,'Nguyen Hai Dang'		,  'M'  ,    '5'		,   '1'		,'2020-03-05'),
+					('account1@gmail.com'				, 'quanganh'		,'Tong Quang Anh'		,  'M'  ,   '1'			,   '2'		,'2020-03-05'),
+                    ('account2@gmail.com'				, 'vanchien'		,'Nguyen Van Chien'		,  'U'  ,   '2'			,   '3'		,'2020-03-07'),
+                    ('account3@gmail.com'				, 'cocoduongqua'	,'Duong Do'				,  'F'  ,   '3'			,   '4'		,'2020-03-08'),
+                    ('account4@gmail.com'				, 'doccocaubai'		,'Nguyen Chien Thang'	,  'M'  ,   '4'			,   '4'		,'2020-03-10'),
+                    ('dapphatchetngay@gmail.com'		, 'khabanh'			,'Ngo Ba Kha'			,  'M'  ,   '6'			,   '3'		,'2020-04-05'),
+                    ('songcodaoly@gmail.com'			, 'huanhoahong'		,'Bui Xuan Huan'		,  'M'  ,   '7'			,   '2'		,'2020-04-05'),
+                    ('sontungmtp@gmail.com'				, 'tungnui'			,'Nguyen Thanh Tung'	,  'M'  ,   '8'			,   '1'		,'2020-04-07'),
+                    ('duongghuu@gmail.com'				, 'duongghuu'		,'Duong Van Huu'		,  'M'  ,   '9'			,   '2'		,'2020-04-07'),
+                    ('vtiaccademy@gmail.com'			, 'vtiaccademy'		,'Vi Ti Ai'				,  'F'  ,   '10'		,   '1'		,'2020-04-09');
 
 -- Add data Group
 INSERT INTO `Group`	(  GroupName			, CreatorID		, CreateDate)
