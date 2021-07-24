@@ -2,18 +2,18 @@
 INSERT INTO `group` (createDate)
 VALUES		("2022-11-11");
 
-DROP TRIGGER IF EXISTS trigger_create_Time;
+DROP TRIGGER IF EXISTS creat_group_1_year;
 DELIMITER $$
-	CREATE TRIGGER  trigger_create_Time
-    BEFORE INSERT ON `group`
+	CREATE TRIGGER creat_group_1_year
+    BEFORE INSERT ON tblgroup
     FOR EACH ROW
     BEGIN
-		IF NEW.createDate > NOW() THEN
-			SET NEW.createDate = NOW();
-		END IF;
+		IF NEW.CreateDate < DATE_SUB(CURDATE(), INTERVAL 1 YEAR) THEN
+			SIGNAL SQLSTATE '12345'
+            SET MESSAGE_TEXT = 'Unallow!! Please try again';
+        END IF;
     END $$
 DELIMITER ;
-SELECT * FROM `group`;
 
 #Question 2 : Tao trigger khong cho phep them user vao dept "Sale", khi them hien thong bao 
 INSERT INTO `account`(username, departmentID)
