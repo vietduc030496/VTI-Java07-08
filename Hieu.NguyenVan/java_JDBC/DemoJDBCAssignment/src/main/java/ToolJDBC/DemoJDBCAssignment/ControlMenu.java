@@ -12,16 +12,60 @@ import ToolJDBC.service.MonHocService;
 import ToolJDBC.service.SinhVienService;
 import ToolJDBC.service.StoreProcedurers;
 import ToolJDBC.utils.MailUtils;
+import ToolJDBC.utils.Validate;
 
 public class ControlMenu {
 	
 	public void menu1() throws SQLException {
-		SinhVien hieu= new SinhVien();
-		hieu.setTen("hieu");
-		hieu.setEmail("nvhieu.dev@gmail.com");
-		MailUtils mail =new  MailUtils(hieu.getEmail());
+		Validate validate = new Validate();
+		Scanner sc =new Scanner(System.in);
+		SinhVien sv = null;
+		
+		
+		System.out.print("Enter ho lot: ");
+		String hoLot = sc.next();
+		
+		System.out.print("Enter ten: ");
+		String ten = sc.next();
+		
+		System.out.print("Enter gioi tinh: ");
+		String gioiTinh = sc.next();
+		
+		System.out.print("Enter NgaySinh: ");
+		String ngaySinh = "";
+		while (validate.validateBrithday(ngaySinh) == false) {
+			ngaySinh = sc.next();
+		}
+		
+		System.out.print("Nhap dia chi: ");
+		String diaChi = sc.next();
+		
+		System.out.print("Nhap dien thoai: ");
+		String dienThoai = "";
+		while (validate.validatePhone(dienThoai) == false) {
+			dienThoai = sc.next();
+			if (validate.validatePhone(dienThoai) == false)
+				System.out.println("Phone is not valid");
+		}
+		
+		System.out.print("Nhap email: ");
+		String email = "";
+		while (validate.validateEmail(email) == false) {
+			email = sc.next();
+			if (validate.validateEmail(email) == false)
+				System.out.println("Email is not valid");
+		}
+		
+		
+		System.out.print("Nhap ID_Lop: ");
+		String iD_Lop = sc.next();
+		
+		sv = new SinhVien(hoLot, ten, gioiTinh, ngaySinh, diaChi, dienThoai, email, iD_Lop);
+
+
+		MailUtils mail =new  MailUtils(sv.getEmail());
 		SinhVienService sinhvienservice= new SinhVienService();
-		int temp = sinhvienservice.createSinhVien(hieu);
+		int temp = sinhvienservice.createSinhVien(sv);
 		System.out.println(temp);
 	}
 	

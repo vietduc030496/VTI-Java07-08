@@ -29,6 +29,17 @@ public class SinhVien {
 		Email = email;
 		ID_Lop = iD_Lop;
 	}
+	public SinhVien( String hoLot, String ten, String gioiTinh, String ngaySinh, String diaChi,
+			String dienThoai, String email, String iD_Lop) {
+		HoLot = hoLot;
+		Ten = ten;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		DiaChi = diaChi;
+		DienThoai = dienThoai;
+		Email = email;
+		ID_Lop = iD_Lop;
+	}
 	public int getID_SV() {
 		return ID_SV;
 	}
