@@ -116,9 +116,8 @@ create procedure deleteStudent(in studentName varchar(225),in Mark INT(225) )
 	begin 
 		DELETE from student  WHERE Name =studentName;
         
-        
 	end $$
 DELIMITER ;
 set @namestring= 'nguyen van a';
 set @email ='10';
-call createAccount(@nameString , @email);
+call deleteStudent(@nameString , @email);
