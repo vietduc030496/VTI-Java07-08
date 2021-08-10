@@ -1,172 +1,173 @@
+CREATE DATABASE STUMANAGE;
+USE STUMANAGE;
+CREATE TABLE `CLASS`(
+	`IDCLASS` INT NOT NULL AUTO_INCREMENT,
+	`CLASSNAME` VARCHAR(50) NOT NULL,
+    `SCHOLASTIC` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`IDCLASS`)
+    );
+CREATE TABLE `STUDENT`(
+	`IDSTUDENT` INT NOT NULL AUTO_INCREMENT,
+	`FIRSTNAME` VARCHAR(50) NOT NULL,
+    `LASTNAME` VARCHAR(50) NOT NULL,
+    `GENDER` VARCHAR(50) NOT NULL,
+    `DOB` DATE NOT NULL,
+    `ADDRESS` VARCHAR(50) NOT NULL,
+    `PHONENUMBER` VARCHAR(50) NOT NULL,
+    `EMAIL` VARCHAR(50) NOT NULL,
+    `IDCLASS` INT,
+    PRIMARY KEY (`IDSTUDENT`)
+    );
+CREATE TABLE `TRANSCRIPT`(
+	`IDSTUDENT` INT NOT NULL ,
+	`IDSUBJECT` INT NOT NULL ,
+    `MARK` DOUBLE NOT NULL 
+    );
+CREATE TABLE `SUBJECT`(
+	`IDSUBJECT` INT NOT NULL AUTO_INCREMENT,
+	`SUBJECTNAME` VARCHAR(50) NOT NULL ,
+    `NUMBEROFCREDITS` INT NOT NULL,
+     PRIMARY KEY (`IDSUBJECT`)
+    );
+ALTER TABLE `STUDENT` ADD CONSTRAINT `FK_STUDENT` FOREIGN KEY (IDCLASS) REFERENCES `CLASS`(IDCLASS) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `TRANSCRIPT` ADD CONSTRAINT `FK_TRANSCRIPT1` FOREIGN KEY (IDSTUDENT) REFERENCES `STUDENT`(IDSTUDENT) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `TRANSCRIPT` ADD CONSTRAINT `FK_TRANSCRIPT2` FOREIGN KEY (IDSUBJECT) REFERENCES `SUBJECT`(IDSUBJECT) ON DELETE CASCADE ON UPDATE CASCADE;
 
-CREATE TABLE `Class`(
-	`Idclass` INT NOT NULL AUTO_INCREMENT,
-	`ClassName` VARCHAR(50) NOT NULL,
-    `scholastic` VARCHAR(50) NOT NULL,
-    PRIMARY KEY (`Idclass`)
-    );
-CREATE TABLE `student`(
-	`Idstudent` INT NOT NULL AUTO_INCREMENT,
-	`firstName` VARCHAR(50) NOT NULL,
-    `lastName` VARCHAR(50) NOT NULL,
-    `gender` VARCHAR(50) NOT NULL,
-    `DOB` date NOT NULL,
-    `address` VARCHAR(50) NOT NULL,
-    `phoneNumber` VARCHAR(50) NOT NULL,
-    `Email` VARCHAR(50) NOT NULL,
-    `IDclass` int,
-    PRIMARY KEY (`Idstudent`)
-    );
-CREATE TABLE `transcript`(
-	`Idstudent` INT NOT NULL ,
-	`Idsubject` INT NOT NULL ,
-    `mark` double NOT NULL 
-    );
-CREATE TABLE `subject`(
-	`Idsubject` INT NOT NULL AUTO_INCREMENT,
-	`subjectName` VARCHAR(50) NOT NULL ,
-    `numberofcredits` int NOT NULL,
-     PRIMARY KEY (`Idsubject`)
-    );
-ALTER TABLE `student` ADD CONSTRAINT `FK_student` FOREIGN KEY (idclass) REFERENCES `class`(idclass) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `transcript` ADD CONSTRAINT `FK_transcript1` FOREIGN KEY (Idstudent) REFERENCES `student`(Idstudent) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `transcript` ADD CONSTRAINT `FK_transcript2` FOREIGN KEY (Idsubject) REFERENCES `subject`(Idsubject) ON DELETE CASCADE ON UPDATE CASCADE;
-
-insert into `class` (ClassName, scholastic) values ('class1','2020-2021'),('class2','2020-2021'),('class3','2020-2021'),('class4','2020-2021'),('class5','2020-2021');
-insert into `student` (firstname, lastname, gender, DOB, address, phoneNumber,Email, IDclass) values ('first1','last1','nam','1999-09-15','Ha Noi','0312456728','stu1@gmail.com',1),
-('first2','last2','nu','1999-09-16','Ha Noi','0312456727','stu2@gmail.com',1),
-('first3','last3','nam','1999-08-15','Ha Noi','0312456726','stu3@gmail.com',2),
-('first4','last4','nu','1999-08-16','Ha Noi','0312456725','stu4@gmail.com',2),
-('first5','last5','nam','1999-07-15','Ha Noi','0312456724','stu5@gmail.com',3),
-('first6','last6','nu','1999-07-16','Ha Noi','0312456723','stu6@gmail.com',3),
-('first7','last7','nam','1999-06-15','Ha Noi','0312456722','stu7@gmail.com',4),
-('first8','last8','nu','1999-06-16','Ha Noi','0312456721','stu8@gmail.com',4),
-('first9','last9','nam','1999-05-15','Ha Noi','0312456720','stu9@gmail.com',5),
-('first10','last10','nam','1999-05-18','Ha Noi','0312456719','stu10@gmail.com',5);
-insert into `student` (firstname, lastname, gender, DOB, address, phoneNumber,Email, IDclass) values('first11','last11','nu','1999-04-18','Ha Noi','0312456718','stu11@gmail.com',1);
-insert into `subject`(subjectName,numberofcredits) values ('subject1',1),('subject2',2),('subject3',3),('subject4',4),('subject5',3);
-insert into `transcript`(Idstudent,Idsubject, mark) values (1,1,8.0),(2,1,7.0),(3,2,6.0),(4,2,7.5),(5,3,8.8),(6,3,9.0),(7,4,5.0),(8,4,3.0),(9,5,10.0),(10,5,9.5);
-insert into `transcript`(Idstudent,Idsubject, mark) values(1,5,7.0);
-insert into `transcript`(Idstudent,Idsubject, mark) values(11,1,7.5);
+INSERT INTO `CLASS` (CLASSNAME, SCHOLASTIC) VALUES ('CLASS1','2020-2021'),('CLASS2','2020-2021'),('CLASS3','2020-2021'),('CLASS4','2020-2021'),('CLASS5','2020-2021');
+INSERT INTO `STUDENT` (FIRSTNAME, LASTNAME, GENDER, DOB, ADDRESS, PHONENUMBER,EMAIL, IDCLASS) VALUES ('FIRST1','LAST1','NAM','1999-09-15','HA NOI','0312456728','STU1@GMAIL.COM',1),
+('FIRST2','LAST2','NU','1999-09-16','HA NOI','0312456727','STU2@GMAIL.COM',1),
+('FIRST3','LAST3','NAM','1999-08-15','HA NOI','0312456726','STU3@GMAIL.COM',2),
+('FIRST4','LAST4','NU','1999-08-16','HA NOI','0312456725','STU4@GMAIL.COM',2),
+('FIRST5','LAST5','NAM','1999-07-15','HA NOI','0312456724','STU5@GMAIL.COM',3),
+('FIRST6','LAST6','NU','1999-07-16','HA NOI','0312456723','STU6@GMAIL.COM',3),
+('FIRST7','LAST7','NAM','1999-06-15','HA NOI','0312456722','STU7@GMAIL.COM',4),
+('FIRST8','LAST8','NU','1999-06-16','HA NOI','0312456721','STU8@GMAIL.COM',4),
+('FIRST9','LAST9','NAM','1999-05-15','HA NOI','0312456720','STU9@GMAIL.COM',5),
+('FIRST10','LAST10','NAM','1999-05-18','HA NOI','0312456719','STU10@GMAIL.COM',5);
+INSERT INTO `STUDENT` (FIRSTNAME, LASTNAME, GENDER, DOB, ADDRESS, PHONENUMBER,EMAIL, IDCLASS) VALUES('FIRST11','LAST11','NU','1999-04-18','HA NOI','0312456718','STU11@GMAIL.COM',1);
+INSERT INTO `SUBJECT`(SUBJECTNAME,NUMBEROFCREDITS) VALUES ('SUBJECT1',1),('SUBJECT2',2),('SUBJECT3',3),('SUBJECT4',4),('SUBJECT5',3);
+INSERT INTO `TRANSCRIPT`(IDSTUDENT,IDSUBJECT, MARK) VALUES (1,1,8.0),(2,1,7.0),(3,2,6.0),(4,2,7.5),(5,3,8.8),(6,3,9.0),(7,4,5.0),(8,4,3.0),(9,5,10.0),(10,5,9.5);
+INSERT INTO `TRANSCRIPT`(IDSTUDENT,IDSUBJECT, MARK) VALUES(1,5,7.0);
+INSERT INTO `TRANSCRIPT`(IDSTUDENT,IDSUBJECT, MARK) VALUES(11,1,7.5);
 /*Q2*/
-select st.Idstudent, st.firstName, st.lastName, st.DOB, st.gender, cl.ClassName
-from `student` st
-left join `class` cl on
-	st.Idclass = cl.Idclass;
+SELECT ST.IDSTUDENT, ST.FIRSTNAME, ST.LASTNAME, ST.DOB, ST.GENDER, CL.CLASSNAME
+FROM `STUDENT` ST
+LEFT JOIN `CLASS` CL ON
+	ST.IDCLASS = CL.IDCLASS;
     
 /*Q3?*/
-With CTE1 AS(
-    SELECT 		cr.Idclass, cr.ClassName, gender,Idstudent
-    FROM		student AS s
-                    RIGHT JOIN	class AS cr
-                                  ON			s.Idclass = cr.Idclass),
+WITH CTE1 AS(
+    SELECT 		CR.IDCLASS, CR.CLASSNAME, GENDER,IDSTUDENT
+    FROM		STUDENT AS S
+                    RIGHT JOIN	CLASS AS CR
+                                  ON			S.IDCLASS = CR.IDCLASS),
      CTE2 AS(
-         SELECT 		CTE1.Idclass, CTE1.gender, CTE1.Idstudent,count(*) num_of_male
+         SELECT 		CTE1.IDCLASS, CTE1.GENDER, CTE1.IDSTUDENT,COUNT(*) NUM_OF_MALE
          FROM		CTE1
-         WHERE		CTE1.gender = "Nam"
-         GROUP BY	CTE1.Idclass
+         WHERE		CTE1.GENDER = "NAM"
+         GROUP BY	CTE1.IDCLASS
      ),
      CTE3 AS(
-         SELECT 		CTE1.Idclass, CTE1.gender, CTE1.Idstudent,count(*) num_of_female
+         SELECT 		CTE1.IDCLASS, CTE1.GENDER, CTE1.IDSTUDENT,COUNT(*) NUM_OF_FEMALE
          FROM		CTE1
-         WHERE		CTE1.gender = "Nu"
-         GROUP BY	CTE1.Idclass
+         WHERE		CTE1.GENDER = "NU"
+         GROUP BY	CTE1.IDCLASS
      )
-SELECT 		CTE1.Idclass, CTE1.className, COALESCE(CTE2.num_of_male, 0) num_of_male, COALESCE(CTE3.num_of_female,0)num_of_female
+SELECT 		CTE1.IDCLASS, CTE1.CLASSNAME, COALESCE(CTE2.NUM_OF_MALE, 0) NUM_OF_MALE, COALESCE(CTE3.NUM_OF_FEMALE,0)NUM_OF_FEMALE
 FROM 		CTE1
                 LEFT JOIN	CTE2
-                             ON			CTE1.Idclass = CTE2.Idclass
+                             ON			CTE1.IDCLASS = CTE2.IDCLASS
                 LEFT JOIN	CTE3
-                             ON			CTE1.Idclass = CTE3.Idclass
-Group BY	CTE1.Idclass;
+                             ON			CTE1.IDCLASS = CTE3.IDCLASS
+GROUP BY	CTE1.IDCLASS;
 
 /*Q4*/
-select st.Idstudent, cl.ClassName,sj.subjectName, tr.mark
-from `student` as st
-left join `transcript`as tr on
-	st.Idstudent = tr.Idstudent
-left join `class` as cl on
-	st.IdClass= cl.IDclass
-left join `subject` as sj on
-	tr.Idsubject= sj.Idsubject
-where st.Idstudent =?;
+SELECT ST.IDSTUDENT, CL.CLASSNAME,SJ.SUBJECTNAME, TR.MARK
+FROM `STUDENT` AS ST
+LEFT JOIN `TRANSCRIPT`AS TR ON
+	ST.IDSTUDENT = TR.IDSTUDENT
+LEFT JOIN `CLASS` AS CL ON
+	ST.IDCLASS= CL.IDCLASS
+LEFT JOIN `SUBJECT` AS SJ ON
+	TR.IDSUBJECT= SJ.IDSUBJECT
+WHERE ST.IDSTUDENT =?;
 
 /*Q5*/
-Select CS.Idclass , COUNT(cs.Idclass)as So_Luong_Sinh_Vien
-from(
-select st.Idstudent, st.gender, cl.ClassName, cl.IDclass
-from `student` st
-left join `class` cl on
-	st.Idclass = cl.Idclass) as CS
-group by cs.Idclass;
+SELECT CS.IDCLASS , COUNT(CS.IDCLASS)AS SO_LUONG_SINH_VIEN
+FROM(
+SELECT ST.IDSTUDENT, ST.GENDER, CL.CLASSNAME, CL.IDCLASS
+FROM `STUDENT` ST
+LEFT JOIN `CLASS` CL ON
+	ST.IDCLASS = CL.IDCLASS) AS CS
+GROUP BY CS.IDCLASS;
 
 /*Q6*/
-select ma.Idsubject,ma.subjectName, ma.Idstudent, ma.firstName, ma.lastName, ma.gender, ma.DOB, min(ma.mark) as MinOfMark
-from(select st.Idstudent,st.firstName, st.lastName, st.gender, st.DOB ,sj.IDsubject,sj.subjectName, tr.mark
-from `student` as st
-right join `transcript`as tr on
-	st.Idstudent = tr.Idstudent
-left join `subject` as sj on
-	tr.Idsubject= sj.Idsubject)as ma
-group by ma.subjectName;
+SELECT MA.IDSUBJECT,MA.SUBJECTNAME, MA.IDSTUDENT, MA.FIRSTNAME, MA.LASTNAME, MA.GENDER, MA.DOB, MIN(MA.MARK) AS MINOFMARK
+FROM(SELECT ST.IDSTUDENT,ST.FIRSTNAME, ST.LASTNAME, ST.GENDER, ST.DOB ,SJ.IDSUBJECT,SJ.SUBJECTNAME, TR.MARK
+FROM `STUDENT` AS ST
+RIGHT JOIN `TRANSCRIPT`AS TR ON
+	ST.IDSTUDENT = TR.IDSTUDENT
+LEFT JOIN `SUBJECT` AS SJ ON
+	TR.IDSUBJECT= SJ.IDSUBJECT)AS MA
+GROUP BY MA.SUBJECTNAME;
 
 /*Q7*/
-DROP PROCEDURE IF EXISTS GET_Mark_of_5MAX_student_from_IdSubject;
+DROP PROCEDURE IF EXISTS GET_MARK_OF_5MAX_STUDENT_FROM_IDSUBJECT;
 DELIMITER //
-CREATE PROCEDURE GET_Mark_of_5MAX_student_from_IdSubject (IN ID_subject INT)
+CREATE PROCEDURE GET_MARK_OF_5MAX_STUDENT_FROM_IDSUBJECT (IN ID_SUBJECT INT)
   BEGIN
-	select ma.Idsubject,ma.subjectName, ma.Idstudent, ma.firstName, ma.lastName, ma.gender, ma.DOB, ma.mark
-	from(select st.Idstudent,st.firstName, st.lastName, st.gender, st.DOB ,sj.IDsubject,sj.subjectName, tr.mark
-		from `student` as st
-		right join `transcript`as tr on
-			st.Idstudent = tr.Idstudent
-		left join `subject` as sj on
-			tr.Idsubject= sj.Idsubject)as ma
-	where ma.Idsubject = ID_subject
-	group by ma.mark
-	ORDER BY ma.mark DESC LIMIT 5;
+	SELECT MA.IDSUBJECT,MA.SUBJECTNAME, MA.IDSTUDENT, MA.FIRSTNAME, MA.LASTNAME, MA.GENDER, MA.DOB, MA.MARK
+	FROM(SELECT ST.IDSTUDENT,ST.FIRSTNAME, ST.LASTNAME, ST.GENDER, ST.DOB ,SJ.IDSUBJECT,SJ.SUBJECTNAME, TR.MARK
+		FROM `STUDENT` AS ST
+		RIGHT JOIN `TRANSCRIPT`AS TR ON
+			ST.IDSTUDENT = TR.IDSTUDENT
+		LEFT JOIN `SUBJECT` AS SJ ON
+			TR.IDSUBJECT= SJ.IDSUBJECT)AS MA
+	WHERE MA.IDSUBJECT = ID_SUBJECT
+	GROUP BY MA.MARK
+	ORDER BY MA.MARK DESC LIMIT 5;
   END//
 DELIMITER ;
-CALL GET_Mark_of_5MAX_student_from_IdSubject(?);
+CALL GET_MARK_OF_5MAX_STUDENT_FROM_IDSUBJECT(?);
 
 /*Q8*/
-DROP PROCEDURE IF EXISTS GET_AVG_Mark_of_student;
+DROP PROCEDURE IF EXISTS GET_AVG_MARK_OF_STUDENT;
 DELIMITER //
-CREATE PROCEDURE GET_AVG_Mark_of_student (IN ID_stu INT)
+CREATE PROCEDURE GET_AVG_MARK_OF_STUDENT (IN ID_STU INT)
   BEGIN
-	select  ma.Idstudent, ma.firstName, ma.lastName, ma.gender, ma.DOB, avg(ma.mark) as DiemTB
-	from(select st.Idstudent,st.firstName, st.lastName, st.gender, st.DOB ,sj.IDsubject,sj.subjectName, tr.mark
-		from `student` as st
-		right join `transcript`as tr on
-			st.Idstudent = tr.Idstudent
-		left join `subject` as sj on
-			tr.Idsubject= sj.Idsubject)as ma
-	where ma.Idstudent = ID_stu;
+	SELECT  MA.IDSTUDENT, MA.FIRSTNAME, MA.LASTNAME, MA.GENDER, MA.DOB, AVG(MA.MARK) AS DIEMTB
+	FROM(SELECT ST.IDSTUDENT,ST.FIRSTNAME, ST.LASTNAME, ST.GENDER, ST.DOB ,SJ.IDSUBJECT,SJ.SUBJECTNAME, TR.MARK
+		FROM `STUDENT` AS ST
+		RIGHT JOIN `TRANSCRIPT`AS TR ON
+			ST.IDSTUDENT = TR.IDSTUDENT
+		LEFT JOIN `SUBJECT` AS SJ ON
+			TR.IDSUBJECT= SJ.IDSUBJECT)AS MA
+	WHERE MA.IDSTUDENT = ID_STU;
   END//
 DELIMITER ;
-CALL GET_AVG_Mark_of_student(?);
+CALL GET_AVG_MARK_OF_STUDENT(?);
 
 /*Q9*/
-Drop function IF EXISTS   Sum_tuition;
+DROP FUNCTION IF EXISTS   SUM_TUITION;
 DELIMITER //
-CREATE function Sum_tuition ( ID_stu INT ) returns int
+CREATE FUNCTION SUM_TUITION ( ID_STU INT ) RETURNS INT
 READS SQL DATA
 DETERMINISTIC
   BEGIN
-	DECLARE _tuition int DEFAULT null;
-    select sum(crst.numberofcredits)*500000 into _tuition
-	from
-		(select  ma.Idstudent, ma.firstName, ma.lastName, ma.gender, ma.DOB, ma.subjectName, ma.numberofcredits
-		 from(select st.Idstudent,st.firstName, st.lastName, st.gender, st.DOB ,sj.IDsubject,sj.subjectName,sj.numberofcredits
-			 from `student` as st
-			 right join `transcript`as tr on
-				st.Idstudent = tr.Idstudent
-			 left join `subject` as sj on
-				tr.Idsubject= sj.Idsubject)as ma
-		 where ma.Idstudent = ID_stu) crst;
-    return _tuition;
+	DECLARE _TUITION INT DEFAULT NULL;
+    SELECT SUM(CRST.NUMBEROFCREDITS)*500000 INTO _TUITION
+	FROM
+		(SELECT  MA.IDSTUDENT, MA.FIRSTNAME, MA.LASTNAME, MA.GENDER, MA.DOB, MA.SUBJECTNAME, MA.NUMBEROFCREDITS
+		 FROM(SELECT ST.IDSTUDENT,ST.FIRSTNAME, ST.LASTNAME, ST.GENDER, ST.DOB ,SJ.IDSUBJECT,SJ.SUBJECTNAME,SJ.NUMBEROFCREDITS
+			 FROM `STUDENT` AS ST
+			 RIGHT JOIN `TRANSCRIPT`AS TR ON
+				ST.IDSTUDENT = TR.IDSTUDENT
+			 LEFT JOIN `SUBJECT` AS SJ ON
+				TR.IDSUBJECT= SJ.IDSUBJECT)AS MA
+		 WHERE MA.IDSTUDENT = ID_STU) CRST;
+    RETURN _TUITION;
   END//
 DELIMITER ;
-select IDstudent, Sum_tuition(Idstudent) as TongHocPhi_VND
-from student
-where Idstudent = ?;
+SELECT IDSTUDENT, SUM_TUITION(IDSTUDENT) AS TONGHOCPHI_VND
+FROM STUDENT
+WHERE IDSTUDENT = ?;
