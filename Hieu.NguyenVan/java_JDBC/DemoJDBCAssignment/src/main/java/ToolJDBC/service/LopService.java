@@ -22,7 +22,7 @@ public class LopService {
 		sta = null;
 		ResultSet rs = null;
 		PreparedStatement pre =null;
-
+		
 		try {
 			pre = con.prepareStatement(SqlConstant.COUNT_SINHVIEN_BY_ID);
 			pre.setInt(1, id);

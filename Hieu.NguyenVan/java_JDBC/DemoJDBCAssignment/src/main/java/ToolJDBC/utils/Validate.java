@@ -13,7 +13,6 @@ public class Validate {
 			sdf.setLenient(false);
 
 			try {
-				// valid format
 				Date date =  sdf.parse(strDate);
 
 			} catch (ParseException e) {
