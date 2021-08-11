@@ -22,30 +22,30 @@ import com.vti.spring1.service.EmployeeService;
 @RestController
 @RequestMapping(value = "/api/employee")
 public class RestEmployeeController {
-	
+
 	@Autowired
 	private EmployeeService service;
 
 	@PostMapping
-	public ResponseEntity<EmployeeDto> saveOrUpdate(@RequestBody @Valid EmployeeDto dto){
+	public ResponseEntity<EmployeeDto> saveOrUpdate(@RequestBody @Valid EmployeeDto dto) {
 		dto = service.saveOrUpdate(dto);
 		return new ResponseEntity<EmployeeDto>(dto, HttpStatus.OK);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<EmployeeDto>> findAll(){
+	public ResponseEntity<List<EmployeeDto>> findAll() {
 		List<EmployeeDto> ret = service.findAll();
 		return new ResponseEntity<List<EmployeeDto>>(ret, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ResponseDto<EmployeeDto>> findById(@PathVariable("id") Long id){
+	public ResponseEntity<ResponseDto<EmployeeDto>> findById(@PathVariable("id") Long id) {
 		ResponseDto<EmployeeDto> ret = service.findById(id);
 		return new ResponseEntity<ResponseDto<EmployeeDto>>(ret, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<ResponseDto<EmployeeDto>> delete(@PathVariable("id") Long id){
+	public ResponseEntity<ResponseDto<EmployeeDto>> delete(@PathVariable("id") Long id) {
 		ResponseDto<EmployeeDto> ret = service.delete(id);
 		return new ResponseEntity<ResponseDto<EmployeeDto>>(ret, HttpStatus.OK);
 	}

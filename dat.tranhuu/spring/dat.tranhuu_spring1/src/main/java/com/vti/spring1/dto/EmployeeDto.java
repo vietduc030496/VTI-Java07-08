@@ -19,7 +19,7 @@ public class EmployeeDto {
 	private String lastName;
 
 	@Pattern(regexp = "^0[0-9]*", message = "the phone only number")
-	@Size(max = 10,min = 10, message = "the phone has 10 charecter")
+	@Size(max = 10, min = 10, message = "the phone has 10 charecter")
 	private String phone;
 
 	@Email

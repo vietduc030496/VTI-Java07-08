@@ -18,11 +18,11 @@ import com.vti.spring1.service.EmployeeService;
 import com.vti.spring1.types.YESNO;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
-	
+public class EmployeeServiceImpl implements EmployeeService {
+
 	@Autowired
 	private EntityManager manager;
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
@@ -30,19 +30,18 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public List<EmployeeDto> findAll() {
 		String SQL = " SELECT new com.vti.spring1.dto.EmployeeDto(s) from Employee s WHERE 1=1 ";
-		Query q = manager.createQuery(SQL , EmployeeDto.class);
-		
+		Query q = manager.createQuery(SQL, EmployeeDto.class);
+
 		List<EmployeeDto> result = q.getResultList();
 		return result;
 	}
 
 	@Override
 	@Transactional
-	public ResponseDto<EmployeeDto> findById(Long id) throws EntityNotFoundException{
+	public ResponseDto<EmployeeDto> findById(Long id) throws EntityNotFoundException {
 		ResponseDto<EmployeeDto> res = new ResponseDto<EmployeeDto>();
-		@SuppressWarnings("deprecation")
 		Employee entity = employeeRepository.getById(id);
-				
+
 		if (entity != null) {
 			res.setStatus(YESNO.YES);
 			res.setObject(new EmployeeDto(entity));
@@ -57,23 +56,23 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@SuppressWarnings("deprecation")
 	@Override
 	public EmployeeDto saveOrUpdate(EmployeeDto dto) {
-		if(dto!=null) {
-			Employee entity =null;
-			if(dto.getId()!=null) {
+		if (dto != null) {
+			Employee entity = null;
+			if (dto.getId() != null) {
 				entity = employeeRepository.getOne(dto.getId());
 			}
-			if(entity==null) {
+			if (entity == null) {
 				entity = new Employee();
 			}
 			entity.setEmail(dto.getEmail());
 			entity.setFirstName(dto.getFirstName());
 			entity.setLastName(dto.getLastName());
 			entity.setPhone(dto.getPhone());
-			
+
 			entity = employeeRepository.save(entity);
-			if(entity!=null) {
+			if (entity != null) {
 				return new EmployeeDto(entity);
-			}else {
+			} else {
 				return null;
 			}
 		}
@@ -94,7 +93,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 			res.setMessage("not found");
 		}
 		return res;
-		
+
 	}
 
 }
