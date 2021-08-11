@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Employee</title>
+<link href="/css/style2.css" rel='stylesheet' type='text/css'
+	media="all" />
+</head>
+<body>
+	<div class="nameTitle">
+		<span><h1>The list of Employee</h1></span> <a
+			th:href="@{/employee/add}">
+			<button>Add employee</button>
+		</a>
+		</td>
+		<div th:if="${#lists.size(employees) >0}">
+
+			<table border="1" cellpadding="">
+				<thead>
+					<th>ID</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Email</th>
+					<th>Phone</th>
+				</thead>
+				<tbody>
+					<tr th:each="employee,state: ${employees}">
+						<td align="right"><span th:text="${employee.id}"></span></td>
+						<td align="right"><span th:text="${employee.firstName}"></span></td>
+						<td align="right"><span th:text="${employee.lastName}"></span></td>
+						<td align="right"><span th:text="${employee.email}"></span></td>
+						<td align="right"><span th:text="${employee.phone}"></span></td>
+
+						<td>
+							<a th:href="@{student/edit(id=${employee.id})}">Edit</a>
+							&nbsp;&nbsp;&nbsp;&nbsp; 
+							<a th:href="@{/student/delete(id=${employee.id})}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</div>
+</body>
+</html>
