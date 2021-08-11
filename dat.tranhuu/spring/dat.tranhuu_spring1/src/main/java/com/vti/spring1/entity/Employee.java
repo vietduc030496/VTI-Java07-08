@@ -17,16 +17,16 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable = true,length = 100)
+
+	@Column(nullable = true, length = 100)
 	private String firstName;
-	
-	@Column(nullable = true,length = 100)
+
+	@Column(nullable = true, length = 100)
 	private String lastName;
-	
-	@Column(nullable = true,length = 10)
+
+	@Column(nullable = true, length = 10)
 	private String phone;
-	
-	@Column(nullable = true,length = 100)
+
+	@Column(nullable = true, length = 100)
 	private String email;
 }

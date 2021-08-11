@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Employee</title>
+</head>
+<body>
+<h1>Employee:</h1>
+
+
+	<form th:action="@{'/employee/update/' + *{id} }" method="post" th:object="${employee}"> 
+		Frist Name:
+		<input type="text" th:field="*{fristName}" /> <br />
+		Last Name:
+		<input type="text" th:field="*{lastName}" /> <br />
+		Email:
+		<input type="text" th:field="*{email}" /> <br />
+		Phone:
+		<input type="text" th:field="*{phone}" /> <br />
+		<input type="submit" value = "Update Employee"> 
+	</form>
+</body>
+</html>

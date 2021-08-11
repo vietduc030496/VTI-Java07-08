@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot - JPA</title>
+</head>
+<body>
+  <a th:href="@{/employee-list}">List Employee</a><br />
+  <h1>Edit Employee:</h1>
+  <form th:action="@{/updateEmployee}" method="POST" th:object="${employee}">
+      FirstName: <input th:field="*{firstName}"/> <br/> <br/>
+      LastName: <input th:field="*{lastName}"/> <br/> <br/>
+      Email: <input th:field="*{email}"/> <br/> <br/>
+      Phone: <input th:field="*{phone}"/> <br/> <br/>
+    <input type="submit" value="Submit" />
+  </form>
+</body>
+</html>

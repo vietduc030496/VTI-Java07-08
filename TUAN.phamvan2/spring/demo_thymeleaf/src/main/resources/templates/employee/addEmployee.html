@@ -1,0 +1,55 @@
+
+<!doctype html>
+<html>
+<head>
+<title>CRUD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+	tr{
+		text-align: center
+	}
+	table {
+		text-align: center
+	}
+</style>
+</head>
+<body >
+	<div style="margin: 40px auto;width:600px ;border: 1px solid black " align="center" >
+	<form th:action="@{/employee}" th:object="${employee}" method="POST" >
+         <table cellspacing="8" border="0" > 
+             <tr>
+                 <td align="right">ID:</td>
+                 <td><input type="text" name="id" th:field="*{id}"/></td> 
+             </tr> 
+             <tr>
+                 <td align="right">First name:</td>
+                 <td><input type="text" name="firstName" th:field="*{firstName}"></td>
+             </tr>
+             
+             <tr>
+                 <td align="right">Last name:</td>
+                 <td><input type="text" name="lastName" th:field="*{lastName}"></td> 
+             </tr> 
+             
+             <tr>
+                 <td align="right">Email:</td>
+                 <td><input type="text" name="email" th:field="*{email}"></td> 
+             </tr> 
+             
+             <tr>
+                 <td align="right">Phone:</td>
+                 <td><input type="text" name="phone" th:field="*{phone}"></td> 
+             </tr> 
+             
+             <tr> 
+                 <td>
+                     <input type="submit" value="Submit" style="width: 90px; height: 30px;">
+                 </td>
+             </tr>
+         </table>
+	</form>
+	
+	</div>
+</body>
+</html>

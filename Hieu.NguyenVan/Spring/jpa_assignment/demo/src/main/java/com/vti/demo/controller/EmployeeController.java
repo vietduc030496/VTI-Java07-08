@@ -3,56 +3,54 @@ package com.vti.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.demo.entity.Employee;
 import com.vti.demo.services.EmployeeService;
 
-@RestController
-@RequestMapping(path = "/api", produces = "application/json")
-@CrossOrigin(origins = "*")
+@Controller
+@RequestMapping("/view")
 public class EmployeeController {
-
+	
 	@Autowired
-	private EmployeeService employeeService;
-
-	@GetMapping("/employee")
-	public List<Employee> getAllEmployee() {
-
-		return employeeService.getAllEmplopyee();
+	private EmployeeService employeeService; 
+	
+	@GetMapping("employee")
+	public String getAllEmployee(Model model) {
+		List<Employee> listEmployee = employeeService.getAllEmplopyee();
+		model.addAttribute("listEmployee",listEmployee);
+		return "ViewEmployee";
+	}
+	@GetMapping("employee/{id}")
+	public String getAllEmployee(Model model,@PathVariable int id) {
+		Employee employee = employeeService.getEmployeeById(id);
+		model.addAttribute("employee",employee);
+		return "FormCreateEmployee";
+	}
+	@GetMapping("/employee/create")
+	public String createEmployee(Model model) {
+		Employee employee = new Employee();
+		model.addAttribute("employee",employee);
+		return "FormCreateEmployee"; 
 	}
 	
-	@GetMapping("/employee/{id}")
-	public Employee getAllEmployee(@PathVariable("id") int id) {
-
-		return  employeeService.getEmployeeById(id);
-	}
-	
-	@PostMapping("/employee")
-	public String addEmployee(@RequestBody Employee employee) {
+	@PostMapping("/employee/save")
+	public String createEmployee (Employee employee) {
 		employeeService.save(employee);
-		return "add success";
-		
-	}
-	@PutMapping("/employee")
-	public String updateEmployee(@RequestBody Employee employee) {
-		employeeService.updateEmployee(employee);
-		return "saved employee";
+		return "redirect:/view/employee";
 	}
 	
-	@DeleteMapping("/employee/{id}")
-	public String deleteEmployee (@PathVariable int id) {
+	@GetMapping("/employee/delete/{id}")
+	public String deleteEmployee(@PathVariable int id ) {
 		employeeService.removeEmployee(id);
-		
-		return "remove success";
+		return "redirect:/view/employee";
 	}
-
+	
+	
 }

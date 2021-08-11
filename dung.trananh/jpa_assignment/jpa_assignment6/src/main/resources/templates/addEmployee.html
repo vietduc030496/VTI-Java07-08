@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="#" th:action="@{/add}" th:object="${employee}"
+		method="post">
+		<label for="firstname">Firstname</label> 
+			<input type="text" th:field="*{firstname}"
+			id="firstname" placeholder="firstname">
+		<label for="lastname">Lastname</label> 
+			<input type="text" th:field="*{lastname}"
+			id="lastname" placeholder="lastname">
+		<label for="phone">Phone</label> 
+			<input type="text" th:field="*{phone}"
+			id="phone" placeholder="phone"> 
+		 <label for="email">Email</label> 
+		 	<input type="text" th:field="*{email}"
+			id="email" placeholder="email"> 
+			<input
+			type="submit" value="Add Employee">
+	</form>
+</body>
+</html>

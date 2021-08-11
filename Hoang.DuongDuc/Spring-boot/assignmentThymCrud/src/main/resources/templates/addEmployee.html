@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+    <h1>New Employee</h1>
+    <div class="col-md-auto">
+        <form th:object="${employee}" th:action="@{save}" action="#" method="post">
+            <div>
+                <p>First Name</p>
+                <input type="text" th:field="*{fname}" class="form-control" placeholder="First Name"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <p>Last Name</p>
+                <input type="text" th:field="*{lname}" class="form-control" placeholder="Last Name"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <p>Email</p>
+                <input type="text" th:field="*{email}" class="form-control" placeholder="Email"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:for="phone">Phone</label>
+                <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <input type="submit" class="btn btn-success" value="Save"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
