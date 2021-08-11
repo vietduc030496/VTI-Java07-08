@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+	<form th:action = "@{/employee/new}" method="post"> 
+		<input type = "submit" value = "Add Employee" />
+	</form>
+	<form th:action = "@{/employee}" method="get"> 
+		<input type = "submit" value = "List Employee" />
+	</form>
+</body>
+</html>
