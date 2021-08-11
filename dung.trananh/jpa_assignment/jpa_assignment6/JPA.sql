@@ -6,3 +6,5 @@ create table Employee(
     phone varchar(50));
     
 select * from employee;
+
+insert into Employee values (null, "Dung", "Tran", "dungtran240799@gmail.com","0932264199");
