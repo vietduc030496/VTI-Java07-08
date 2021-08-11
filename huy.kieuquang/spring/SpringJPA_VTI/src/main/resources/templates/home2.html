@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<a th:href="@{/newEmployee}"> Create</a>
+	<table class="table table-hover" border=1>
+		<thead>
+			<th>Id</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Action</th>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${listEm}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.firstName}"></td>
+				<td th:text="${item.lastName}"></td>
+				<td th:text="${item.email}"></td>
+				<td th:text="${item.phone}"></td>
+
+				<td>
+					<a th:href="@{/employee/{id}(id=${item.id})}">Edit</a>
+					<a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>
