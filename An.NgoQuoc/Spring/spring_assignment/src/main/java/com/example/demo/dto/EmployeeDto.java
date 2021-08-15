@@ -1,45 +1,34 @@
 package com.example.demo.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+
+import lombok.Data;
+
+@Data
 public class EmployeeDto {
 
 	private Long id;
 	
+	@NotBlank()
 	private String fristName;
 	
+	@NotBlank
 	private String lastName;
 	
+	@NotBlank
+	@Email
 	private String email;
 	
+	@NotBlank
+	@Pattern(regexp = "([0-9]{7,15})\\b")
 	private String phone;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getFristName() {
-		return fristName;
-	}
-	public void setFristName(String fristName) {
-		this.fristName = fristName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+	@NotNull
+	private Long department_id;
+	
+	private DepartmentDto department;
 }

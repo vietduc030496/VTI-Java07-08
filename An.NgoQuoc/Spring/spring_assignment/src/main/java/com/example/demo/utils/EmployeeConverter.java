@@ -17,6 +17,7 @@ public class EmployeeConverter {
 	public EmployeeDto toDTO(Employee employee) {
 		modelMapper = new ModelMapper();
 		EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
+		employeeDto.setDepartment_id(employee.getDepartment().getId());
 		return employeeDto;
 	}
 }
