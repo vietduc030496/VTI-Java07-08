@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Employee {
@@ -15,6 +17,10 @@ public class Employee {
 	private String lastName;
 	private String email;
 	private String phone;
+	
+	@ManyToOne(targetEntity = Department.class)
+	@JoinColumn(name = "department_id")
+	private Department department;
 	
 	public Employee() {
 		

@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.DepartmentDto;
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.entity.Employee;
 import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.service.DepartmentService;
 import com.example.demo.service.EmployeeService;
 import com.example.demo.utils.EmployeeConverter;
 
@@ -20,9 +22,19 @@ public class EmployeeServiceimp implements EmployeeService {
 	
 	@Autowired
 	private EmployeeConverter employeeConverter;
+	
+	@Autowired
+	private DepartmentService departmentService;
 
 	@Override
 	public void saveOrUpdate(EmployeeDto employeeDto) {
+		if(employeeDto.getId() != null) {
+			//tìm theo id xem có ko, ko có trả về NoSuchElementException
+			findOneById(employeeDto.getId());
+		}
+		//tìm theo id xem có ko, ko có trả về NoSuchElementException
+		DepartmentDto departmentDto = departmentService.findOneById(employeeDto.getDepartment_id());
+		employeeDto.setDepartment(departmentDto);
 		Employee employee = employeeConverter.toEntity(employeeDto);
 		employeeRepo.save(employee);
 		
