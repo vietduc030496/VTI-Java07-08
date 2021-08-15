@@ -37,7 +37,7 @@ public class DepartmentRestController {
 		return departmentService.findOneById(id);
 	}
 	@PutMapping("/{id}")
-	public String updateEmployee(@RequestBody DepartmentDto departmentDto,@PathVariable("id") Long id ) {
+	public String updateEmployee(@RequestBody @Valid DepartmentDto departmentDto,@PathVariable("id") Long id ) {
 		departmentDto.setId(id);
 		departmentService.saveOrUpdate(departmentDto);
 		return "success";
