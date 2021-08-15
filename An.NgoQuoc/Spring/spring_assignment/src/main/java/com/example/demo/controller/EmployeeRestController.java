@@ -41,7 +41,7 @@ public class EmployeeRestController {
 	}
 	
 	@PutMapping("/{id}")
-	public String updateEmployee(@RequestBody EmployeeDto employeeDto,@PathVariable("id") Long id ) {
+	public String updateEmployee(@RequestBody @Valid EmployeeDto employeeDto,@PathVariable("id") Long id ) {
 		employeeDto.setId(id);
 		employeeService.saveOrUpdate(employeeDto);
 		return "success";
