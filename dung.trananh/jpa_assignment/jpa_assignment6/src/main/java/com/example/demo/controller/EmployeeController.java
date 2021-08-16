@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/add")
-    public String addUser(Employee employee, BindingResult result, Model model) {
+    public String addUser(@Valid Employee employee, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "addEmployee";
         }
@@ -48,7 +50,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public String updateEmployee(@PathVariable("id") int id, Employee employee, 
+	public String updateEmployee(@PathVariable("id") int id,@Valid Employee employee, 
 	  BindingResult result, Model model) {
 	    if (result.hasErrors()) {
 	        employee.setId(id);
