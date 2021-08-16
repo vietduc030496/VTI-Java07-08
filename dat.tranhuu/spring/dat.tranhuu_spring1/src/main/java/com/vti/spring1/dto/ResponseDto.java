@@ -10,4 +10,5 @@ public class ResponseDto<T> {
 	private String message;
 	private T object;
 	private YESNO status;
+	private String error;
 }

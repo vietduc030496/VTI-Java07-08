@@ -2,9 +2,8 @@ package com.vti.spring1.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -12,11 +11,8 @@ import lombok.Data;
 @Data
 @Table
 @Entity
-public class Employee {
+public class Employee extends BaseEntity<String>{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 	@Column(nullable = true, length = 100)
 	private String firstName;
@@ -29,4 +25,8 @@ public class Employee {
 
 	@Column(nullable = true, length = 100)
 	private String email;
+	
+	@ManyToOne(targetEntity = Department.class)
+	@JoinColumn(name="department_id")
+	private Department department;
 }
