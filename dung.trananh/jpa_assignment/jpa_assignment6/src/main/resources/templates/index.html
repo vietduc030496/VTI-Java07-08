@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:switch="${emps}">
+		<h2 th:case="null">No employees yet!</h2>
+		<div th:case="*">
+			<h2>Employees</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>Phone</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="emp : ${emps}">
+						<td th:text="${emp.firstname}"></td>
+						<td th:text="${emp.lastname}"></td>
+						<td th:text="${emp.email}"></td>
+						<td th:text="${emp.phone}"></td>
+						<td><a th:href="@{/edit/{id}(id=${emp.id})}">Edit</a></td>
+						<td><a th:href="@{/delete/{id}(id=${emp.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>
+			<a href="/signup">Add a new Employee</a>
+		</p>
+	</div>
+</body>
+</html>

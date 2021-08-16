@@ -20,30 +20,27 @@ public class EmployeeServiceImplement implements EmployeeService {
 
 	@Override
 	@Transactional
-	public void save(Employee employee) {
+	public void saveEmployee(Employee employee) {
 		employeeRepo.save(employee);
 	}
 
 	@Override
 	@Transactional
-	public List<Employee> getEmployee() {
-		return employeeRepo.findAll();
+	public List<Employee> getAllEmployee() {
+		return (List<Employee>) employeeRepo.findAll();
 	}
 	
 	@Override
-	public Optional<Employee> getEmployeeById(int id) {
+	@Transactional
+	public Optional<Employee> findEmployeeById(int id) {
 		return employeeRepo.findById(id);
 	}
 
-	@Override
-	public void update(int id,Employee employee) {
-		employee.setId(id);
-		employeeRepo.save(employee);
 
-	}
 
 	@Override
-	public void deleteEmployeeById(int id){
+	@Transactional
+	public void deleteEmployee(int id){
 		// TODO Auto-generated method stub
 		employeeRepo.deleteById(id);
 		

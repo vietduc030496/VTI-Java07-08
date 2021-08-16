@@ -60,5 +60,11 @@ public class EmployeeServiceImplement implements EmployeeService{
 		}
 		
 	}
+	
+	@Override
+	@Transactional
+	public void deleteByID(int id) {
+		empRepo.deleteById(id);
+	}
 
 }

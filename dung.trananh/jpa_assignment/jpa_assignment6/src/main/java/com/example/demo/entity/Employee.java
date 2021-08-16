@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
 
 @Entity
 @Table(name ="Employee")
@@ -17,12 +19,15 @@ public class Employee {
 	private int id;
 	
 	@Column(name = "firstname")
+	@NotBlank(message = "Firstname is mandatory")
 	private String firstname;
 	
 	@Column(name = "lastname")
+	@NotBlank(message = "Lastname is mandatory")
 	private String lastname;
 	
 	@Column(name = "email")
+    @NotBlank(message = "Email is mandatory")
 	private String email;
 	
 	@Column(name = "phone")

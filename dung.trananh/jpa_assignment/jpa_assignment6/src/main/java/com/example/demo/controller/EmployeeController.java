@@ -1,51 +1,70 @@
 package com.example.demo.controller;
 
-import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
-import com.example.demo.entity.*;
 
-@RestController
+@Controller
 public class EmployeeController {
-	
+
 	@Autowired
 	private EmployeeService employeeService;
-	
-	@GetMapping("/employee")
-	public List<Employee> getAllEmployee(){
-		return employeeService.getEmployee();
+
+	@GetMapping("/signup")
+	public String showSignUpForm(Employee employee) {
+		return "addEmployee";
 	}
 	
-	@GetMapping("/employee/{id}")
-	public Employee getEmployeeByID(@PathVariable("id") Integer id){
-		return employeeService.getEmployeeById(id);
+	@PostMapping("/add")
+    public String addUser(@Valid Employee employee, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "addEmployee";
+        }
+        
+        employeeService.save(employee);
+        return "redirect:/index";
+    }
+	
+	@GetMapping("/index")
+	public String showEmployeeList(Model model) {
+	    model.addAttribute("emps", employeeService.getEmployee());
+	    return "index";
 	}
 	
-	@PostMapping("/employee")
-	public String addEmployee(@RequestBody Employee employee) {
-		employeeService.save(employee);
-		return "success";
+	@GetMapping("/edit/{id}")
+	public String showUpdateForm(@PathVariable("id") int id, Model model) {
+	    Employee employee = employeeService.getEmployeeById(id);   
+	    model.addAttribute("employee", employee);
+	    return "updateEmployee";
 	}
 	
-	@DeleteMapping("/employee")
-	public String deleteAllEmp() {
-		employeeService.deleteAllEmployee();
-		return "success";
+	@PostMapping("/update/{id}")
+	public String updateEmployee(@PathVariable("id") int id,@Valid Employee employee, 
+	  BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	        employee.setId(id);
+	        return "updateEmployee";
+	    }
+	        
+	    employeeService.save(employee);
+	    return "redirect:/index";
 	}
 	
-	@PutMapping("/employee/{id}")
-	public String updateEmployee(@PathVariable("id") Integer id, @RequestBody Employee employee) {
-		employeeService.update(id, employee);
-		return "success";
+	@GetMapping("/delete/{id}")
+	public String deleteEmployee(@PathVariable("id") int id) {
+	    employeeService.deleteByID(id);
+	    return "redirect:/index";
 	}
 	
 }

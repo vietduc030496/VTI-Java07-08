@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot - JPA</title>
+<style>
+table, th, td, tr {
+	border: 1px solid black;
+}
+
+td {
+	padding-right: 30px;
+}
+</style>
+</head>
+<body>
+	<h1>List Employee:</h1>
+	<a th:href="@{/employee-save}">Add Employee</a>
+	<br />
+	<br />
+	<table>
+		<tr>
+			<th>EmployeeId</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>View</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<th:block th:each="employee : ${listEmployee}">
+			<tr>
+				<td><p th:text="${employee.employeeId}"></p></td>
+				<td><p th:text="${employee.firstName}"></p></td>
+				<td><p th:text="${employee.lastName}"></p></td>
+				<td><p th:text="${employee.email}"></p></td>
+				<td><p th:text="${employee.phone}"></p></td>
+				<td><a th:href="@{/employee-view/} + ${employee.id}">View</a></td>
+				<td><a th:href="@{/employee-update/} + ${employee.id}">Edit</a></td>
+				<td><a th:href="@{/employeeDelete/} + ${employee.id}">Delete</a></td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
