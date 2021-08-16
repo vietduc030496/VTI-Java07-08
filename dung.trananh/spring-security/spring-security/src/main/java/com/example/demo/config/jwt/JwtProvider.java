@@ -1,4 +1,4 @@
-package java.com.javamaster.springsecurityjwt.config.jwt;
+package com.example.demo.config.jwt;
 
 import java.lang.System.Logger;
 import java.time.LocalDate;
@@ -13,11 +13,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.java.Log;
 
-@Component
-@Log
 public class JwtProvider {
-
-    @Value("$(jwt.secret)")
+	
+	@Value("$(jwt.secret)")
     private String jwtSecret;
 
     public String generateToken(String login) {
@@ -34,7 +32,7 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         } catch (Exception e) {
-            log.severe("invalid token");
+        	System.out.println("invalid token");
         }
         return false;
     }
