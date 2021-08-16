@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class EmployeeRestController {
 	}
 	
 	@GetMapping()
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public List<EmployeeDto> getAll() {
 		return employeeService.findAll();
 	}
@@ -41,6 +43,7 @@ public class EmployeeRestController {
 	}
 	
 	@PutMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public String updateEmployee(@RequestBody @Valid EmployeeDto employeeDto,@PathVariable("id") Long id ) {
 		employeeDto.setId(id);
 		employeeService.saveOrUpdate(employeeDto);
@@ -48,12 +51,14 @@ public class EmployeeRestController {
 	}
 	
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deleteById(@PathVariable("id") Long id ) {
 		employeeService.deleteById(id);
 		return "success";
 	}
 	
 	@DeleteMapping()
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deleteEmployee(@RequestBody EmployeeDto employeeDto) {
 		employeeService.delete(employeeDto);
 		return "success";
