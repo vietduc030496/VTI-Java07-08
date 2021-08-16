@@ -3,6 +3,8 @@ package com.vti.spring1.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ public class EmployeeController {
 	public String getHomePage() {
 		return "home";
 	}
+
 	
 	@GetMapping(value = "/employee")
 	public String list(Model model) {
@@ -30,6 +33,7 @@ public class EmployeeController {
 		model.addAttribute("list", list);
 		return "employee/list";
 	}
+	
 	
 	@GetMapping(value = "/employee/add")
 	public String add(Model model) {

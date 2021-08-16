@@ -30,5 +30,15 @@ public class EmployeeDto {
 	@NotNull
 	private Long department_id;
 	
-	private DepartmentDto department;
+	private String department_name;
+	
+	@NotNull
+	private String role_name;
+	
+	@NotNull
+	private String username;
+	
+	@NotNull
+	private String password;
+
 }
