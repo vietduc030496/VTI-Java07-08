@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.vti.stringboottest.dto.EmployeeDTO;
 
-public interface EmployeeService {
-
+public interface DepartmentService {
 	public void save(EmployeeDTO empDTO);
 
 	public List<EmployeeDTO> getListEmployee();

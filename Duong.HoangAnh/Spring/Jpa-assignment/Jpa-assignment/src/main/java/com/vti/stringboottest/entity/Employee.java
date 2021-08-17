@@ -1,11 +1,18 @@
 package com.vti.stringboottest.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.vti.stringboottest.dto.EmployeeDTO;
 
@@ -32,11 +39,16 @@ public class Employee {
 	@Column(name = "Phone")
 	private String phone;
 
-	public Long  getId() {
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "dept_id", insertable = false, updatable = false)
+	@Fetch(FetchMode.JOIN)
+	private Department department;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long  id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -71,7 +83,7 @@ public class Employee {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 	public void loadFromDTO(EmployeeDTO empDTO) {
 		this.id = empDTO.getId();
 		this.firstName = empDTO.getFirstName();

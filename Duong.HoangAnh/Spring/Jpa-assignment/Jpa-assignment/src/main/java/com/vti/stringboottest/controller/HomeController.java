@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vti.stringboottest.dto.EmployeeDTO;
-import com.vti.stringboottest.entity.Employee;
 import com.vti.stringboottest.service.EmployeeService;
 
 @Controller

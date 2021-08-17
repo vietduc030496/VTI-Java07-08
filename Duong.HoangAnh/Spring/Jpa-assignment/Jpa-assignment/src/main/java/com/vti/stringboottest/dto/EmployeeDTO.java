@@ -1,15 +1,31 @@
 package com.vti.stringboottest.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.vti.stringboottest.entity.Employee;
 
 import lombok.Data;
 
 @Data
 public class EmployeeDTO {
-	private Long  id;
+	private Long id;
+
+	@NotBlank(message = "Name is mandatory")
+	@Size(max = 50, message = "Last name must be between 0 and 50 characters")
 	private String lastName;
+
+	@Size(max = 50, message = "Last name must be between 0 and 50 characters")
+	@NotBlank(message = "Name is mandatory")
 	private String firstName;
+
+	@Email
+	@NotBlank(message = "Email is mandatory")
 	private String email;
+
+	@NotBlank(message = "Phone is mandatory")
+	@Size(min = 0, max = 10, message = "Last name must be between 0 and 10 characters")
 	private String phone;
 
 	public EmployeeDTO() {
@@ -24,11 +40,11 @@ public class EmployeeDTO {
 		this.email = entity.getEmail();
 	}
 
-	public Long  getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long  id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -63,5 +79,5 @@ public class EmployeeDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 }
