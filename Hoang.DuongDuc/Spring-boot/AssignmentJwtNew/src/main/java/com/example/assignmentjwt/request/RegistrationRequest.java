@@ -15,6 +15,9 @@ public class RegistrationRequest {
     private String password;
 
     @NotEmpty
+    private String info;
+
+    @NotEmpty
     private String roleName;
 
 }

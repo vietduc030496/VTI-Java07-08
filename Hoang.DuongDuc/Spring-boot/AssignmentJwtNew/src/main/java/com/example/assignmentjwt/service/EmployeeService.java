@@ -12,7 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.management.relation.Role;
+import java.util.List;
 
+// nhan vien sua, xem tai khoan ban than. admin, xem tat ca them nhan vien, xoa nhan vien
 @Service
 public class EmployeeService {
 
@@ -54,4 +56,44 @@ public class EmployeeService {
         }
         return null;
     }
+
+
+
+
+
+
+
+    public List<Employee> getListEmployee() {
+        return (List<Employee>) userEntityRepository.findAll();
+    }
+
+    public Employee getEmployeeById(int id) {
+        return userEntityRepository.findById(id).orElse(null);
+    }
+
+    //    @Override hàm không tối ưu
+//    public void update(int id, Employee employee) throws Exception {
+//        Employee employee1 = employeeRepository.findById(id).orElse(null);
+//        if(employee1 == null) throw new Exception("ID khong ton tai!");
+//        employee.setId(id);
+//        employeeRepository.save(employee);
+//    }
+    public String update(int id, Employee employee) {
+        Employee employee1 = userEntityRepository.findById(id).orElse(null);
+        if (employee1 == null) return "Khong ton tai ID";
+        employee.setId(id);
+        userEntityRepository.save(employee);
+        return "Update Success";
+    }
+
+    public String delete(int id) {
+        Employee employee1 = userEntityRepository.findById(id).orElse(null);
+        if (employee1 == null) return "Khong ton tai ID";
+        userEntityRepository.delete(employee1);
+        return "Delete Success";
+    }
+//    public String getUserByName(String name){
+//        Employee employee = new Employee();
+//        employee.setId();
+//    }
 }
